@@ -6,6 +6,8 @@ MEAS Kevin, Youvann
 
 ENG David, Minmaj
 
+BRENGUIER Maxime, Kazuia
+
 ## Sujet
 ADMINISTRATION D'UN RÉSEAU AU SEIN D'UNE ENTREPRISE « NET-WORK »
 
