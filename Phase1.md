@@ -1,5 +1,4 @@
 #Phase 1 : Proposition des choix technologiques et estimations des délais
-=========================================================================
 ##1. Les choix technologiques
 ###1.1. Back-end
 ####1.1.1. PHP 5.6
