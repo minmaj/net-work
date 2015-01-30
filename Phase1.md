@@ -30,10 +30,16 @@ L'utilisation d'un système de gestion de version permet de versionner le code d
 ##2. Estimation des délais
 |                                    | Durée (jour)     |
 | ---------------------------------- | :--------------: |
+| **Phase 1**                        |                  |
 | Sélection des technologies         | 1/2              |
+| **Phase 2**                        |                  |
 | Conception de la base de données   | 1                |
 | Réalisation des mockups            | 1                |
+| **Phase 3**                        |                  |
 | Réalisation de l'application       | 3                |
 | Tests                              | 1/2              |
 | Déploiement                        | 1/2              |
+| **Total**                          | **6.5**          |
+
+
 
