@@ -36,5 +36,4 @@ L'utilisation d'un système de gestion de version permet de versionner le code d
 | Réalisation de l'application       | 3                |
 | Tests                              | 1/2              |
 | Déploiement                        | 1/2              |
-| **TOTAL** | **8**              |
 
