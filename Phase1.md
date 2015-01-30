@@ -1,4 +1,5 @@
 #Phase 1 : Proposition des choix technologiques et estimations des délais
+=========================================================================
 ##1. Les choix technologiques
 ###1.1. Back-end
 ####1.1.1. PHP 5.6
@@ -7,8 +8,8 @@ Le langage de script PHP a l'avantage d'être simple et souple. Sa communauté d
 Nous avons choisi d'utiliser un framework PHP MVC (https://github.com/ndavison/Nathan-MVC). Ce framework est assez simple d'utilisation et permet de structurer notre application. Le but du projet est de principalement utiliser du JavaScript. Nous avons donc préférés prendre une solution existante pour le backend afin de nous consacrer plus particlièrement à l'aspect frond-end du site.
 
 L'architecture MVC permet de :
-- Séparer le traitement des données et leur affichage)
-- Simplifier l'évolution et la maintenance du code
+- Séparer le traitement des données et leur affichage.
+- Simplifier l'évolution et la maintenance du code.
 
 ####1.1.2. Base de données - MySQL
 Pour stocker les données, nous ne sommes orientés vers le système de gestion de base de données relationnelles MySQL. C'est une solution gratuite, simple d'utilisation. Le couple PHP/MySQL est très populaire chez les développeurs, ce qui fait que cette solution est proposée chez la majorité des hébergeurs web.
