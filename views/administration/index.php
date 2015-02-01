@@ -108,9 +108,75 @@
                     <!-- /.nav-second-level -->
                 </li>
             </ul>
+                <hr />
+                        <div class="panel panel-primary" style="margin: 8px;">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-github fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right" style="padding-top:5px">
+                                        <div>
+                                            A propos de nous!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="https://github.com/kazuia">
+                                <div class="panel-footer">
+                                    <span class="pull-left">
+
+                                        Kazuia
+
+                                    </span>
+                                    <span class="pull-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </span>
+                                    <div class="clearfix"></div>
+                            </a>
+                            <a href="https://github.com/minmaj">
+                                    
+                                    <span class="pull-left">
+
+                                        Minmaj
+
+                                    </span>
+                                    <span class="pull-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </span>
+                                    <div class="clearfix"></div>
+                            </a>
+                            <a href="https://github.com/youvann">        
+                                    <span class="pull-left">
+
+                                        Youvann
+
+                                    </span>
+                                    <span class="pull-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </span>
+                                    <div class="clearfix"></div>
+                            </a>
+                                    <br/>
+                            
+                            <a href="https://github.com/minmaj/net-work">
+                                    <span class="pull-left">
+
+                                        Contribuez !
+
+                                    </span>
+                                    <span class="pull-right">
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                    </span>
+                                    <div class="clearfix"></div>
+                            </a>
+                                </div>
+                            </a>
+                        </div>
         </div>
         <!-- /.sidebar-collapse -->
     </div>
+    
     <!-- /.navbar-static-side -->
 </nav>
 
@@ -148,7 +214,10 @@
                     <td>127.0.0.1</td>
                     <td>
                         <button type="button" class="btn btn-default btn-xs">
-                            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Edit
+                            <i class="fa fa-edit"></i> Edit
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <i class="fa fa-times"></i> Supp
                         </button>
                     </td>
                 </tr>
@@ -157,6 +226,14 @@
                     <td>SWAG</td>
                     <td>DOGE CORP.</td>
                     <td>127.0.0.1</td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <i class="fa fa-edit"></i> Edit
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <i class="fa fa-times"></i> Supp
+                        </button>
+                    </td>
                 </tr>
             </table></div>
         </div>
