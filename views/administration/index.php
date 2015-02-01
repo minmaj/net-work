@@ -200,42 +200,134 @@
             <div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
             
             <div class="panel panel-default"> 
-            <table class="table">
-                <th class="blue-background">
-                    <td class="blue-background">NOM</td>
-                    <td class="blue-background">FABRIQUANT</td>
-                    <td class="blue-background">ADRESSE IP</td>
-                    <td class="blue-background"></td>
-                </th>
-                <tr class="warning-row">
-                    <td>1</td>
-                    <td>YOLO</td>
-                    <td>DOGE CORP.</td>
-                    <td>127.0.0.1</td>
-                    <td>
-                        <button type="button" class="btn btn-default btn-xs">
-                            <i class="fa fa-edit"></i> Edit
-                        </button>
-                        <button type="button" class="btn btn-default btn-xs">
-                            <i class="fa fa-times"></i> Supp
-                        </button>
-                    </td>
-                </tr>
-                <tr class="valid-row">
-                    <td>2</td>
-                    <td>SWAG</td>
-                    <td>DOGE CORP.</td>
-                    <td>127.0.0.1</td>
-                    <td>
-                        <button type="button" class="btn btn-default btn-xs">
-                            <i class="fa fa-edit"></i> Edit
-                        </button>
-                        <button type="button" class="btn btn-default btn-xs">
-                            <i class="fa fa-times"></i> Supp
-                        </button>
-                    </td>
-                </tr>
-            </table></div>
+                <table class="table">
+                    <th class="blue-background">
+                        <td class="blue-background">NOM</td>
+                        <td class="blue-background">FABRIQUANT</td>
+                        <td class="blue-background">ADRESSE IP</td>
+                        <td class="blue-background"></td>
+                    </th>
+                    <tr class="warning-row">
+                        <td>1</td>
+                        <td>YOLO</td>
+                        <td>DOGE CORP.</td>
+                        <td>127.0.0.1</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs">
+                                <i class="fa fa-edit"></i> Edit
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs">
+                                <i class="fa fa-times"></i> Supp
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="valid-row">
+                        <td>2</td>
+                        <td>SWAG</td>
+                        <td>DOGE CORP.</td>
+                        <td>127.0.0.1</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs">
+                                <i class="fa fa-edit"></i> Edit
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs">
+                                <i class="fa fa-times"></i> Supp
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!-- Bouton d'ajout -->
+            <button type="button" class="btn btn-success" style="margin-bottom: 10px;">
+                <i class="fa fa-plus"></i> Ajouter
+            </button>
+            
+            <hr />
+            
+            <!-- Formulaire d'ajout -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">Ajout d'un équipement</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="nom">Nom:</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="nom" placeholder="Entrez un nom">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="fabriquant">Fabriquant:</label>
+                          <div class="col-sm-10"> 
+                            <input type=text list=fabriquant >
+                            <datalist id=fabriquant >
+                               <option> DOGE CORP.
+                               <option> AMAZING CORP.
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="ad-physique">Adresse Physique:</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="ad-physique" placeholder="Entrez une adresse">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="ad-ip">Adresse IP:</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="ad-ip" placeholder="Entrez une adresse IP">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="prop">Propriétaire:</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="prop" placeholder="Entrez une adresse">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="localisation">Localisation:</label>
+                          <div class="col-sm-10"> 
+                            <input type=text list=localisation >
+                            <datalist id=localisation >
+                               <option> DOGE LAND
+                               <option> SUCH WOW COUNTRY
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="numero">Numéro :</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="numero" placeholder="Entrez le numéro de téléphone">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="technique">Localisation:</label>
+                          <div class="col-sm-10"> 
+                            <input type=text list=technique >
+                            <datalist id=technique >
+                               <option> OK
+                               <option> NON
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label col-sm-2" for="fonctionnel">Localisation:</label>
+                          <div class="col-sm-10"> 
+                            <input type=text list=fonctionnel >
+                            <datalist id=fonctionnel >
+                               <option> ok
+                               <option> non
+                            </datalist>
+                          </div>
+                        </div>
+                        <div class="form-group"> 
+                          <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Ajouter</button>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         
         <div class="col-lg-4">
