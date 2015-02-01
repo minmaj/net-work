@@ -4,3 +4,23 @@
     margin-left: auto;
     text-align: center;
 }
+
+.breadcrumb {
+    margin-bottom: 0px;
+}
+hr {
+    margin-top: 0px;
+}
+
+.blue-background {
+    background-color:#337AB7; 
+    color:#FFFFFF;
+}
+
+.warning-row {
+    background-color:#FFCCCC;
+}
+
+.valid-row {
+    background-color:#CCFFCC
+}
