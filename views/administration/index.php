@@ -85,27 +85,26 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-desktop fa-fw"></i> Ordinateurs fixes</a>
+                    <a href="#"><i class="fa fa-desktop fa-fw"></i> Ordinateurs fixes <span class="badge">8</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-laptop fa-fw"></i> Ordinateurs portables <span class="badge">2</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-laptop fa-fw"></i> Ordinateurs portables</a>
+                    <a href="#"><i class="fa fa-print fa-fw"></i> Imprimantes <span class="badge">4</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-print fa-fw"></i> Imprimantes</a>
+                    <a href="#"><i class="fa fa-phone fa-fw"></i> Téléphones <span class="badge">16</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-phone fa-fw"></i> Téléphones</a>
+                    <a href="#"><i class="fa fa-cloud fa-fw"></i> Routeurs <span class="badge">44</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-cloud fa-fw"></i> Routeurs</a>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-server fa-fw"></i> Serveurs</a>
+                    <a href="#"><i class="fa fa-server fa-fw"></i> Serveurs <span class="badge">0</span></a>
                     <!-- /.nav-second-level -->
                 </li>
             </ul>
@@ -118,16 +117,50 @@
 <div id="page-wrapper" style="min-height: 455px;">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Dashboard - A vous de jouer</h1>
+            <ol class="breadcrumb" style="background-color:white;">
+                <li><a href="#">NET-WORK</a></li>
+                <li class="active"><a href="#">Ordinateurs fixes</a></li>
+            </ol>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
-
+    <div class="row">
+        <div class="col-lg-12">
+            <hr />
+        <div class="col-lg-12">
+    </div>
     <div class="row">
         <div class="col-lg-8">
-
+            <h1 class="page-header">Ordinateurs fixes</h1>
+            <div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
+            
+            <div class="panel panel-default"> 
+            <table class="table">
+                <th class="blue-background">
+                    <td class="blue-background">NOM</td>
+                    <td class="blue-background">FABRIQUANT</td>
+                    <td class="blue-background">ADRESSE IP</td>
+                    <td class="blue-background"></td>
+                </th>
+                <tr class="warning-row">
+                    <td>1</td>
+                    <td>YOLO</td>
+                    <td>DOGE CORP.</td>
+                    <td>127.0.0.1</td>
+                    <td>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Edit
+                        </button>
+                    </td>
+                </tr>
+                <tr class="valid-row">
+                    <td>2</td>
+                    <td>SWAG</td>
+                    <td>DOGE CORP.</td>
+                    <td>127.0.0.1</td>
+                </tr>
+            </table></div>
         </div>
+        
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -202,5 +235,8 @@
 
             <!-- /.panel .chat-panel -->
         </div>
+        
+        <!-- /.col-lg-12 -->
     </div>
+    <!-- /.row -->
 </div>
