@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="public/css/vendor/metisMenu.min.css"> 
     <link rel="stylesheet" href="public/css/vendor/font-awesome-4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="public/css/main.css">
+    
+    <meta charset="utf-8"/>
 
     <title><?php echo $viewModel->get('pageTitle'); ?></title>
   </head>
