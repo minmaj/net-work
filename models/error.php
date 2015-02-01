@@ -1,9 +1,8 @@
 <?php
 /* 
- * Project: Nathan MVC
+ * Project: Net-Work
  * File: /models/error.php
  * Purpose: model for the error controller.
- * Author: Nathan Davison
  */
 
 class ErrorModel extends BaseModel

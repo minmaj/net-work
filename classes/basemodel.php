@@ -14,7 +14,7 @@ class BaseModel {
     public function __construct()
     {
         $this->viewModel = new ViewModel();
-	$this->commonViewData();
+        $this->commonViewData();
     }
 
     //establish viewModel data that is required for all views in this method (i.e. the main template)

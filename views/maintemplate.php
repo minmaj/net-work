@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title><?php echo $viewModel->get('pageTitle'); ?></title>
-</head>
-<body>
-<?php require($this->viewFile); ?>
-</body>
+  <head>
+    <link rel="stylesheet" href="public/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/vendor/sb-admin-2.css">
+    <link rel="stylesheet" href="public/css/vendor/metisMenu.min.css"> 
+    <link rel="stylesheet" href="public/css/vendor/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/css/main.css">
+
+    <title><?php echo $viewModel->get('pageTitle'); ?></title>
+  </head>
+  <body>
+    <?php require($this->viewFile); ?>
+
+    <script src="public/js/vendor/jquery-2.1.3.min.js"></script>
+    <script src="public/js/vendor/bootstrap.min.js"></script>
+    <script src="public/js/vendor/sb-admin-2.js"></script>
+    <script src="public/js/vendor/metisMenu.min.js"></script>
+    <script src="public/js/main.js"></script>
+  </body>
 </html>
