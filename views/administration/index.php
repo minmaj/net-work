@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
-        <a class="navbar-brand" href="#">NET-WORK</a>
+        <a class="navbar-brand" href="#" onclick="showhomecontent()">NET-WORK</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -85,26 +85,26 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-desktop fa-fw"></i> Ordinateurs fixes <span class="badge">8</span></a>
+                    <a href="#" onclick="showstuffcontent('Ordinateurs fixes')"><i class="fa fa-desktop fa-fw"></i> Ordinateurs fixes <span class="badge">8</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-laptop fa-fw"></i> Ordinateurs portables <span class="badge">2</span></a>
+                    <a href="#" onclick="showstuffcontent('Ordinateurs portables')"><i class="fa fa-laptop fa-fw"></i> Ordinateurs portables <span class="badge">2</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-print fa-fw"></i> Imprimantes <span class="badge">4</span></a>
+                    <a href="#" onclick="showstuffcontent('Imprimantes')"><i class="fa fa-print fa-fw"></i> Imprimantes <span class="badge">4</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-phone fa-fw"></i> Téléphones <span class="badge">16</span></a>
+                    <a href="#" onclick="showstuffcontent('Téléphones')"><i class="fa fa-phone fa-fw"></i> Téléphones <span class="badge">16</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-cloud fa-fw"></i> Routeurs <span class="badge">44</span></a>
+                    <a href="#" onclick="showstuffcontent('Routeurs')"><i class="fa fa-cloud fa-fw"></i> Routeurs <span class="badge">44</span></a>
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-server fa-fw"></i> Serveurs <span class="badge">0</span></a>
+                    <a href="#" onclick="showstuffcontent('Serveurs')"><i class="fa fa-server fa-fw"></i> Serveurs <span class="badge">0</span></a>
                     <!-- /.nav-second-level -->
                 </li>
             </ul>
@@ -183,9 +183,8 @@
 <div id="page-wrapper" style="min-height: 455px;">
     <div class="row">
         <div class="col-lg-12">
-            <ol class="breadcrumb" style="background-color:white;">
+            <ol id="breadlist" class="breadcrumb" style="background-color:white;">
                 <li><a href="#">NET-WORK</a></li>
-                <li class="active"><a href="#">Ordinateurs fixes</a></li>
             </ol>
         </div>
     </div>
@@ -197,190 +196,194 @@
  
     <div class="row">
         <div class="col-lg-8">
-          
-          <h1 class="page-header">Dashboard</h1>
-          
-          <div class="bs-example">
+          <div id="homecontent">
+            <h1 class="page-header">Dashboard</h1>
+
+            <div class="bs-example">
                     <ul class="nav nav-tabs">
-                      <li class="active"><a data-toggle="tab" href="#mineure">Panne mineure</a></li>
-                      <li><a data-toggle="tab" href="#majeure">Panne majeure</a></li>
-                      <li><a data-toggle="tab" href="#critique">Panne critique</a></li>
+                        <li class="active"><a data-toggle="tab" href="#mineure">Panne mineure</a></li>
+                        <li><a data-toggle="tab" href="#majeure">Panne majeure</a></li>
+                        <li><a data-toggle="tab" href="#critique">Panne critique</a></li>
                     </ul>
-                    <div class="tab-content">
-                        <div id="mineure" class="tab-pane fade in active">
-                            <h3>Pannes mineures</h3>
-                            <div class="panel panel-default"> 
-                                <table class="table">
-                                    <th class="blue-background">
-                                        <td class="blue-background">NOM</td>
-                                        <td class="blue-background">FABRIQUANT</td>
-                                        <td class="blue-background">ADRESSE IP</td>
-                                        <td class="blue-background"></td>
-                                    </th>
-                                    <tr class="warning-row">
-                                        <td>1</td>
-                                        <td>YOLO</td>
-                                        <td>DOGE CORP.</td>
-                                        <td>127.0.0.1</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                <i class="fa fa-times"></i> Supp
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="warning-row">
-                                        <td>2</td>
-                                        <td>SWAG</td>
-                                        <td>DOGE CORP.</td>
-                                        <td>127.0.0.1</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                <i class="fa fa-times"></i> Supp
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
+                            <div class="tab-content">
+                              <div id="mineure" class="tab-pane fade in active">
+                                  <h3>Pannes mineures</h3>
+                                  <div class="panel panel-default"> 
+                                      <table class="table">
+                                          <th class="blue-background">
+                                              <td class="blue-background">NOM</td>
+                                              <td class="blue-background">FABRIQUANT</td>
+                                              <td class="blue-background">ADRESSE IP</td>
+                                              <td class="blue-background"></td>
+                                          </th>
+                                          <tr class="warning-row">
+                                              <td>1</td>
+                                              <td>YOLO</td>
+                                              <td>DOGE CORP.</td>
+                                              <td>127.0.0.1</td>
+                                              <td>
+                                                  <button type="button" class="btn btn-info btn-xs">
+                                                      <i class="fa fa-edit"></i> Edit
+                                                  </button>
+                                                  <button type="button" class="btn btn-danger btn-xs">
+                                                      <i class="fa fa-times"></i> Supp
+                                                  </button>
+                                              </td>
+                                          </tr>
+                                          <tr class="warning-row">
+                                              <td>2</td>
+                                              <td>SWAG</td>
+                                              <td>DOGE CORP.</td>
+                                              <td>127.0.0.1</td>
+                                              <td>
+                                                  <button type="button" class="btn btn-info btn-xs">
+                                                      <i class="fa fa-edit"></i> Edit
+                                                  </button>
+                                                  <button type="button" class="btn btn-danger btn-xs">
+                                                      <i class="fa fa-times"></i> Supp
+                                                  </button>
+                                              </td>
+                                          </tr>
+                                      </table>
+                                  </div>
+                              </div>
+                              <div id="majeure" class="tab-pane fade">
+                                <h3>Pannes majeures</h3>
+                                <div class="panel panel-default"> 
+                                    <table class="table">
+                                        <th class="blue-background">
+                                            <td class="blue-background">NOM</td>
+                                            <td class="blue-background">FABRIQUANT</td>
+                                            <td class="blue-background">ADRESSE IP</td>
+                                            <td class="blue-background"></td>
+                                        </th>
+                                        <tr class="warning-row">
+                                            <td>1</td>
+                                            <td>YOLO</td>
+                                            <td>DOGE CORP.</td>
+                                            <td>127.0.0.1</td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-xs">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs">
+                                                    <i class="fa fa-times"></i> Supp
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="warning-row">
+                                            <td>2</td>
+                                            <td>SWAG</td>
+                                            <td>DOGE CORP.</td>
+                                            <td>127.0.0.1</td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-xs">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-xs">
+                                                    <i class="fa fa-times"></i> Supp
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div id="majeure" class="tab-pane fade">
-                            <h3>Pannes majeures</h3>
-                            <div class="panel panel-default"> 
-                                <table class="table">
-                                    <th class="blue-background">
-                                        <td class="blue-background">NOM</td>
-                                        <td class="blue-background">FABRIQUANT</td>
-                                        <td class="blue-background">ADRESSE IP</td>
-                                        <td class="blue-background"></td>
-                                    </th>
-                                    <tr class="warning-row">
-                                        <td>1</td>
-                                        <td>YOLO</td>
-                                        <td>DOGE CORP.</td>
-                                        <td>127.0.0.1</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                <i class="fa fa-times"></i> Supp
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="warning-row">
-                                        <td>2</td>
-                                        <td>SWAG</td>
-                                        <td>DOGE CORP.</td>
-                                        <td>127.0.0.1</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                <i class="fa fa-times"></i> Supp
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div id="critique" class="tab-pane fade">
-                            <h3>Pannes critiques</h3>
-                            <div class="panel panel-default"> 
-                                <table class="table">
-                                    <th class="blue-background">
-                                        <td class="blue-background">NOM</td>
-                                        <td class="blue-background">FABRIQUANT</td>
-                                        <td class="blue-background">ADRESSE IP</td>
-                                        <td class="blue-background"></td>
-                                    </th>
-                                    <tr class="warning-row">
-                                        <td>1</td>
-                                        <td>YOLO</td>
-                                        <td>DOGE CORP.</td>
-                                        <td>127.0.0.1</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                <i class="fa fa-times"></i> Supp
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="warning-row">
-                                        <td>2</td>
-                                        <td>SWAG</td>
-                                        <td>DOGE CORP.</td>
-                                        <td>127.0.0.1</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-xs">
-                                                <i class="fa fa-edit"></i> Edit
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-xs">
-                                                <i class="fa fa-times"></i> Supp
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
+                            <div id="critique" class="tab-pane fade">
+                                <h3>Pannes critiques</h3>
+                                    <div class="panel panel-default"> 
+                                        <table class="table">
+                                            <th class="blue-background">
+                                                <td class="blue-background">NOM</td>
+                                                <td class="blue-background">FABRIQUANT</td>
+                                                <td class="blue-background">ADRESSE IP</td>
+                                                <td class="blue-background"></td>
+                                            </th>
+                                            <tr class="warning-row">
+                                                <td>1</td>
+                                                <td>YOLO</td>
+                                                <td>DOGE CORP.</td>
+                                                <td>127.0.0.1</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info btn-xs">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs">
+                                                        <i class="fa fa-times"></i> Supp
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr class="warning-row">
+                                                <td>2</td>
+                                                <td>SWAG</td>
+                                                <td>DOGE CORP.</td>
+                                                <td>127.0.0.1</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info btn-xs">
+                                                        <i class="fa fa-edit"></i> Edit
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-xs">
+                                                        <i class="fa fa-times"></i> Supp
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-          
-            <h1 class="page-header">Ordinateurs fixes</h1>
-            <div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
-            
-            <div class="panel panel-default"> 
-                <table class="table">
-                    <th class="blue-background">
-                        <td class="blue-background">NOM</td>
-                        <td class="blue-background">FABRIQUANT</td>
-                        <td class="blue-background">ADRESSE IP</td>
-                        <td class="blue-background"></td>
-                    </th>
-                    <tr class="warning-row">
-                        <td>1</td>
-                        <td>YOLO</td>
-                        <td>DOGE CORP.</td>
-                        <td>127.0.0.1</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-xs">
-                                <i class="fa fa-edit"></i> Edit
-                            </button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                                <i class="fa fa-times"></i> Supp
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="valid-row">
-                        <td>2</td>
-                        <td>SWAG</td>
-                        <td>DOGE CORP.</td>
-                        <td>127.0.0.1</td>
-                        <td>
-                            <button type="button" class="btn btn-info btn-xs">
-                                <i class="fa fa-edit"></i> Edit
-                            </button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                                <i class="fa fa-times"></i> Supp
-                            </button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                    <div id="stuffcontent">
+                        <h1 class="page-header">Ordinateurs fixes</h1>
+                        <div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
+
+                        <div class="panel panel-default"> 
+                            <table class="table">
+                                <th class="blue-background">
+                                    <td class="blue-background">NOM</td>
+                                    <td class="blue-background">FABRIQUANT</td>
+                                    <td class="blue-background">ADRESSE IP</td>
+                                    <td class="blue-background"></td>
+                                </th>
+                                <tr class="warning-row">
+                                    <td>1</td>
+                                    <td>YOLO</td>
+                                    <td>DOGE CORP.</td>
+                                    <td>127.0.0.1</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-xs">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-times"></i> Supp
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr class="valid-row">
+                                    <td>2</td>
+                                    <td>SWAG</td>
+                                    <td>DOGE CORP.</td>
+                                    <td>127.0.0.1</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-xs">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-xs">
+                                            <i class="fa fa-times"></i> Supp
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
             
             <!-- Bouton d'ajout -->
-            <button type="button" class="btn btn-success" style="margin-bottom: 10px;">
+            <button id="addButton" onclick="showaddform()" type="button" class="btn btn-success" style="margin-bottom: 10px;">
                 <i class="fa fa-plus"></i> Ajouter
             </button>
             
             <hr />
+            </div>
+          
+          <div id="addform">
             
             <!-- Formulaire d'ajout -->
             <div class="panel panel-primary">
@@ -458,8 +461,13 @@
                           </div>
                         </div>
                         <div class="form-group"> 
-                          <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Ajouter</button>
+                          <div class="col-sm-offset-2 col-sm-8">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fa fa-plus"></i> Ajouter
+                            </button>
+                            <button id="backButton" onclick="showstuffcontent(lastStuffVisited)" type="button" class="btn btn-primary" >
+                                <i class="fa fa-backward"></i> Annuler
+                            </button>
                           </div>
                         </div>
 
@@ -467,7 +475,8 @@
                     </form>
                 </div>
             </div>
-                <a href="#" class="btn btn-xs btn-danger"
+          </div>
+                <a id="supptest" href="#" class="btn btn-xs btn-danger"
                             data-toggle="modal"
                             data-target="#basicModal">Suppression test
                 </a>
