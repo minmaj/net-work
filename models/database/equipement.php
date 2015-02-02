@@ -17,7 +17,8 @@ class Equipement
     private $comment;
     private $parent;
 
-    function __construct($idEquipement, $type, $nom, $fabriquant, $adressePhysique, $adresseIp, $proprietaire, $localisation, $numeroSupport, $etatTechnique, $etatFonctionnel, $comment, $parent)
+    function __construct($idEquipement, $type, $nom, $fabriquant, $adressePhysique, $adresseIp, $proprietaire, $localisation,
+                         $numeroSupport, $etatTechnique, $etatFonctionnel, $comment, $parent)
     {
         $this->idEquipement    = $idEquipement;
         $this->type            = $type;
@@ -33,7 +34,12 @@ class Equipement
         $this->comment         = $comment;
         $this->parent          = $parent;
     }
-    
+
+    public function __toString()
+    {
+        return "Type : " . $this->type;
+    }
+
     function getIdEquipement()
     {
         return $this->idEquipement;
@@ -176,7 +182,5 @@ class Equipement
         $this->parent = $parent;
         return $this;
     }
-
-
 
 }
