@@ -18,6 +18,7 @@
     <script src="public/js/vendor/bootstrap.min.js"></script>
     <script src="public/js/vendor/sb-admin-2.js"></script>
     <script src="public/js/vendor/metisMenu.min.js"></script>
+    <script src="public/js/vendor/jquery.tablesorter.js"></script>
     <script src="public/js/main.js"></script>
   </body>
 </html>

@@ -32,3 +32,5 @@ function showaddform() {
     $("#addform").show("slow");
     $("#breadlist").append('<li class="active"><a href="#">Ajout d\'un enregistrement</a></li>');
 }
+
+$("#stuffTable").tablesorter();

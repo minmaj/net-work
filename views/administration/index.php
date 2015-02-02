@@ -352,7 +352,7 @@
                         <div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
 
                         <div class="panel panel-default"> 
-                            <table class="table">
+                            <table id="stuffTable" class="table tablesorter">
                                 <thead>
                                     <tr class="blue-background">
                                         <th>ID</th>
