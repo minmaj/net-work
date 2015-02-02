@@ -198,6 +198,8 @@
     <div class="row">
         <div class="col-lg-8">
           
+          <h1 class="page-header">Dashboard</h1>
+          
           <div class="bs-example">
                     <ul class="nav nav-tabs">
                       <li class="active"><a data-toggle="tab" href="#mineure">Panne mineure</a></li>
@@ -460,9 +462,15 @@
                             <button type="submit" class="btn btn-default">Ajouter</button>
                           </div>
                         </div>
+
+                      
                     </form>
                 </div>
             </div>
+                <a href="#" class="btn btn-xs btn-danger"
+                            data-toggle="modal"
+                            data-target="#basicModal">Suppression test
+                </a>
         </div>
         
         <div class="col-lg-4">
@@ -543,4 +551,19 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+    
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+            <h4 class="modal-title" id="myModalLabel">Voulez-vous vraiment supprimer ?</h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Oui</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+        </div>
+    </div>
+  </div>
+</div>
 </div>
