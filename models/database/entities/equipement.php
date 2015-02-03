@@ -3,7 +3,7 @@
 class Equipement
 {
 
-    private $idEquipement;
+    private $equipementId;
     private $type;
     private $nom;
     private $fabriquant;
@@ -17,10 +17,10 @@ class Equipement
     private $comment;
     private $parent;
 
-    function __construct($idEquipement, $type, $nom, $fabriquant, $adressePhysique, $adresseIp, $proprietaire, $localisation,
+    function __construct($equipementId, $type, $nom, $fabriquant, $adressePhysique, $adresseIp, $proprietaire, $localisation,
                          $numeroSupport, $etatTechnique, $etatFonctionnel, $comment, $parent)
     {
-        $this->idEquipement    = $idEquipement;
+        $this->equipementId    = $equipementId;
         $this->type            = $type;
         $this->nom             = $nom;
         $this->fabriquant      = $fabriquant;
@@ -40,9 +40,9 @@ class Equipement
         return "Type : " . $this->type;
     }
 
-    function getIdEquipement()
+    function getEquipementId()
     {
-        return $this->idEquipement;
+        return $this->equipementId;
     }
 
     function getType()
@@ -105,9 +105,9 @@ class Equipement
         return $this->parent;
     }
 
-    function setIdEquipement($idEquipement)
+    function setEquipementId($equipementId)
     {
-        $this->idEquipement = $idEquipement;
+        $this->equipementId = $equipementId;
         return $this;
     }
 
