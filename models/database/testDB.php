@@ -10,12 +10,12 @@ function autoloadDatabase($className)
     if (is_readable($filename)) {
         require_once $filename;
     }
-    
+
     $filename = "managers/" . $className . ".php";
     if (is_readable($filename)) {
         require_once $filename;
     }
-    
+
     $filename = "./" . $className . ".php";
     if (is_readable($filename)) {
         require_once $filename;
@@ -38,5 +38,29 @@ $equipement2 = new Equipement(1, "routeur5", "nomRouteur", "Apple", "chaispas", 
                               "chais pas", "oulala", "5");
 //$equipementManager->update($equipement2);
 //$equipementManager->update($equipement2);
-$equipement2->setEquipementId(53);
-$equipementManager->delete($equipement2);
+$equipement2->setId(47);
+//$equipementManager->delete($equipement2);
+
+$typeOrdiFixe = new Type("Ordinateur fixe");
+$ordiFixes    = $equipementManager->findAllByType($typeOrdiFixe);
+
+function dismount($object)
+{
+    $reflectionClass = new ReflectionClass(get_class($object));
+    $array           = array();
+    foreach ($reflectionClass->getProperties() as $property) {
+        $property->setAccessible(true);
+        $array[$property->getName()] = $property->getValue($object);
+        $property->setAccessible(false);
+    }
+    return $array;
+}
+
+$ordiFixesJson = array();
+foreach ($ordiFixes as $ordiFixe) {
+    $ordiFixesJson[] = dismount($ordiFixe);
+}
+//var_dump($ordiFixesJson);
+//var_dump($equipementManager->findAll());
+
+var_dump($equipementManager->countEquipementByType());

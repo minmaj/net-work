@@ -15,8 +15,8 @@ class EquipementManager
         try {
             $query = "INSERT INTO EQUIPEMENT (TYPE, NOM, FABRIQUANT, ADRESSE_PHYSIQUE, ADRESSE_IP, PROPRIETAIRE,"
                     . " LOCALISATION, NUMERO_SUPPORT, ETAT_TECHNIQUE, ETAT_FONCTIONNEL, COMMENT, PARENT) "
-                    . "VALUES(:TYPE, :NOM, :FABRIQUANT, :ADRESSE_PHYSIQUE, :ADRESSE_IP, :PROPRIETAIRE, :LOCALISATION, :NUMERO_SUPPORT,"
-                    . " :ETAT_TECHNIQUE, :ETAT_FONCTIONNEL, :COMMENT, :PARENT);";
+                    . "VALUES(:TYPE, :NOM, :FABRIQUANT, :ADRESSE_PHYSIQUE, :ADRESSE_IP, :PROPRIETAIRE, :LOCALISATION,"
+                    . " :NUMERO_SUPPORT, :ETAT_TECHNIQUE, :ETAT_FONCTIONNEL, :COMMENT, :PARENT);";
             $stmt  = $this->db->prepare($query);
             $stmt->execute(array(
                 ":TYPE"             => $equipement->getType(),
@@ -49,7 +49,7 @@ class EquipementManager
                     . " WHERE EQUIPEMENT_ID = :EQUIPEMENT_ID;";
             $stmt  = $this->db->prepare($query);
             $stmt->execute(array(
-                ":EQUIPEMENT_ID"    => $equipement->getEquipementId(),
+                ":EQUIPEMENT_ID"    => $equipement->getId(),
                 ":TYPE"             => $equipement->getType(),
                 ":NOM"              => $equipement->getNom(),
                 ":FABRIQUANT"       => $equipement->getFabriquant(),
@@ -76,7 +76,7 @@ class EquipementManager
                     . "WHERE EQUIPEMENT_ID = :EQUIPEMENT_ID;";
             $stmt  = $this->db->prepare($query);
             $stmt->execute(array(
-                ":EQUIPEMENT_ID" => $equipement->getEquipementId()
+                ":EQUIPEMENT_ID" => $equipement->getId()
             ));
         } catch (Exception $ex) {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
@@ -122,6 +122,47 @@ class EquipementManager
                                                 $equipement["COMMENT"], $equipement["PARENT"]);
             }
             return $equipements;
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
+    }
+
+    public function findAllByType(Type $type)
+    {
+        try {
+            $sql         = "SELECT * FROM EQUIPEMENT WHERE TYPE = :TYPE";
+            $stmt        = $this->db->prepare($sql);
+            $stmt->execute(array(":TYPE" => $type->getLibelle()));
+            $rs          = $stmt->fetchAll();
+            $equipements = array();
+            foreach ($rs as $equipement) {
+                $equipements[] = new Equipement($equipement["EQUIPEMENT_ID"], $equipement["TYPE"], $equipement["NOM"],
+                                                $equipement["FABRIQUANT"], $equipement["ADRESSE_PHYSIQUE"],
+                                                $equipement["ADRESSE_IP"], $equipement["PROPRIETAIRE"],
+                                                $equipement["LOCALISATION"], $equipement["NUMERO_SUPPORT"],
+                                                $equipement["ETAT_TECHNIQUE"], $equipement["ETAT_FONCTIONNEL"],
+                                                $equipement["COMMENT"], $equipement["PARENT"]);
+            }
+            return $equipements;
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
+    }
+    
+    public function countEquipementByType()
+    {
+        try {
+            $sql   = "SELECT COUNT(*) AS total, type FROM equipement GROUP BY type";
+            $stmt  = $this->db->query($sql);
+            $stmt->execute();
+            $rs    = $stmt->fetchAll();
+            $types = array();
+            foreach ($rs as $type) {
+                $types[] = new Type($type["type"], $type["total"]);
+            }
+            return $types;
         } catch (Exception $ex) {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');

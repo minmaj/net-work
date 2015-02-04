@@ -14,34 +14,34 @@
 class Pays
 {
 
-    private $nomPays;
-    private $shortNomPays;
+    private $nom;
+    private $shortNom;
 
-    function __construct($nomPays, $shortNomPays)
+    function __construct($nom, $shortNom)
     {
-        $this->nomPays      = $nomPays;
-        $this->shortNomPays = $shortNomPays;
+        $this->nom      = $nom;
+        $this->shortNom = $shortNom;
     }
 
-    function getNomPays()
+    function getNom()
     {
-        return $this->nomPays;
+        return $this->nom;
     }
 
-    function getShortNomPays()
+    function getShortNom()
     {
-        return $this->shortNomPays;
+        return $this->shortNom;
     }
 
-    function setNomPays($nomPays)
+    function setNom($nom)
     {
-        $this->nomPays = $nomPays;
+        $this->nom = $nom;
         return $this;
     }
 
-    function setShortNomPays($shortNomPays)
+    function setShortNom($shortNom)
     {
-        $this->shortNomPays = $shortNomPays;
+        $this->shortNom = $shortNom;
         return $this;
     }
 

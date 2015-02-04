@@ -7,18 +7,20 @@
  */
 
 /**
- * Description of statutFonctionnel
+ * Description of type
  *
  * @author youvann
  */
-class StatutFonctionnel
+class Type
 {
 
     private $libelle;
+    private $occurence;
 
-    function __construct($libelle)
+    function __construct($libelle, $occurrence = 0)
     {
-        $this->libelle = $libelle;
+        $this->libelle   = $libelle;
+        $this->occurence = $occurrence;
     }
 
     function getLibelle()
@@ -26,9 +28,20 @@ class StatutFonctionnel
         return $this->libelle;
     }
 
+    function getOccurence()
+    {
+        return $this->occurence;
+    }
+
     function setLibelle($libelle)
     {
         $this->libelle = $libelle;
+        return $this;
+    }
+
+    function setOccurence($occurence)
+    {
+        $this->occurence = $occurence;
         return $this;
     }
 

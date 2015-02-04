@@ -14,21 +14,21 @@
 class StatutTechnique
 {
 
-    private $libelleStatut;
+    private $libelle;
 
-    function __construct($libelleStatut)
+    function __construct($libelle)
     {
-        $this->libelleStatut = $libelleStatut;
+        $this->libelle = $libelle;
     }
 
-    function getLibelleStatut()
+    function getLibelle()
     {
-        return $this->libelleStatut;
+        return $this->libelle;
     }
 
-    function setLibelleStatut($libelleStatut)
+    function setLibelle($libelle)
     {
-        $this->libelleStatut = $libelleStatut;
+        $this->libelle = $libelle;
         return $this;
     }
 
