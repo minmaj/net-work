@@ -16,6 +16,7 @@
 
 function autoloadClasses($className)
 {
+    
     $filename = "classes/" . $className . ".php";
     if (is_readable($filename)) {
         require_once $filename;
@@ -26,7 +27,17 @@ function autoloadClasses($className)
         require_once $filename;
     }
 
-    $filename = "models/database" . $className . ".php";
+    $filename = "models/database/" . $className . ".php";
+    if (is_readable($filename)) {
+        require_once $filename;
+    }
+    
+    $filename = "models/database/entities/" . $className . ".php";
+    if (is_readable($filename)) {
+        require_once $filename;
+    }
+    
+    $filename = "models/database/managers/" . $className . ".php";
     if (is_readable($filename)) {
         require_once $filename;
     }
