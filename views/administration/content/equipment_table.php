@@ -1,5 +1,4 @@
-<div id="stuffcontent">
-    <h1 class="page-header">Ordinateurs fixes</h1>
+<div id="equipment_table" class="dynamic_content" style="display: none">
     <div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
 
     <div class="panel panel-default"> 
@@ -60,10 +59,10 @@
     </div>
 
     <!-- Bouton d'ajout -->
-    <button id="addStuffButton" onclick="showaddform()" type="button" class="btn btn-success" style="margin-bottom: 10px;">
+    <button id="addStuffButton" type="button" class="btn btn-success" style="margin-bottom: 10px;">
         <i class="fa fa-plus"></i> Ajouter
     </button>
-    <button id="backHomeButton" onclick="showhomecontent()" type="button" class="btn btn-primary" style="margin-bottom: 10px;">
+    <button id="backHomeButton" type="button" class="btn btn-primary" style="margin-bottom: 10px;">
         <i class="fa fa-reply"></i> Retour
     </button>
 

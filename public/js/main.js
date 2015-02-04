@@ -1,36 +1,67 @@
-
 // init
-$("#stuffcontent").hide();
-$("#addform").hide();
-$("#supptest").hide();
-var lastStuffVisited;
 
-function showstuffcontent(stuffName) {
-    if ($("#homecontent").is(":visible"))
-        $("#homecontent").hide("slow");
-    if ($("#addform").is(":visible"))
-        $("#addform").hide("slow");
-    $("#stuffcontent").show("slow");
-    $("#breadlist").html('<li><a onclick="showhomecontent()" href="#">NET-WORK</a></li><li class="active"><a href="#">' + stuffName + '</a></li>');
-    lastStuffVisited = stuffName;
-}
+$(document).ready(function() {
 
-function showhomecontent() {
-    if ($("#stuffcontent").is(":visible"))
-        $("#stuffcontent").hide("slow");
-    if ($("#addform").is(":visible"))
-        $("#addform").hide("slow");
-    $("#homecontent").show("slow");
-    $("#breadlist").html('<li><a onclick="showhomecontent()" href="#">NET-WORK</a></li>');
-}
+    var lastStuffVisited;
 
-function showaddform() {
-    if ($("#homecontent").is(":visible"))
-        $("#homecontent").hide("slow");
-    if ($("#stuffcontent").is(":visible"))
-        $("#stuffcontent").hide("slow");
-    $("#addform").show("slow");
-    $("#breadlist").append('<li class="active"><a href="#">Ajout d\'un enregistrement</a></li>');
-}
+    $("a[data-categorie]").click(function(e) {
+        e.preventDefault();
+        $(".dynamic_content").hide("slow", function() {
+            setTimeout(function() {
+                $("#equipment_table").show("slow");
+            }, 1);
+        });
+        $("#breadlist").html('<li><a class="home_link" href="#">NET-WORK</a></li><li class="active"><a href="#">'
+                + $(this).attr("data-categorie")
+                + '</a></li>');
+        $("#title_content").text($(this).attr("data-categorie"));
+        $('.home_link').off("click");
+        $('.home_link').click(on_click_home_link);
+    });
 
-$("#stuffTable").tablesorter();
+    $("#backHomeButton").click(function(e) {
+        e.preventDefault();
+        $(".dynamic_content").hide("slow", function() {
+            setTimeout(function() {
+                $("#default_content").show("slow");
+            }, 1);
+        });
+        $("#title_content").text("Dashboard");
+        $("#breadlist").html('<li><a class="home_link" href="#">NET-WORK</a></li>');
+        $('.home_link').off("click");
+        $('.home_link').click(on_click_home_link);
+    });
+
+    $("#addStuffButton").click(function(e) {
+        e.preventDefault();
+
+        var dfd = $.Deferred();
+
+        $(".dynamic_content").hide("slow", function() {
+            setTimeout(function() {
+                $("#form").show("slow");
+            }, 1);
+        });
+
+        $('.home_link').off("click");
+        $('.home_link').click(on_click_home_link);
+    });
+
+    function on_click_home_link(e) {
+        e.preventDefault();
+        $(".dynamic_content").hide("slow", function() {
+            setTimeout(function() {
+                $("#default_content").show("slow");
+            }, 1);
+        });
+        $("#title_content").text("Dashboard");
+        $("#breadlist").html('<li><a class="home_link" href="#">NET-WORK</a></li>');
+        $('.home_link').off("click");
+        $('.home_link').click(on_click_home_link);
+    }
+
+    $(".home_link").click(on_click_home_link);
+
+    $("#stuffTable").tablesorter();
+});
+

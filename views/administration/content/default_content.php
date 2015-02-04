@@ -1,4 +1,4 @@
-<div class="bs-example">
+<div id="default_content" class="bs-example dynamic_content">
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#mineure">Panne mineure</a></li>
         <li><a data-toggle="tab" href="#majeure">Panne majeure</a></li>

@@ -14,26 +14,26 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#" onclick="showstuffcontent('Ordinateurs fixes')"><i class="fa fa-desktop fa-fw"></i> Ordinateurs fixes <span class="badge">8</span></a>
+                <a href="#" data-categorie="Ordinateurs fixes" ><i class="fa fa-desktop fa-fw"></i> Ordinateurs fixes <span class="badge">8</span></a>
             </li>
             <li>
-                <a href="#" onclick="showstuffcontent('Ordinateurs portables')"><i class="fa fa-laptop fa-fw"></i> Ordinateurs portables <span class="badge">2</span></a>
+                <a href="#" data-categorie="Ordinateurs portables"><i class="fa fa-laptop fa-fw"></i> Ordinateurs portables <span class="badge">2</span></a>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#" onclick="showstuffcontent('Imprimantes')"><i class="fa fa-print fa-fw"></i> Imprimantes <span class="badge">4</span></a>
+                <a href="#" data-categorie="Imprimantes"><i class="fa fa-print fa-fw"></i> Imprimantes <span class="badge">4</span></a>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#" onclick="showstuffcontent('Téléphones')"><i class="fa fa-phone fa-fw"></i> Téléphones <span class="badge">16</span></a>
+                <a href="#" data-categorie="Téléphones"><i class="fa fa-phone fa-fw"></i> Téléphones <span class="badge">16</span></a>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#" onclick="showstuffcontent('Routeurs')"><i class="fa fa-cloud fa-fw"></i> Routeurs <span class="badge">44</span></a>
+                <a href="#" data-categorie="Routeurs"><i class="fa fa-cloud fa-fw"></i> Routeurs <span class="badge">44</span></a>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#" onclick="showstuffcontent('Serveurs')"><i class="fa fa-server fa-fw"></i> Serveurs <span class="badge">0</span></a>
+                <a href="#" data-categorie="Serveurs"><i class="fa fa-server fa-fw"></i> Serveurs <span class="badge">0</span></a>
                 <!-- /.nav-second-level -->
             </li>
         </ul>

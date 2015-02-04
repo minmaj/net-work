@@ -1,4 +1,4 @@
-<div id="addform">
+<div id="form" class="dynamic_content" style="display: none;">
 
     <!-- Formulaire d'ajout -->
     <div class="panel panel-primary">
@@ -80,7 +80,7 @@
                         <button type="submit" class="btn btn-default">
                             <i class="fa fa-plus"></i> Ajouter
                         </button>
-                        <button id="backStuffButton" onclick="showstuffcontent(lastStuffVisited)" type="button" class="btn btn-primary" >
+                        <button id="backStuffButton" type="button" class="btn btn-primary" >
                             <i class="fa fa-reply"></i> Annuler
                         </button>
                     </div>
