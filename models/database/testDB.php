@@ -60,7 +60,7 @@ $ordiFixesJson = array();
 foreach ($ordiFixes as $ordiFixe) {
     $ordiFixesJson[] = dismount($ordiFixe);
 }
-//var_dump($ordiFixesJson);
+//echo json_encode($ordiFixesJson);
 //var_dump($equipementManager->findAll());
 
-var_dump($equipementManager->countEquipementByType());
+//var_dump($equipementManager->countEquipementByType());
