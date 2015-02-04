@@ -1,13 +1,29 @@
 // init
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     var lastStuffVisited;
 
-    $("a[data-categorie]").click(function(e) {
+    $("a[data-categorie]").click(function (e) {
         e.preventDefault();
-        $(".dynamic_content").hide("slow", function() {
-            setTimeout(function() {
+
+        typeEquipement = $(this).data("categorie");
+        // Affiche la liste des équipements pour un type donné
+        $.ajax({
+            url: "administration/showStuff",
+            type: 'POST',
+            datatype: "json",
+            data: "typeEquipement=" + typeEquipement,
+            success: function (data) {
+                console.log(data);
+                $panel = $("<div />").attr("class", "panel panel-default");
+                $panel.html("<pre><code>" + JSON.stringify(data) + "</pre></code>");
+                $panel.appendTo("#main_content");
+            }
+        });
+
+        $(".dynamic_content").hide("slow", function () {
+            setTimeout(function () {
                 $("#equipment_table").show("slow");
             }, 1);
         });
@@ -17,12 +33,13 @@ $(document).ready(function() {
         $("#title_content").text($(this).attr("data-categorie"));
         $('.home_link').off("click");
         $('.home_link').click(on_click_home_link);
+
     });
 
-    $("#backHomeButton").click(function(e) {
+    $("#backHomeButton").click(function (e) {
         e.preventDefault();
-        $(".dynamic_content").hide("slow", function() {
-            setTimeout(function() {
+        $(".dynamic_content").hide("slow", function () {
+            setTimeout(function () {
                 $("#default_content").show("slow");
             }, 1);
         });
@@ -32,13 +49,13 @@ $(document).ready(function() {
         $('.home_link').click(on_click_home_link);
     });
 
-    $("#addStuffButton").click(function(e) {
+    $("#addStuffButton").click(function (e) {
         e.preventDefault();
 
         var dfd = $.Deferred();
 
-        $(".dynamic_content").hide("slow", function() {
-            setTimeout(function() {
+        $(".dynamic_content").hide("slow", function () {
+            setTimeout(function () {
                 $("#form").show("slow");
             }, 1);
         });
@@ -49,8 +66,8 @@ $(document).ready(function() {
 
     function on_click_home_link(e) {
         e.preventDefault();
-        $(".dynamic_content").hide("slow", function() {
-            setTimeout(function() {
+        $(".dynamic_content").hide("slow", function () {
+            setTimeout(function () {
                 $("#default_content").show("slow");
             }, 1);
         });

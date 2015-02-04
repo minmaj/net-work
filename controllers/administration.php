@@ -25,4 +25,10 @@ class AdministrationController extends BaseController
         $this->view->output($this->model->index());
     }
 
+    protected function showStuff()
+    {
+        // Réponse à la requête AJAX
+        echo json_encode($this->model->showStuff());
+    }
+
 }

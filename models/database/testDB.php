@@ -44,7 +44,7 @@ $equipement2->setId(47);
 $typeOrdiFixe = new Type("Ordinateur fixe");
 $ordiFixes    = $equipementManager->findAllByType($typeOrdiFixe);
 
-function dismount($object)
+function convertObjectToArray($object)
 {
     $reflectionClass = new ReflectionClass(get_class($object));
     $array           = array();
@@ -56,11 +56,16 @@ function dismount($object)
     return $array;
 }
 
-$ordiFixesJson = array();
-foreach ($ordiFixes as $ordiFixe) {
-    $ordiFixesJson[] = dismount($ordiFixe);
+function convertObjectListToArray($objectList)
+{
+    $jsonList = array();
+    foreach ($objectList as $object) {
+        $jsonList[] = convertObjectToArray($object);
+    }
+    return $jsonList;
 }
-//echo json_encode($ordiFixesJson);
+
+echo json_encode(convertObjectListToArray($ordiFixes));
 //var_dump($equipementManager->findAll());
 
 //var_dump($equipementManager->countEquipementByType());

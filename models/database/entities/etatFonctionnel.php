@@ -7,11 +7,11 @@
  */
 
 /**
- * Description of statutTechnique
+ * Description of statutFonctionnel
  *
  * @author youvann
  */
-class StatutTechnique
+class etatFonctionnel
 {
 
     private $libelle;

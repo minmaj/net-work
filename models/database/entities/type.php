@@ -16,11 +16,13 @@ class Type
 
     private $libelle;
     private $occurence;
+    private $htmlDisplay;
 
-    function __construct($libelle, $occurrence = 0)
+    function __construct($libelle, $occurrence = 0, $htmlDisplay = "")
     {
-        $this->libelle   = $libelle;
-        $this->occurence = $occurrence;
+        $this->libelle     = $libelle;
+        $this->occurence   = $occurrence;
+        $this->htmlDisplay = $htmlDisplay;
     }
 
     function getLibelle()
@@ -42,6 +44,17 @@ class Type
     function setOccurence($occurence)
     {
         $this->occurence = $occurence;
+        return $this;
+    }
+
+    function getHtmlDisplay()
+    {
+        return $this->htmlDisplay;
+    }
+
+    function setHtmlDisplay($htmlDisplay)
+    {
+        $this->htmlDisplay = $htmlDisplay;
         return $this;
     }
 

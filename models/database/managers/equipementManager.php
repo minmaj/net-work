@@ -150,17 +150,28 @@ class EquipementManager
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
         }
     }
-    
+
+    public function findEquipementByEtatFonctionnel(EtatFonctionnel $etatFonctionnel)
+    {
+        
+    }
+
     public function countEquipementByType()
     {
         try {
-            $sql   = "SELECT COUNT(*) AS total, type FROM equipement GROUP BY type";
+            /* $sql   = "SELECT COUNT(*) AS total, e.type, html_display "
+              . "FROM equipement e, type t "
+              . "WHERE e.type = t.type_libelle "
+              . "GROUP BY type"; */
+            $sql   = "SELECT sum(case when EQUIPEMENT_ID is null then 0 else 1 end) total, type_libelle, html_display "
+                    . "FROM type LEFT JOIN equipement ON type.type_libelle = equipement.type "
+                    . "GROUP BY type_libelle";
             $stmt  = $this->db->query($sql);
             $stmt->execute();
             $rs    = $stmt->fetchAll();
             $types = array();
             foreach ($rs as $type) {
-                $types[] = new Type($type["type"], $type["total"]);
+                $types[] = new Type($type["type_libelle"], $type["total"], $type["html_display"]);
             }
             return $types;
         } catch (Exception $ex) {

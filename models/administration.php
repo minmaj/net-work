@@ -12,13 +12,29 @@ class AdministrationModel extends BaseModel
     //data passed to the home index view
     public function index()
     {
-        $equipementManager = new EquipementManager(database::getInstance()->getConnection());
+        $equipementManager = new EquipementManager($this->db);
+        // Liste de tous les types d'équipements à afficher
         $typeEquipements   = $equipementManager->countEquipementByType();
+        $this->viewModel->set("typeEquipements", $typeEquipements);
 
-        var_dump($typeEquipements);
-
-        $this->viewModel->set("test", "ceci est un test");
         return $this->viewModel;
+    }
+
+    public function showStuff()
+    {
+        // Récupération du type d'équipement à afficher (transmis par la requête AJAX)
+        $typeEquipement    = isset($_POST["typeEquipement"]) ? $_POST["typeEquipement"] : "false";
+        $type              = new Type($typeEquipement);
+        $equipementManager = new EquipementManager($this->db);
+
+        // le type de l'équipement a bien été récupéré via $_POST
+        if ($typeEquipement) {
+            // Renvoie un tableau contenant la liste des équipements de type (Ordinateur, Ordinateur portable, Routeur ...)
+            $equipementList = convertObjectListToArray($equipementManager->findAllByType($type));
+            return $equipementList;
+        } else {
+            return false;
+        }
     }
 
 }
