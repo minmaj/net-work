@@ -14,18 +14,18 @@
 class Fabriquant
 {
 
-    private $nomFabriquant;
+    private $nom;
     private $nationalite;
 
-    function __construct($nomFabriquant, $nationalite)
+    function __construct($nom, $nationalite)
     {
-        $this->nomFabriquant = $nomFabriquant;
-        $this->nationalite   = $nationalite;
+        $this->nom         = $nom;
+        $this->nationalite = $nationalite;
     }
 
-    function getNomFabriquant()
+    function getNom()
     {
-        return $this->nomFabriquant;
+        return $this->nom;
     }
 
     function getNationalite()
@@ -33,9 +33,9 @@ class Fabriquant
         return $this->nationalite;
     }
 
-    function setNomFabriquant($nomFabriquant)
+    function setNom($nom)
     {
-        $this->nomFabriquant = $nomFabriquant;
+        $this->nom = $nom;
         return $this;
     }
 
