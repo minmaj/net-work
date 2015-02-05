@@ -37,6 +37,11 @@ class AdministrationModel extends BaseModel
             return false;
         }
     }
+    
+    public function showStuffDown()
+    {
+        
+    }
 
     public function donutData()
     {

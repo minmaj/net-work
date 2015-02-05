@@ -17,7 +17,7 @@ class etatTechnique
     private $libelle;
     private $nbEquipementAssocie;
 
-    function __construct($libelle, $nbEquipementAssocie)
+    function __construct($libelle, $nbEquipementAssocie = 0)
     {
         $this->libelle = $libelle;
         $this->nbEquipementAssocie = $nbEquipementAssocie;
