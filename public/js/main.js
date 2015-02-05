@@ -81,9 +81,16 @@ $(document).ready(function () {
 
     $("#stuffTable").tablesorter();
     
+    // Donut relative code
+    
+    function getDonutSegment(segmentLabel, segmentValue) {
+        var donutObject = {};
+        donutObject[label] = segmentLabel;
+        donutObject[value] = segmentValue;
+        return donutObject;
+    }
     Morris.Donut({
     element: 'morris-donut-chart',
-    defaultLabelColor: '#ff0000',
     data: [
       {label: "Fonctionnel", value: 8},
       {label: "En panne mineure", value: 5},
