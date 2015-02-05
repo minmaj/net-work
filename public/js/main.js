@@ -86,12 +86,31 @@ $(document).ready(function () {
     
     // Donut relative code
     
+    var dataDonutArray = [];
+    var jsoned;
+    
+    getDonutDataArray();
+    
     function getDonutSegment(segmentLabel, segmentValue) {
         var donutObject = {};
         donutObject[label] = segmentLabel;
         donutObject[value] = segmentValue;
         return donutObject;
     }
+    
+    function getDonutDataArray () {
+        $.ajax({
+            url: "administration/index",
+            type: 'POST',
+            datatype: "json",
+            data: "equipementByTechnicalStatus",
+            success: function (data) {
+                jsoned = JSON.stringify(data);
+                var tryhard;
+            }
+        });
+    }
+    
     Morris.Donut({
     element: 'morris-donut-chart',
     data: [

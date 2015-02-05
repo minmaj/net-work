@@ -20,7 +20,7 @@ class etatTechnique
     function __construct($libelle, $nbEquipementAssocie)
     {
         $this->libelle = $libelle;
-        $this->libelle = $nbEquipementAssocie;
+        $this->nbEquipementAssocie = $nbEquipementAssocie;
     }
 
     function getLibelle()

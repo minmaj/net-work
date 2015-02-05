@@ -13,9 +13,12 @@ class AdministrationModel extends BaseModel
     public function index()
     {
         $equipementManager = new EquipementManager($this->db);
+        $etatTechniqueManager = new etatTechniqueManager($this->db);
         // Liste de tous les types d'équipements à afficher
         $typeEquipements   = $equipementManager->countEquipementByType();
         $this->viewModel->set("typeEquipements", $typeEquipements);
+        $equipementByTechnicalStatus = $etatTechniqueManager->countEquipementByEtatTechnique();
+        $this->viewModel->set("equipementByTechnicalStatus", $equipementByTechnicalStatus);
 
         return $this->viewModel;
     }

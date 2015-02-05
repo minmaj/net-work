@@ -33,9 +33,7 @@ class etatTechniqueManager
             $rs             = $stmt->fetchAll();
             $etatTechniques = array();
             foreach ($rs as $etat) {
-                var_dump($etat);
-                // Le problème est ici
-                //$etatTechniques[] = new EtatTechnique($etat["nbEtat"], 15);
+                $etatTechniques[] = new EtatTechnique($etat["libelle"], $etat["nbEtat"]);
             }
             return $etatTechniques;
         } catch (Exception $ex) {
