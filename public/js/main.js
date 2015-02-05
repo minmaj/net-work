@@ -9,7 +9,7 @@ $(document).ready(function() {
 
         var typeEquipement = $(this).data("categorie");
         // Affiche la liste des équipements pour un type donné
-        $(".dynamic_content:visible").hide("slow", function() {
+        $(".dynamic_content:visible").hide("slow").promise().done(function() {
             $.ajax({
                 url: "administration/showStuff",
                 type: 'POST',

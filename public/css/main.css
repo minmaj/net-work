@@ -32,3 +32,7 @@ hr {
 .red-font {
     color:#990000;
 }
+
+.buttonColumn {
+        width: 230px;
+}
