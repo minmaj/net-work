@@ -30,8 +30,9 @@ class AdministrationModel extends BaseModel
         // le type de l'équipement a bien été récupéré via $_POST
         if ($typeEquipement) {
             // Renvoie un tableau contenant la liste des équipements de type (Ordinateur, Ordinateur portable, Routeur ...)
-            $equipementList = convertObjectListToArray($equipementManager->findAllByType($type));
-            return $equipementList;
+            $equipementList      = convertObjectListToArray($equipementManager->findAllByType($type));
+            $nbEquipementEnPanne = $equipementManager->countEquipementEnPanneByType($type);
+            return array("equipementList" => $equipementList, "nbEquipementEnPanne" => $nbEquipementEnPanne);
         } else {
             return false;
         }

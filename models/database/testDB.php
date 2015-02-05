@@ -65,7 +65,11 @@ function convertObjectListToArray($objectList)
     return $jsonList;
 }
 
-echo json_encode(convertObjectListToArray($ordiFixes));
+//echo json_encode(convertObjectListToArray($ordiFixes));
 //var_dump($equipementManager->findAll());
 
 //var_dump($equipementManager->countEquipementByType());
+
+$etatTechniqueManager = new EtatTechniqueManager($db);
+var_dump($etatTechniqueManager->countEquipementByEtatTechnique());
+

@@ -15,10 +15,12 @@ class etatTechnique
 {
 
     private $libelle;
+    private $nbEquipementAssocie;
 
-    function __construct($libelle)
+    function __construct($libelle, $nbEquipementAssocie)
     {
         $this->libelle = $libelle;
+        $this->libelle = $nbEquipementAssocie;
     }
 
     function getLibelle()
@@ -29,6 +31,17 @@ class etatTechnique
     function setLibelle($libelle)
     {
         $this->libelle = $libelle;
+        return $this;
+    }
+
+    function getNbEquipementAssocie()
+    {
+        return $this->nbEquipementAssocie;
+    }
+
+    function setNbEquipementAssocie($nbEquipementAssocie)
+    {
+        $this->nbEquipementAssocie = $nbEquipementAssocie;
         return $this;
     }
 

@@ -15,7 +15,10 @@ $(document).ready(function () {
             datatype: "json",
             data: "typeEquipement=" + typeEquipement,
             success: function (data) {
-                console.log(data);
+                /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
+                $("#warning_message_equipement").html("Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + "est/sont actuellement en panne(s)!");
+
+                console.log(data["nbEquipementEnPanne"]);
                 $panel = $("<div />").attr("class", "panel panel-default");
                 $panel.html("<pre><code>" + JSON.stringify(data) + "</pre></code>");
                 $panel.appendTo("#main_content");

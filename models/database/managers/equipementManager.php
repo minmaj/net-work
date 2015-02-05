@@ -144,6 +144,7 @@ class EquipementManager
                                                 $equipement["ETAT_TECHNIQUE"], $equipement["ETAT_FONCTIONNEL"],
                                                 $equipement["COMMENT"], $equipement["PARENT"]);
             }
+            //var_dump($equipements);
             return $equipements;
         } catch (Exception $ex) {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
@@ -151,18 +152,25 @@ class EquipementManager
         }
     }
 
-    public function findEquipementByEtatFonctionnel(EtatFonctionnel $etatFonctionnel)
+    public function countEquipementEnPanneByType(Type $type)
     {
-        
+        try {
+            $sql  = 'SELECT COUNT(*) as occurence '
+                    . 'FROM equipement '
+                    . 'WHERE (ETAT_TECHNIQUE = "En panne mineure" OR ETAT_TECHNIQUE = "En panne majeure") AND TYPE = :TYPE';
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(array(":TYPE" => $type->getLibelle()));
+            $rs   = $stmt->fetch();
+            return $rs["occurence"];
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
     }
 
     public function countEquipementByType()
     {
         try {
-            /* $sql   = "SELECT COUNT(*) AS total, e.type, html_display "
-              . "FROM equipement e, type t "
-              . "WHERE e.type = t.type_libelle "
-              . "GROUP BY type"; */
             $sql   = "SELECT sum(case when EQUIPEMENT_ID is null then 0 else 1 end) total, type_libelle, html_display "
                     . "FROM type LEFT JOIN equipement ON type.type_libelle = equipement.type "
                     . "GROUP BY type_libelle";
