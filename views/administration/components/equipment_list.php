@@ -16,7 +16,7 @@
       <?php foreach ($viewModel->get("typeEquipements") as $typeEquipement) { ?>
           <li>
             <a href="#" data-categorie="<?php echo $typeEquipement->getLibelle(); ?>" >
-                <?php echo $typeEquipement->getHtmlDisplay(); ?> 
+                <?php echo utf8_encode($typeEquipement->getHtmlDisplay()); ?> 
               <span class="badge">
                   <?php echo $typeEquipement->getOccurence() ?>
               </span>
