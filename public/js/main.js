@@ -100,10 +100,9 @@ $(document).ready(function () {
     
     function getDonutDataArray () {
         $.ajax({
-            url: "administration/index",
+            url: "administration/donutData",
             type: 'POST',
             datatype: "json",
-            data: "equipementByTechnicalStatus",
             success: function (data) {
                 jsoned = JSON.stringify(data);
                 var tryhard;
