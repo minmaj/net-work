@@ -1,5 +1,5 @@
 <div id="equipment_table" class="dynamic_content" style="display: none">
-    <div id="warning_message_equipement" class="alert alert-warning" role="alert"></div>
+    <div id="warning_message_equipement" class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
 
     <div class="panel panel-default"> 
         <table id="stuffTable" class="table tablesorter">
@@ -13,7 +13,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="warning-row">
+                <!-- exemple des lignes du tableau -->
+<!--                <tr class="warning-row">
                     <td>1</td>
                     <td>YOLO</td>
                     <td>DOGE CORP.</td>
@@ -34,6 +35,7 @@
                         </button>
                     </td>
                 </tr>
+                
                 <tr class="valid-row">
                     <td>2</td>
                     <td>SWAG</td>
@@ -53,7 +55,37 @@
                                 data-target="#suppressionModal">
                             <i class="fa fa-times"></i> Delete
                         </button>
-                </tr>
+                    </td>
+                </tr>-->
+
+            <script id="row_stuff_table_tmpl" type="text/x-jquery-tmpl">
+                {{if stuff.length!=0}}
+                    {{each(i,item) stuff}}
+                        <tr>
+                            <td>${ item.id }</td>
+                            <td>${ item.nom }</td>
+                            <td>${ item.fabriquant }</td>
+                            <td>${ item.adresseIp }</td>
+                            <td>
+                                <button type="button" class="btn btn-default btn-xs"
+                                        data-toggle="modal"
+                                        data-target="#viewDetailsModal">
+                                    <i class="fa fa-search-plus"></i> View details
+                                </button>
+                                <button type="button" class="btn btn-info btn-xs">
+                                    <i class="fa fa-edit"></i> Edit
+                                </button>
+                                <button type="button" class="btn btn-danger btn-xs"
+                                        data-toggle="modal"
+                                        data-target="#suppressionModal">
+                                    <i class="fa fa-times"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                    {{/each}}
+                {{/if}}
+            </script>
+
             </tbody>
         </table>
     </div>
@@ -68,3 +100,8 @@
 
     <hr />
 </div>
+
+
+
+
+

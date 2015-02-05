@@ -22,6 +22,7 @@
     <script src="public/js/vendor/jquery.tablesorter.js"></script>
     <script src="public/js/vendor/morris.min.js"></script>
     <script src="public/js/vendor/raphael-min.js"></script>
+    <script src="public/js/vendor/jquery.tmpl.min.js"></script>
     <script src="public/js/main.js"></script>
   </body>
 </html>
