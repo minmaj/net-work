@@ -80,5 +80,17 @@ $(document).ready(function () {
     $(".home_link").click(on_click_home_link);
 
     $("#stuffTable").tablesorter();
+    
+    Morris.Donut({
+    element: 'morris-donut-chart',
+    defaultLabelColor: '#ff0000',
+    data: [
+      {label: "Fonctionnel", value: 8},
+      {label: "En panne mineure", value: 5},
+      {label: "En panne majeure", value: 3},
+      {label: "Inconnu", value: 1}
+    ],
+    colors: ['#61B329','#FFCC00','#FF3300','#6600CC']
+    });
 });
 
