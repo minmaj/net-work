@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="public/css/vendor/sb-admin-2.css">
     <link rel="stylesheet" href="public/css/vendor/metisMenu.min.css"> 
     <link rel="stylesheet" href="public/css/vendor/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/css/vendor/morris.css">
     <link rel="stylesheet" href="public/css/main.css">
     
     <meta charset="utf-8"/>
@@ -19,6 +20,8 @@
     <script src="public/js/vendor/sb-admin-2.js"></script>
     <script src="public/js/vendor/metisMenu.min.js"></script>
     <script src="public/js/vendor/jquery.tablesorter.js"></script>
+    <script src="public/js/vendor/morris.min.js"></script>
+    <script src="public/js/vendor/raphael-min.js"></script>
     <script src="public/js/main.js"></script>
   </body>
 </html>

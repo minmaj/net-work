@@ -83,5 +83,24 @@ $(document).ready(function () {
     $(".home_link").click(on_click_home_link);
 
     $("#stuffTable").tablesorter();
+    
+    // Donut relative code
+    
+    function getDonutSegment(segmentLabel, segmentValue) {
+        var donutObject = {};
+        donutObject[label] = segmentLabel;
+        donutObject[value] = segmentValue;
+        return donutObject;
+    }
+    Morris.Donut({
+    element: 'morris-donut-chart',
+    data: [
+      {label: "Fonctionnel", value: 8},
+      {label: "En panne mineure", value: 5},
+      {label: "En panne majeure", value: 3},
+      {label: "Inconnu", value: 1}
+    ],
+    colors: ['#61B329','#FFCC00','#FF3300','#6600CC']
+    });
 });
 
