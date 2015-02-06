@@ -21,7 +21,14 @@ $(document).ready(function() {
                     $('#row_stuff_table_tmpl').tmpl(stuff).appendTo('#stuffTable tbody');
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    $("#warning_message_equipement").html("Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + "est/sont actuellement en panne(s)!");
+                    if (data.nbEquipementEnPanne > 0) {
+                        $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
+                        $("#warning_message_equipement").show("slow");
+                    }
+                    else {
+                        $("#warning_message_equipement").html("");
+                        $("#warning_message_equipement").hide("slow");
+                    }
                 }
             });
             

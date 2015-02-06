@@ -1,5 +1,5 @@
 <div id="equipment_table" class="dynamic_content" style="display: none">
-    <div id="warning_message_equipement" class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>
+    <div id="warning_message_equipement" class="alert alert-warning" role="alert" style="display: none"></div>
 
     <div class="panel panel-default"> 
         <table id="stuffTable" class="table tablesorter">
