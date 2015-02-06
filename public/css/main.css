@@ -36,3 +36,11 @@ hr {
 .buttonColumn {
         width: 230px;
 }
+
+.detailsModalTitle {
+    font-weight: bold;
+}
+
+#headingDetailsModal {
+        text-align: center;
+}

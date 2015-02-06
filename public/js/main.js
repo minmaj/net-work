@@ -207,7 +207,7 @@ $(document).ready(function() {
                 data: "idStuff=" + idStuff,
                 success: function(data) {
                     console.log(data.nom);
-                    $('#headingDetailsModal').html("<span id=\"detail_title\">" + data.nom + "</span>");
+                    $('#headingDetailsModal').html("<i class=\"fa fa-search-plus\"></i><span class=\"detailsModalTitle\"> " + data.nom + "</span>");
                     var stuff = {stuffDetail : data};
                     $('#bodyDetailsModal').html("");
                     $('#row_details_tmpl').tmpl(stuff).appendTo('#bodyDetailsModal');
