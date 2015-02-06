@@ -152,7 +152,7 @@ class EquipementManager
         }
     }
 
-    public function findByEtatTechnique(EtatTechnique $etatTechnique)
+    public function findEquipementByEtatTechnique(EtatTechnique $etatTechnique)
     {
         try {
             $sql  = "SELECT * FROM EQUIPEMENT WHERE ETAT_TECHNIQUE = :ETAT_TECHNIQUE";

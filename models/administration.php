@@ -20,6 +20,10 @@ class AdministrationModel extends BaseModel
         return $this->viewModel;
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public function showStuff()
     {
         // Récupération du type d'équipement à afficher (transmis par la requête AJAX)
@@ -37,17 +41,34 @@ class AdministrationModel extends BaseModel
             return false;
         }
     }
-    
+
+    /**
+     * Récupère les équipements en panne
+     * @return type
+     */
     public function showStuffDown()
     {
-        
+        $equipementManager = new EquipementManager($this->db);
+        $panneMineure      = new EtatTechnique("En panne mineure");
+        $panneMajeure      = new EtatTechnique("En panne majeure");
+        $panneCritique     = new EtatTechnique("En panne critique");
+
+        $equipementEnPanneMineure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
+        $equipementEnPanneMajeure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
+        $equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
+
+        return array(
+            "panneMineure" => $equipementEnPanneMineure,
+            "panneMajeure" => $equipementEnPanneMajeure,
+            "panneCrtique" => $equipementEnPanneCritique
+        );
     }
 
     public function donutData()
     {
         $etatTechniqueManager        = new etatTechniqueManager($this->db);
         $equipementByTechnicalStatus = $etatTechniqueManager->countEquipementByEtatTechnique();
-        
+
         return convertObjectListToArray($equipementByTechnicalStatus);
     }
 
