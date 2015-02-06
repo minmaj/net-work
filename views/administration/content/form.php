@@ -6,14 +6,14 @@
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="nom">Nom:</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-4" for="nom">Nom:</label>
+                    <div class="col-sm-7">
                         <input type="text" class="form-control" id="nom" placeholder="Entrez un nom">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="fabriquant">Fabriquant:</label>
-                    <div class="col-sm-10"> 
+                    <label class="control-label col-sm-4" for="fabriquant">Fabriquant:</label>
+                    <div class="col-sm-7"> 
                         <input type=text list=fabriquant >
                         <datalist id=fabriquant >
                             <option> DOGE CORP.
@@ -22,27 +22,27 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="ad-physique">Adresse Physique:</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-4" for="ad-physique">Adresse Physique:</label>
+                    <div class="col-sm-7">
                         <input type="text" class="form-control" id="ad-physique" placeholder="Entrez une adresse">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="ad-ip">Adresse IP:</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-4" for="ad-ip">Adresse IP:</label>
+                    <div class="col-sm-7">
                         <input type="text" class="form-control" id="ad-ip" placeholder="Entrez une adresse IP">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="prop">Propriétaire:</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-4" for="prop">Propriétaire:</label>
+                    <div class="col-sm-7">
                         <input type="text" class="form-control" id="prop" placeholder="Entrez une adresse">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="localisation">Localisation:</label>
-                    <div class="col-sm-10"> 
-                        <input type=text list=localisation >
+                    <label class="control-label col-sm-4" for="localisation">Localisation:</label>
+                    <div class="col-sm-7"> 
+                        <input type="text" list="localisation" >
                         <datalist id=localisation >
                             <option> DOGE LAND
                             <option> SUCH WOW COUNTRY
@@ -50,15 +50,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="numero">Numéro :</label>
-                    <div class="col-sm-10">
+                    <label class="control-label col-sm-4" for="numero">Numéro :</label>
+                    <div class="col-sm-7">
                         <input type="text" class="form-control" id="numero" placeholder="Entrez le numéro de téléphone">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="technique">Localisation:</label>
-                    <div class="col-sm-10"> 
-                        <input type=text list=technique >
+                    <label class="control-label col-sm-4" for="technique">Technique :</label>
+                    <div class="col-sm-7"> 
+                        <input type="text" list="technique" >
                         <datalist id=technique >
                             <option> OK
                             <option> NON
@@ -66,16 +66,43 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="fonctionnel">Localisation:</label>
-                    <div class="col-sm-10"> 
-                        <input type=text list=fonctionnel >
+                    <label class="control-label col-sm-4" for="fonctionnel">Fonctionnel :</label>
+                    <div class="col-sm-7"> 
+                        <input type="text" list="fonctionnel" >
                         <datalist id=fonctionnel >
                             <option> ok
                             <option> non
                         </datalist>
                     </div>
                 </div>
-                <div class="form-group"> 
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="categorie_parent">Categorie de l'equipement parent :</label>
+                    <div class="col-sm-7"> 
+                        <input type="text" list="categorie_parent" >
+                        <datalist id=categorie_parent >
+                            <?php foreach ($viewModel->get("typeEquipements") as $typeEquipement) { ?>
+                                <option value='<?php echo $typeEquipement->getLibelle(); ?>'><?php echo $typeEquipement->getLibelle(); ?></option>
+                            <?php } ?>
+                        </datalist>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="parent">Equipement parent :</label>
+                    <div class="col-sm-7"> 
+                        <input placeholder="Selectionner d'abord la categorie d'equipement" size="50" type=text list=parent >
+                        <datalist id="parent">
+                            <script id="parent_stuff_form_tmpl" type="text/x-jquery-tmpl">
+                                {{if stuffsByType.length!=0}}
+                                    {{each(i,item) stuffsByType}}
+                                        <option value="${item.id}">${item.nom}</option>
+                                    {{/each}}
+                                {{/if}}
+                            </script>
+                        </datalist>
+                    </div>
+                </div>
+                <div style='margin-top: 20px;' class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-8">
                         <button type="submit" class="btn btn-default">
                             <i class="fa fa-plus"></i> Ajouter

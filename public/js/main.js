@@ -39,10 +39,10 @@ $(document).ready(function() {
                     }
                 }
             });
-            
+
             $("#equipment_table").show("slow");
         });
-        
+
         $("#breadlist").html('<li><a class="home_link" href="#">NET-WORK</a></li><li class="active"><a href="#">'
                 + $(this).attr("data-categorie")
                 + '</a></li>');
@@ -52,6 +52,9 @@ $(document).ready(function() {
 
     });
 
+    /*
+     *  TODO COMMENTAIRE
+     */
     $("#backHomeButton").click(function(e) {
         e.preventDefault();
         $(".dynamic_content:visible").hide("slow", function() {
@@ -63,6 +66,9 @@ $(document).ready(function() {
         $('.home_link').click(on_click_home_link);
     });
 
+    /*
+     *  TODO COMMENTAIRE
+     */
     $("#addStuffButton").click(function(e) {
         e.preventDefault();
         $("#form_title").text("Ajouter un équipement");
@@ -74,6 +80,29 @@ $(document).ready(function() {
         $('.home_link').click(on_click_home_link);
     });
 
+    /*
+     *  TODO COMMENTAIRE
+     */
+    $("#categorie_parent").siblings("input").change(function() {
+        var typeEquipement = $(this).val();
+        $('#parent').siblings("input").val("");
+        $.ajax({
+            url: "administration/showStuff",
+            type: 'POST',
+            dataType: "json",
+            data: "typeEquipement=" + typeEquipement,
+            success: function(data) {
+                var stuffs = {stuffsByType: data.equipementList};
+                $('#parent option').remove();
+                $('#parent_stuff_form_tmpl').tmpl(stuffs).appendTo('#parent');
+
+            }
+        });
+    });
+
+    /*
+     *  TODO COMMENTAIRE
+     */
     function on_click_home_link(e) {
         e.preventDefault();
         $(".dynamic_content:visible").hide("slow", function() {
@@ -93,17 +122,20 @@ $(document).ready(function() {
 
     getDonutDataArray();
 
-    function getDonutDataArray () {
+    /*
+     *  TODO COMMENTAIRE
+     */
+    function getDonutDataArray() {
         $.ajax({
             url: "administration/donutData",
             type: 'POST',
             dataType: "json",
-            success: function (data) {
-                    Morris.Donut({
-                        element: 'morris-donut-chart',
-                        data: data,
-                        colors: ['#6600CC', '#FF3300', '#FFCC00', '#61B329']
-                    });
+            success: function(data) {
+                Morris.Donut({
+                    element: 'morris-donut-chart',
+                    data: data,
+                    colors: ['#6600CC', '#FF3300', '#FFCC00', '#61B329']
+                });
             }
         });
     }
