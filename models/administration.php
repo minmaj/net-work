@@ -46,7 +46,7 @@ class AdministrationModel extends BaseModel
      * Récupère les équipements en panne
      * @return type
      */
-    public function showStuffDown()
+    public function showFailureStuff()
     {
         $equipementManager = new EquipementManager($this->db);
         $panneMineure      = new EtatTechnique("En panne mineure");
@@ -58,9 +58,9 @@ class AdministrationModel extends BaseModel
         $equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
 
         return array(
-            "panneMineure" => $equipementEnPanneMineure,
-            "panneMajeure" => $equipementEnPanneMajeure,
-            "panneCrtique" => $equipementEnPanneCritique
+            "mineure" => $equipementEnPanneMineure,
+            "majeure" => $equipementEnPanneMajeure,
+            "critique" => $equipementEnPanneCritique
         );
     }
 

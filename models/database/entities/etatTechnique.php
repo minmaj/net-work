@@ -14,12 +14,12 @@
 class etatTechnique
 {
 
-    private $label;
+    private $libelle;
     private $value;
 
     function __construct($libelle, $nbEquipementAssocie = 0)
     {
-        $this->label = $libelle;
+        $this->libelle = $libelle;
         $this->value = $nbEquipementAssocie;
     }
 
