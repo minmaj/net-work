@@ -206,7 +206,10 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data) {
+                    console.log(data.nom);
+                    $('#headingDetailsModal').html("<span id=\"detail_title\">" + data.nom + "</span>");
                     var stuff = {stuffDetail : data};
+                    $('#bodyDetailsModal').html("");
                     $('#row_details_tmpl').tmpl(stuff).appendTo('#bodyDetailsModal');
                 }
             });

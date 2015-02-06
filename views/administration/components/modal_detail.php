@@ -7,24 +7,118 @@
             </div>
             <div class="modal-body">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <span id="detail_title">X</span>
+                    <div id="headingDetailsModal" class="panel-heading">
+
                     </div>
                     <div id="bodyDetailsModal" class="panel-body">
-                        <script id="row_details_tmpl" type="text/x-jquery-tmpl">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <p>${ stuffDetail.etatFonctionnel }</p>
-                                    </div>
-                                    <div>
-                                        <p></p>
-                                    </div>
-                                </div>
-                        </script>
-                        <hr/>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <script id="row_details_tmpl" type="text/x-jquery-tmpl">
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">ID</span>
+                </div>
+                <div>
+                    ${ stuffDetail.id }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Type</span>
+                </div>
+                <div>
+                    ${ stuffDetail.type }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Nom</span>
+                </div>
+                <div>
+                    ${ stuffDetail.nom }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Etat fonctionnel</span>
+                </div>
+                <div>
+                    ${ stuffDetail.etatFonctionnel }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Etat technique</span>
+                </div>
+                <div>
+                    ${ stuffDetail.etatTechnique }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Fabriquant</span>
+                </div>
+                <div>
+                    ${ stuffDetail.fabriquant }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Localisation</span>
+                </div>
+                <div>
+                    ${ stuffDetail.localisation }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Adresse IP</span>
+                </div>
+                <div>
+                    ${ stuffDetail.adresseIp }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Proprietaire</span>
+                </div>
+                <div>
+                    ${ stuffDetail.proprietaire }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Numéro support</span>
+                </div>
+                <div>
+                    ${ stuffDetail.numeroSupport }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span style="font-weight:bold;">Parent</span>
+                </div>
+                <div>
+                    ${ stuffDetail.parent }
+                </div>
+            </div>
+            <hr/>
+    </script>
 </div>
+
+
