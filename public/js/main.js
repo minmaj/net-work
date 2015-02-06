@@ -139,7 +139,6 @@ $(document).ready(function() {
             // On rend le premier onglet du tableau actif
             if(firstLoop){
                 $navTabsList.attr("class", "active");
-                firstLoop = false;
             }
 
             $navTabsList.append($("<a />")
@@ -156,7 +155,6 @@ $(document).ready(function() {
                             );
             $tbody = $("<tbody />");
             $.each(equipements, function(key, value) {
-                console.log(key + " : " + value.id);
                 $tbody.append($("<tr />").attr("class", "")
                         .append($("<td />")
                                 .text(value.id))
@@ -167,21 +165,25 @@ $(document).ready(function() {
 
             });
 
-            $tabContent
+            $tabHeader = $("<div />").attr("id", typePanne);
+            if(firstLoop){
+                $tabHeader.attr("class", "tab-pane fade active in");
+            } else{
+                $tabHeader.attr("class", "tab-pane fade");
+            }
+            $tabHeader
+                    .append(
+                            $("<h3 />")
+                            .text("Panne(s) " + typePanne + "(s)"))
                     .append($("<div />")
-                            .attr("id", typePanne)
-                            .attr("class", "tab-pane fade")
-                            .append($("<h3 />")
-                                    .text("Panne(s) " + typePanne + "(s)"))
-                            .append($("<div />")
-                                    .attr("class", "panel panel-default")
-                                    .append($("<table />")
-                                            .attr("class", "table")
-                                            .append($thead)
-                                            .append($tbody)
-                                            )
-                                    )
-                            );
+                            .attr("class", "panel panel-default")
+                            .append($("<table />")
+                                    .attr("class", "table")
+                                    .append($thead)
+                                    .append($tbody)
+                                    ));
+            $tabHeader.appendTo($tabContent);
+            firstLoop = false;
         });
 
         $defaultContent = $("#default_content");
