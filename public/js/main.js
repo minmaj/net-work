@@ -4,10 +4,18 @@ $(document).ready(function() {
 
     var lastStuffVisited;
 
+    /*
+     * Lorsqu'on clique sur un element de la liste des categories d'equipement,
+     * le contenu principal courant disparait avec une animation de fondu lent
+     * puis une requete ajax est emise a l'adresse administration/showStuff 
+     * (controller = administration & action = showStuff) pour recuperer sous
+     * format JSON la liste des equipements par la categorie concernee
+     */
     $("a[data-categorie]").click(function(e) {
         e.preventDefault();
 
         var typeEquipement = $(this).data("categorie");
+        lastStuffVisited = typeEquipement;
         // Affiche la liste des équipements pour un type donné
         $(".dynamic_content:visible").hide("slow").promise().done(function() {
             $.ajax({
@@ -57,7 +65,7 @@ $(document).ready(function() {
 
     $("#addStuffButton").click(function(e) {
         e.preventDefault();
-
+        $("#form_title").text("Ajouter un équipement");
         $(".dynamic_content:visible").hide("slow", function() {
             $("#form").show("slow");
         });

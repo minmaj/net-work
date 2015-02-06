@@ -44,6 +44,10 @@
                         <?php require (__DIR__ . '/content/equipment_table.php') ?>
                         
                         <?php require (__DIR__ . '/content/form.php') ?>
+                        
+                        <?php require (__DIR__ . '/components/modal_detail.php') ?>
+                        
+                        <?php require (__DIR__ . '/components/modal_delete.php') ?>
 
                     </div>
 

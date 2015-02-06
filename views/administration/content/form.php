@@ -2,7 +2,7 @@
 
     <!-- Formulaire d'ajout -->
     <div class="panel panel-primary">
-        <div class="panel-heading">Ajout d'un équipement</div>
+        <div class="panel-heading"><span id="form_title"></span></div>
         <div class="panel-body">
             <form class="form-horizontal" role="form">
                 <div class="form-group">
