@@ -59,7 +59,9 @@
                     <label class="control-label col-sm-4" for="technique">Etat technique :</label>
                     <div class="col-sm-7"> 
                         <select class="form-control" id=technique >
-                            <option>Test</option>
+                            <?php foreach ($viewModel->get("etatsTechniques") as $etat) { ?>
+                                <option value='<?php echo $etat->getLibelle(); ?>'><?php echo $etat->getLibelle(); ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -67,12 +69,14 @@
                     <label class="control-label col-sm-4" for="fonctionnel">Etat fonctionnel :</label>
                     <div class="col-sm-7"> 
                         <select class="form-control" id=fonctionnel >
-                            <option>Test</option>
+                            <?php foreach ($viewModel->get("etatsFonctionnels") as $etat) { ?>
+                                <option value='<?php echo $etat->getLibelle(); ?>'><?php echo $etat->getLibelle(); ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="categorie_parent">Categorie de l'equipement parent :</label>
+                    <label class="control-label col-sm-4" for="categorie_parent">Type de l'equipement parent :</label>
                     <div class="col-sm-7"> 
                         <select class="form-control" id=categorie_parent >
                             <?php foreach ($viewModel->get("typeEquipements") as $typeEquipement) { ?>
@@ -86,7 +90,7 @@
                     <label class="control-label col-sm-4" for="parent">Equipement parent :</label>
                     <div class="col-sm-7"> 
                         <select class="form-control" id="parent">
-                            <option value="-1">Selectionner d'abord la categorie d'equipement</option>
+                            <option value="-1">Selectionner d'abord le type d'equipement</option>
                             <script id="parent_stuff_form_tmpl" type="text/x-jquery-tmpl">
                                 {{if stuffsByType.length!=0}}
                                     {{each(i,item) stuffsByType}}

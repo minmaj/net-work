@@ -16,7 +16,17 @@ class AdministrationModel extends BaseModel
         // Liste de tous les types d'équipements à afficher
         $typeEquipements   = $equipementManager->countEquipementByType();
         $this->viewModel->set("typeEquipements", $typeEquipements);
-
+        
+        //Lister les etats techniques
+        $etatTechManager = new etatTechniqueManager($this->db);
+        $etatsTechniques = $etatTechManager->selectAll();
+        $this->viewModel->set("etatsTechniques", $etatsTechniques);
+        
+        //Lister les etats fonctionnels
+        $etatFoncManager = new etatFonctionnelManager($this->db);
+        $etatsFonctionnels = $etatFoncManager->selectAll();
+        $this->viewModel->set("etatsFonctionnels", $etatsFonctionnels);
+        
         return $this->viewModel;
     }
 
