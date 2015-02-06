@@ -9,23 +9,19 @@ $(document).ready(function() {
 
         var typeEquipement = $(this).data("categorie");
         // Affiche la liste des équipements pour un type donné
-        $(".dynamic_content:visible").hide("slow", function() {
+        $(".dynamic_content:visible").hide("slow").promise().done(function() {
             $.ajax({
                 url: "administration/showStuff",
                 type: 'POST',
                 dataType: "json",
                 data: "typeEquipement=" + typeEquipement,
                 success: function(data) {
-                    console.log(data);
-                    
                     var stuff = {stuff: data.equipementList};
                     $('#stuffTable tbody > tr').remove();
                     $('#row_stuff_table_tmpl').tmpl(stuff).appendTo('#stuffTable tbody');
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
                     $("#warning_message_equipement").html("Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + "est/sont actuellement en panne(s)!");
-
-                    console.log(data.nbEquipementEnPanne);
                 }
             });
             
@@ -80,40 +76,21 @@ $(document).ready(function() {
 
     // Donut relative code
 
-    var dataDonutArray = [];
-    var jsoned;
-
     getDonutDataArray();
 
-    function getDonutSegment(segmentLabel, segmentValue) {
-        var donutObject = {};
-        donutObject[label] = segmentLabel;
-        donutObject[value] = segmentValue;
-        return donutObject;
-    }
-
-    function getDonutDataArray() {
+    function getDonutDataArray () {
         $.ajax({
-            url: "administration/index",
+            url: "administration/donutData",
             type: 'POST',
             dataType: "json",
-            data: "equipementByTechnicalStatus",
-            success: function(data) {
-                jsoned = JSON.stringify(data);
-                var tryhard;
+            success: function (data) {
+                    Morris.Donut({
+                        element: 'morris-donut-chart',
+                        data: data,
+                        colors: ['#6600CC', '#FF3300', '#FFCC00', '#61B329']
+                    });
             }
         });
     }
-
-    Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [
-            {label: "Fonctionnel", value: 8},
-            {label: "En panne mineure", value: 5},
-            {label: "En panne majeure", value: 3},
-            {label: "Inconnu", value: 1}
-        ],
-        colors: ['#61B329', '#FFCC00', '#FF3300', '#6600CC']
-    });
 });
 

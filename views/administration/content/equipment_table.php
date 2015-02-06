@@ -7,9 +7,9 @@
                 <tr class="blue-background">
                     <th>ID</th>
                     <th>NOM</th>
-                    <th>FABRIQUANT</th>
-                    <th>ADRESSE IP</th>
-                    <th></th>
+                    <th>ETAT FONCTIONNEL</th>
+                    <th>ETAT TECHNIQUE</th>
+                    <th class="buttonColumn"></th>
                 </tr>
             </thead>
             <tbody>
@@ -63,10 +63,10 @@
                     {{each(i,item) stuff}}
                         <tr>
                             <td>${ item.id }</td>
-                            <td>${ item.nom }</td>
-                            <td>${ item.fabriquant }</td>
-                            <td>${ item.adresseIp }</td>
-                            <td>
+                            <td><span style="font-weight: bold;">${ item.nom }</span></td>
+                            <td>${ item.etatFonctionnel }</td>
+                            <td>${ item.etatTechnique }</td>
+                            <td class="buttonColumn">
                                 <button type="button" class="btn btn-default btn-xs"
                                         data-toggle="modal"
                                         data-target="#viewDetailsModal">
