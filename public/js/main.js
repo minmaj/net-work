@@ -83,9 +83,8 @@ $(document).ready(function() {
     /*
      *  TODO COMMENTAIRE
      */
-    $("#categorie_parent").siblings("input").change(function() {
+    $("#categorie_parent").change(function() {
         var typeEquipement = $(this).val();
-        $('#parent').siblings("input").val("");
         $.ajax({
             url: "administration/showStuff",
             type: 'POST',
@@ -207,7 +206,8 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data) {
-                    console.log(data);
+                    var stuff = {stuffDetail : data};
+                    $('#row_details_tmpl').tmpl(stuff).appendTo('#bodyDetailsModal');
                 }
             });
         });

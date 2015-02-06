@@ -27,7 +27,7 @@ class AdministrationModel extends BaseModel
     public function showStuff()
     {
         // Récupération du type d'équipement à afficher (transmis par la requête AJAX)
-        $typeEquipement    = isset($_POST["typeEquipement"]) ? $_POST["typeEquipement"] : "false";
+        $typeEquipement    = isset($_POST["typeEquipement"]) ? $_POST["typeEquipement"] : false;
         $type              = new Type($typeEquipement);
         $equipementManager = new EquipementManager($this->db);
 
@@ -74,11 +74,11 @@ class AdministrationModel extends BaseModel
     
     public function detailsData()
     {
-        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : "false";
+        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
         $equipementManager = new EquipementManager($this->db);
         $stuffFound = $equipementManager->find($idStuff);
         
-        return convertObjectListToArray($stuffFound);
+        return convertObjectToArray($stuffFound);
     }
 
 }

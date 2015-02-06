@@ -56,42 +56,37 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="technique">Technique :</label>
+                    <label class="control-label col-sm-4" for="technique">Etat technique :</label>
                     <div class="col-sm-7"> 
-                        <input type="text" list="technique" >
-                        <datalist id=technique >
-                            <option> OK
-                            <option> NON
-                        </datalist>
+                        <select class="form-control" id=technique >
+                            <option>Test</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-4" for="fonctionnel">Fonctionnel :</label>
+                    <label class="control-label col-sm-4" for="fonctionnel">Etat fonctionnel :</label>
                     <div class="col-sm-7"> 
-                        <input type="text" list="fonctionnel" >
-                        <datalist id=fonctionnel >
-                            <option> ok
-                            <option> non
-                        </datalist>
+                        <select class="form-control" id=fonctionnel >
+                            <option>Test</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="categorie_parent">Categorie de l'equipement parent :</label>
                     <div class="col-sm-7"> 
-                        <input type="text" list="categorie_parent" >
-                        <datalist id=categorie_parent >
+                        <select class="form-control" id=categorie_parent >
                             <?php foreach ($viewModel->get("typeEquipements") as $typeEquipement) { ?>
                                 <option value='<?php echo $typeEquipement->getLibelle(); ?>'><?php echo $typeEquipement->getLibelle(); ?></option>
                             <?php } ?>
-                        </datalist>
+                        </select>
                     </div>
 
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-4" for="parent">Equipement parent :</label>
                     <div class="col-sm-7"> 
-                        <input placeholder="Selectionner d'abord la categorie d'equipement" size="50" type=text list=parent >
-                        <datalist id="parent">
+                        <select class="form-control" id="parent">
+                            <option value="-1">Selectionner d'abord la categorie d'equipement</option>
                             <script id="parent_stuff_form_tmpl" type="text/x-jquery-tmpl">
                                 {{if stuffsByType.length!=0}}
                                     {{each(i,item) stuffsByType}}
@@ -99,7 +94,7 @@
                                     {{/each}}
                                 {{/if}}
                             </script>
-                        </datalist>
+                        </select>
                     </div>
                 </div>
                 <div style='margin-top: 20px;' class="form-group"> 
