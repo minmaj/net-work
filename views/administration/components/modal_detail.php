@@ -10,13 +10,13 @@
                     <div class="panel-heading">
                         <span id="detail_title">X</span>
                     </div>
-                    <div class="panel-body">
-                        <script id="row_stuff_table_tmpl" type="text/x-jquery-tmpl">
-                            {{if stuff.length!=0}}
-                                {{each(i,item) stuff}}
+                    <div id="bodyDetailsModal" class="panel-body">
+                        <script id="row_details_tmpl" type="text/x-jquery-tmpl">
+                            {{if stuffList.length!=0}}
+                                {{each(i,item) stuffList}}
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <p></p>
+                                            <p>${ item.etatFonctionnel }</p>
                                         </div>
                                         <div>
                                             <p></p>

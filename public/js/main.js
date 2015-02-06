@@ -30,11 +30,11 @@ $(document).ready(function() {
                     bindButtonView();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if (data.nbEquipementEnPanne > 0) {
+                    if(data.nbEquipementEnPanne > 0){
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else {
+                    else{
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
@@ -111,14 +111,89 @@ $(document).ready(function() {
         $("#breadlist").html('<li><a class="home_link" href="#">NET-WORK</a></li>');
         $('.home_link').off("click");
         $('.home_link').click(on_click_home_link);
+        getFailureStuff();
+    }
+
+    getFailureStuff();
+
+    function getFailureStuff() {
+        $.ajax({
+            url: "administration/showFailureStuff",
+            dataType: "json",
+            success: createFailureStuffTable
+        });
+    }
+
+    String.prototype.capitalize = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    }
+
+    function createFailureStuffTable(data) {
+        $navTabs = $("<ul />").attr("class", "nav nav-tabs");
+        $tabContent = $("<div />").attr("class", "tab-content");
+
+        firstLoop = true;
+        $.each(data, function(typePanne, equipements) {
+            $navTabsList = $("<li />");
+            // On rend le premier onglet du tableau actif
+            if(firstLoop){
+                $navTabsList.attr("class", "active");
+                firstLoop = false;
+            }
+
+            $navTabsList.append($("<a />")
+                    .attr("data-toggle", "tab")
+                    .attr("href", "#" + typePanne)
+                    .text("Panne " + typePanne));
+            $navTabs.append($navTabsList);
+
+            $thead = $("<thead />")
+                    .append($("<tr />").attr("class", "blue-background")
+                            .append($("<th />").text("ID"))
+                            .append($("<th />").text("NOM"))
+                            .append($("<th />").text("ETAT FONCTIONNEL"))
+                            );
+            $tbody = $("<tbody />");
+            $.each(equipements, function(key, value) {
+                console.log(key + " : " + value.id);
+                $tbody.append($("<tr />").attr("class", "")
+                        .append($("<td />")
+                                .text(value.id))
+                        .append($("<td />")
+                                .text(value.nom))
+                        .append($("<td />")
+                                .text(value.etatFonctionnel)));
+
+            });
+
+            $tabContent
+                    .append($("<div />")
+                            .attr("id", typePanne)
+                            .attr("class", "tab-pane fade")
+                            .append($("<h3 />")
+                                    .text("Panne(s) " + typePanne + "(s)"))
+                            .append($("<div />")
+                                    .attr("class", "panel panel-default")
+                                    .append($("<table />")
+                                            .attr("class", "table")
+                                            .append($thead)
+                                            .append($tbody)
+                                            )
+                                    )
+                            );
+        });
+
+        $defaultContent = $("#default_content");
+        $defaultContent.children().remove();
+        $navTabs.appendTo($defaultContent);
+        $tabContent.appendTo($defaultContent);
     }
 
     $(".home_link").click(on_click_home_link);
 
     $("#stuffTable").tablesorter();
-    
-    function bindButtonView() {
 
+    function bindButtonView() {
         $(".buttonView").click(function(e) {
             e.preventDefault();
             var idStuff = $(this).data("categorie");
@@ -130,12 +205,14 @@ $(document).ready(function() {
                 data: "idStuff=" + idStuff,
                 success: function(data) {
                     console.log(data);
+                    var stuff = {stuffDetails: data};
+                    $('#bodyDetailsModal').remove();
+                    $('#row_details_tmpl').tmpl(stuff).html('#bodyDetailsModal');
                 }
             });
         });
-        
+
     }
-    // Donut relative code
 
     getDonutDataArray();
 

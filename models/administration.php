@@ -20,10 +20,14 @@ class AdministrationModel extends BaseModel
         return $this->viewModel;
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public function showStuff()
     {
         // Récupération du type d'équipement à afficher (transmis par la requête AJAX)
-        $typeEquipement    = isset($_POST["typeEquipement"]) ? $_POST["typeEquipement"] : "false";
+        $typeEquipement    = isset($_POST["typeEquipement"]) ? $_POST["typeEquipement"] : false;
         $type              = new Type($typeEquipement);
         $equipementManager = new EquipementManager($this->db);
 
@@ -38,21 +42,43 @@ class AdministrationModel extends BaseModel
         }
     }
 
+    /**
+     * Récupère les équipements en panne
+     * @return type
+     */
+    public function showFailureStuff()
+    {
+        $equipementManager = new EquipementManager($this->db);
+        $panneMineure      = new EtatTechnique("En panne mineure");
+        $panneMajeure      = new EtatTechnique("En panne majeure");
+        $panneCritique     = new EtatTechnique("En panne critique");
+
+        $equipementEnPanneMineure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
+        $equipementEnPanneMajeure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
+        $equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
+
+        return array(
+            "mineure" => $equipementEnPanneMineure,
+            "majeure" => $equipementEnPanneMajeure,
+            "critique" => $equipementEnPanneCritique
+        );
+    }
+
     public function donutData()
     {
         $etatTechniqueManager        = new etatTechniqueManager($this->db);
         $equipementByTechnicalStatus = $etatTechniqueManager->countEquipementByEtatTechnique();
-        
+
         return convertObjectListToArray($equipementByTechnicalStatus);
     }
     
     public function detailsData()
     {
-        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : "false";
+        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
         $equipementManager = new EquipementManager($this->db);
         $stuffFound = $equipementManager->find($idStuff);
         
-        return convertObjectListToArray($stuffFound);
+        return convertObjectToArray($stuffFound);
     }
 
 }

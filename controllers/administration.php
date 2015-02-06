@@ -31,6 +31,12 @@ class AdministrationController extends BaseController
         echo json_encode($this->model->showStuff());
     }
 
+    protected function showFailureStuff()
+    {
+        // Réponse à la requête AJAX
+        echo json_encode($this->model->showFailureStuff());
+    }
+
     protected function donutData()
     {
         // Réponse à la requête AJAX

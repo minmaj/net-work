@@ -67,9 +67,11 @@ function convertObjectListToArray($objectList)
 
 //echo json_encode(convertObjectListToArray($ordiFixes));
 //var_dump($equipementManager->findAll());
-
 //var_dump($equipementManager->find(58));
 
-//$etatTechniqueManager = new EtatTechniqueManager($db);
+$etatTechniqueManager = new EtatTechniqueManager($db);
 //var_dump($etatTechniqueManager->countEquipementByEtatTechnique());
+
+var_dump($equipementManager->findByEtatTechnique(new EtatTechnique("En panne mineure")));
+
 

@@ -152,6 +152,29 @@ class EquipementManager
         }
     }
 
+    public function findEquipementByEtatTechnique(EtatTechnique $etatTechnique)
+    {
+        try {
+            $sql  = "SELECT * FROM EQUIPEMENT WHERE ETAT_TECHNIQUE = :ETAT_TECHNIQUE";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute(array(":ETAT_TECHNIQUE" => $etatTechnique->getLibelle()));
+            $rs   = $stmt->fetchAll();
+
+            $equipements = array();
+            foreach ($rs as $equipement) {
+                $equipements[] = new Equipement($equipement["EQUIPEMENT_ID"], $equipement["TYPE"], $equipement["NOM"],
+                                              $equipement["FABRIQUANT"], $equipement["ADRESSE_PHYSIQUE"],
+                                              $equipement["ADRESSE_IP"], $equipement["PROPRIETAIRE"], $equipement["LOCALISATION"],
+                                              $equipement["NUMERO_SUPPORT"], $equipement["ETAT_TECHNIQUE"],
+                                              $equipement["ETAT_FONCTIONNEL"], $equipement["COMMENT"], $equipement["PARENT"]);
+            }
+            return $equipements;
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
+    }
+
     public function countEquipementEnPanneByType(Type $type)
     {
         try {
