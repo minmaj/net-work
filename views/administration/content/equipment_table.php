@@ -13,50 +13,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- exemple des lignes du tableau -->
-<!--                <tr class="warning-row">
-                    <td>1</td>
-                    <td>YOLO</td>
-                    <td>DOGE CORP.</td>
-                    <td>127.0.0.1</td>
-                    <td>
-                        <button type="button" class="btn btn-default btn-xs"
-                                data-toggle="modal"
-                                data-target="#viewDetailsModal">
-                            <i class="fa fa-search-plus"></i> View details
-                        </button>
-                        <button type="button" class="btn btn-info btn-xs">
-                            <i class="fa fa-edit"></i> Edit
-                        </button>
-                        <button type="button" class="btn btn-danger btn-xs"
-                                data-toggle="modal"
-                                data-target="#suppressionModal">
-                            <i class="fa fa-times"></i> Delete
-                        </button>
-                    </td>
-                </tr>
-                
-                <tr class="valid-row">
-                    <td>2</td>
-                    <td>SWAG</td>
-                    <td>DOGE CORP.</td>
-                    <td>127.0.0.1</td>
-                    <td>
-                        <button type="button" class="btn btn-default btn-xs"
-                                data-toggle="modal"
-                                data-target="#viewDetailsModal">
-                            <i class="fa fa-search-plus"></i> View details
-                        </button>
-                        <button type="button" class="btn btn-info btn-xs">
-                            <i class="fa fa-edit"></i> Edit
-                        </button>
-                        <button type="button" class="btn btn-danger btn-xs"
-                                data-toggle="modal"
-                                data-target="#suppressionModal">
-                            <i class="fa fa-times"></i> Delete
-                        </button>
-                    </td>
-                </tr>-->
 
             <script id="row_stuff_table_tmpl" type="text/x-jquery-tmpl">
                 {{if stuff.length!=0}}
