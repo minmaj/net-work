@@ -27,6 +27,7 @@ $(document).ready(function() {
                     var stuff = {stuff: data.equipementList};
                     $('#stuffTable tbody > tr').remove();
                     $('#row_stuff_table_tmpl').tmpl(stuff).appendTo('#stuffTable tbody');
+                    bindButtonView();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
                     if (data.nbEquipementEnPanne > 0) {
@@ -39,7 +40,6 @@ $(document).ready(function() {
                     }
                 }
             });
-
             $("#equipment_table").show("slow");
         });
 
@@ -117,7 +117,25 @@ $(document).ready(function() {
     $(".home_link").click(on_click_home_link);
 
     $("#stuffTable").tablesorter();
+    
+    function bindButtonView() {
 
+        $(".buttonView").click(function(e) {
+            e.preventDefault();
+            var idStuff = $(this).data("categorie");
+
+            $.ajax({
+                url: "administration/detailsData",
+                type: 'POST',
+                dataType: "json",
+                data: "idStuff=" + idStuff,
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+        
+    }
     // Donut relative code
 
     getDonutDataArray();

@@ -68,8 +68,8 @@ function convertObjectListToArray($objectList)
 //echo json_encode(convertObjectListToArray($ordiFixes));
 //var_dump($equipementManager->findAll());
 
-//var_dump($equipementManager->countEquipementByType());
+//var_dump($equipementManager->find(58));
 
-$etatTechniqueManager = new EtatTechniqueManager($db);
-var_dump($etatTechniqueManager->countEquipementByEtatTechnique());
+//$etatTechniqueManager = new EtatTechniqueManager($db);
+//var_dump($etatTechniqueManager->countEquipementByEtatTechnique());
 

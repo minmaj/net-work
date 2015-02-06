@@ -23,17 +23,20 @@
                             <td>${ item.etatFonctionnel }</td>
                             <td>${ item.etatTechnique }</td>
                             <td class="buttonColumn">
-                                <button type="button" class="btn btn-default btn-xs"
+                                <button type="button" class="btn btn-default btn-xs buttonView"
                                         data-toggle="modal"
-                                        data-target="#viewDetailsModal">
+                                        data-target="#viewDetailsModal"
+                                        data-categorie=${ item.id }>
                                     <i class="fa fa-search-plus"></i> View details
                                 </button>
-                                <button type="button" class="btn btn-info btn-xs">
+                                <button type="button" class="btn btn-info btn-xs buttonEdit"
+                                        data-categorie=${ item.id }>
                                     <i class="fa fa-edit"></i> Edit
                                 </button>
-                                <button type="button" class="btn btn-danger btn-xs"
+                                <button type="button" class="btn btn-danger btn-xs buttonDelete"
                                         data-toggle="modal"
-                                        data-target="#suppressionModal">
+                                        data-target="#suppressionModal"
+                                        data-categorie=${ item.id }>
                                     <i class="fa fa-times"></i> Delete
                                 </button>
                             </td>

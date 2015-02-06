@@ -45,5 +45,14 @@ class AdministrationModel extends BaseModel
         
         return convertObjectListToArray($equipementByTechnicalStatus);
     }
+    
+    public function detailsData()
+    {
+        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : "false";
+        $equipementManager = new EquipementManager($this->db);
+        $stuffFound = $equipementManager->find($idStuff);
+        
+        return convertObjectListToArray($stuffFound);
+    }
 
 }
