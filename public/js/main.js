@@ -204,10 +204,8 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data) {
-                    console.log(data);
-                    var stuff = {stuffDetails: data};
-                    $('#bodyDetailsModal').remove();
-                    $('#row_details_tmpl').tmpl(stuff).html('#bodyDetailsModal');
+                    var stuff = {stuffDetail : data};
+                    $('#row_details_tmpl').tmpl(stuff).appendTo('#bodyDetailsModal');
                 }
             });
         });

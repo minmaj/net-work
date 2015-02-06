@@ -12,18 +12,14 @@
                     </div>
                     <div id="bodyDetailsModal" class="panel-body">
                         <script id="row_details_tmpl" type="text/x-jquery-tmpl">
-                            {{if stuffList.length!=0}}
-                                {{each(i,item) stuffList}}
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <p>${ item.etatFonctionnel }</p>
-                                        </div>
-                                        <div>
-                                            <p></p>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p>${ stuffDetail.etatFonctionnel }</p>
                                     </div>
-                                {{/each}}
-                            {{/if}}
+                                    <div>
+                                        <p></p>
+                                    </div>
+                                </div>
                         </script>
                         <hr/>
                     </div>
