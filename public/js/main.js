@@ -30,11 +30,11 @@ $(document).ready(function() {
                     bindButtonView();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if(data.nbEquipementEnPanne > 0){
+                    if (data.nbEquipementEnPanne > 0) {
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else{
+                    else {
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
@@ -78,6 +78,37 @@ $(document).ready(function() {
 
         $('.home_link').off("click");
         $('.home_link').click(on_click_home_link);
+    });
+
+    /*
+     * TODO COMMENTAIRE
+     */
+    $("#formAddButtonStuff").click(function(e) {
+        e.preventDefault();
+
+        var newStuff = new Object();
+        newStuff.type = lastStuffVisited;
+
+        $("#form form input, select, datalist").each(function(i, item) {
+            if ($(this).attr("id") !== undefined) {
+                fillStuff(newStuff, $(this))
+            }
+        });
+
+        function fillStuff(newStuff, elem) {
+            var key = elem.attr("id");
+            newStuff[key] = elem.val();
+        }
+
+        $.ajax({
+            url: "administration/addStuff",
+            type: 'POST',
+            dataType: "json",
+            data: newStuff,
+            success: function(data) {
+                console.log(data);
+            }
+        });
     });
 
     /*
@@ -136,7 +167,7 @@ $(document).ready(function() {
         $.each(data, function(typePanne, equipements) {
             $navTabsList = $("<li />");
             // On rend le premier onglet du tableau actif
-            if(firstLoop){
+            if (firstLoop) {
                 $navTabsList.attr("class", "active");
             }
 
@@ -165,9 +196,9 @@ $(document).ready(function() {
             });
 
             $tabHeader = $("<div />").attr("id", typePanne);
-            if(firstLoop){
+            if (firstLoop) {
                 $tabHeader.attr("class", "tab-pane fade active in");
-            } else{
+            } else {
                 $tabHeader.attr("class", "tab-pane fade");
             }
             $tabHeader
@@ -206,7 +237,7 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data) {
-                    var stuff = {stuffDetail : data};
+                    var stuff = {stuffDetail: data};
                     $('#row_details_tmpl').tmpl(stuff).appendTo('#bodyDetailsModal');
                 }
             });
@@ -225,9 +256,16 @@ $(document).ready(function() {
             type: 'POST',
             dataType: "json",
             success: function(data) {
+                var donutData = [];
+                for (var tmp in data) {
+                    donutData[tmp] = {
+                        label: data[tmp].libelle,
+                        value: data[tmp].value
+                    };
+                }
                 Morris.Donut({
                     element: 'morris-donut-chart',
-                    data: data,
+                    data: donutData,
                     colors: ['#6600CC', '#FF3300', '#FFCC00', '#61B329']
                 });
             }

@@ -81,4 +81,51 @@ class AdministrationModel extends BaseModel
         return convertObjectToArray($stuffFound);
     }
 
+    /**
+     * Ajouter un nouvel equipement dans la BD
+     */
+    public function addStuff() {
+        
+        $newStuff = filter_input_array(INPUT_POST, array(
+            "nom" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "type" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "fabriquant" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "ad-physique" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "ad-ip" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "prop" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "localisation" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "numero" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "technique" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "fonctionnel" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "parent" => FILTER_SANITIZE_SPECIAL_CHARS,
+
+        ));
+        
+        if (0 != strcmp($newStuff["nom"], "")) {
+            $equipement = new Equipement(
+                    null, 
+                    $newStuff["type"], 
+                    $newStuff["nom"], 
+                    $newStuff["fabriquant"], 
+                    $newStuff["ad-physique"], 
+                    $newStuff["ad-ip"], 
+                    $newStuff["prop"], 
+                    $newStuff["localisation"], 
+                    $newStuff["numero"], 
+                    $newStuff["technique"], 
+                    $newStuff["fonctionnel"], 
+                    "", 
+                    $newStuff["parent"]);
+
+            $equipementManager = new EquipementManager($this->db); 
+            $equipementManager->insert($equipement);
+        
+            return array("error" => false);
+            
+        } else {
+            
+            return array("error" => "Votre equipement doit avoir un nom");
+        }
+        
+    }
 }

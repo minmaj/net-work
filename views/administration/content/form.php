@@ -99,7 +99,7 @@
                 </div>
                 <div style='margin-top: 20px;' class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-8">
-                        <button type="submit" class="btn btn-default">
+                        <button id="formAddButtonStuff" type="submit" class="btn btn-default">
                             <i class="fa fa-plus"></i> Ajouter
                         </button>
                         <button id="backStuffButton" type="button" class="btn btn-primary" >
