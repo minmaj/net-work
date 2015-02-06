@@ -89,6 +89,20 @@ $(document).ready(function() {
 
     $("#stuffTable").tablesorter();
 
+    $(".buttonView[data-categorie]").click(function(e) {
+        e.preventDefault();
+        var idStuff = $(this).data("categorie");
+        
+        $.ajax({
+            url: "administration/detailsData",
+            type: 'POST',
+            dataType: "json",
+            data: "idStuff=" + idStuff,
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    });
     // Donut relative code
 
     getDonutDataArray();

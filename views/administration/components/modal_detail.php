@@ -11,16 +11,21 @@
                         <span id="detail_title">X</span>
                     </div>
                     <div class="panel-body">
-                        <!-- SEQUENCE A METTRE EN BOUCLE
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p>PLS</p>
-                            </div>
-                            <div>
-                                <p>DOGE ME</p>
-                            </div>
-                        </div>
-                        <hr/> -->
+                        <script id="row_stuff_table_tmpl" type="text/x-jquery-tmpl">
+                            {{if stuff.length!=0}}
+                                {{each(i,item) stuff}}
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <p></p>
+                                        </div>
+                                        <div>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                {{/each}}
+                            {{/if}}
+                        </script>
+                        <hr/>
                     </div>
                 </div>
             </div>
