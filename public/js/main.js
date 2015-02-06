@@ -206,6 +206,9 @@ $(document).ready(function() {
                 data: "idStuff=" + idStuff,
                 success: function(data) {
                     console.log(data);
+                    var stuff = {stuffDetails: data};
+                    $('#bodyDetailsModal').remove();
+                    $('#row_details_tmpl').tmpl(stuff).html('#bodyDetailsModal');
                 }
             });
         });
