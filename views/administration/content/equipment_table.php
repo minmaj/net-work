@@ -9,7 +9,6 @@
                     <th>NOM</th>
                     <th>ETAT FONCTIONNEL</th>
                     <th>ETAT TECHNIQUE</th>
-                    <th>COMMENT</th>
                     <th class="buttonColumn"></th>
                 </tr>
             </thead>
@@ -33,7 +32,6 @@
                             {{else}}
                                 <td>${ item.etatTechnique }</td>
                             {{/if}}
-                            <td>${ item.comment }</td>
                             <td class="buttonColumn">
                                 <button type="button" class="btn btn-default btn-xs buttonView"
                                         data-toggle="modal"
