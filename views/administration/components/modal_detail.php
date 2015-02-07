@@ -66,6 +66,15 @@
             <hr/>
             <div class="row">
                 <div class="col-lg-4">
+                    <span style="font-weight:bold;">Commentaire</span>
+                </div>
+                <div>
+                    ${ stuffDetail.comment }
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-4">
                     <span style="font-weight:bold;">Fabriquant</span>
                 </div>
                 <div>
