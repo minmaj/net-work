@@ -9,8 +9,8 @@
 
 /**
  * Converti un objet en un tableau
- * @param type $object
- * @return type
+ * @param TypeEquipement $object
+ * @return TypeEquipement
  */
 function convertObjectToArray($object)
 {
@@ -26,8 +26,8 @@ function convertObjectToArray($object)
 
 /**
  * Converti une liste d'objet en un tableau de tableau
- * @param type $objectList
- * @return type
+ * @param TypeEquipement $objectList
+ * @return TypeEquipement
  */
 function convertObjectListToArray($objectList)
 {
@@ -40,7 +40,7 @@ function convertObjectListToArray($objectList)
 
 /**
  * Charge automatiquement tous les fichiers nécessaires au bon fonctionnement de l'application
- * @param type $className
+ * @param TypeEquipement $className
  */
 function autoloadClasses($className)
 {

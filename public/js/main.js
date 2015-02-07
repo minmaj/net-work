@@ -28,6 +28,7 @@ $(document).ready(function() {
                     $('#stuffTable tbody > tr').remove();
                     $('#row_stuff_table_tmpl').tmpl(stuff).appendTo('#stuffTable tbody');
                     bindButtonView();
+                    bindButtonEdit();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
                     if (data.nbEquipementEnPanne > 0) {
@@ -250,6 +251,27 @@ $(document).ready(function() {
             });
         });
 
+    }
+    
+    function bindButtonEdit(){
+        $(".buttonEdit").click(function(e){
+            e.preventDefault();
+            var idStuff = $(this).data("categorie");
+            
+            $.ajax({
+                url: "administration/detailsData",
+                type: "POST",
+                dataType: "json",
+                data: "idStuff=" + idStuff,
+                success: function(data){
+                    console.log(data.nom);
+                    $('#headingEditModal').html("<i class=\"fa fa-search-plus\"></i><span class=\"EditModalTitle\"> " + data.nom + "</span>");
+                    var stuff = {stuffDetail: data};
+                    //$('#bodyEditModal').html("");
+                    $('#row_edit_tmpl').tmpl(stuff).appendTo('#bodyEditModal');
+                }
+            });
+        });
     }
 
     getDonutDataArray();

@@ -47,6 +47,8 @@
                         
                         <?php require (__DIR__ . '/components/modal_detail.php') ?>
                         
+                        <?php require (__DIR__ . '/components/modal_edit.php') ?>
+                        
                         <?php require (__DIR__ . '/components/modal_delete.php') ?>
 
                     </div>

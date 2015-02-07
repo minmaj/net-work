@@ -43,6 +43,8 @@
                                     <i class="fa fa-search-plus"></i> View details
                                 </button>
                                 <button type="button" class="btn btn-info btn-xs buttonEdit"
+                                        data-toggle="modal"
+                                        data-target="#viewEditModal"
                                         data-categorie=${ item.id }>
                                     <i class="fa fa-edit"></i> Edit
                                 </button>

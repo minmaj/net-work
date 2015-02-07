@@ -38,7 +38,7 @@ class AdministrationModel extends BaseModel
     {
         // Récupération du type d'équipement à afficher (transmis par la requête AJAX)
         $typeEquipement    = isset($_POST["typeEquipement"]) ? $_POST["typeEquipement"] : false;
-        $type              = new Type($typeEquipement);
+        $type              = new TypeEquipement($typeEquipement);
         $equipementManager = new EquipementManager($this->db);
 
         // le type de l'équipement a bien été récupéré via $_POST
@@ -54,7 +54,7 @@ class AdministrationModel extends BaseModel
 
     /**
      * Récupère les équipements en panne
-     * @return type
+     * @return TypeEquipement
      */
     public function showFailureStuff()
     {

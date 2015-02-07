@@ -128,7 +128,7 @@ class EquipementManager
         }
     }
 
-    public function findAllByType(Type $type)
+    public function findAllByType(TypeEquipement $type)
     {
         try {
             $sql         = "SELECT * FROM EQUIPEMENT WHERE TYPE = :TYPE";
@@ -163,10 +163,11 @@ class EquipementManager
             $equipements = array();
             foreach ($rs as $equipement) {
                 $equipements[] = new Equipement($equipement["EQUIPEMENT_ID"], $equipement["TYPE"], $equipement["NOM"],
-                                              $equipement["FABRIQUANT"], $equipement["ADRESSE_PHYSIQUE"],
-                                              $equipement["ADRESSE_IP"], $equipement["PROPRIETAIRE"], $equipement["LOCALISATION"],
-                                              $equipement["NUMERO_SUPPORT"], $equipement["ETAT_TECHNIQUE"],
-                                              $equipement["ETAT_FONCTIONNEL"], $equipement["COMMENT"], $equipement["PARENT"]);
+                                                $equipement["FABRIQUANT"], $equipement["ADRESSE_PHYSIQUE"],
+                                                $equipement["ADRESSE_IP"], $equipement["PROPRIETAIRE"],
+                                                $equipement["LOCALISATION"], $equipement["NUMERO_SUPPORT"],
+                                                $equipement["ETAT_TECHNIQUE"], $equipement["ETAT_FONCTIONNEL"],
+                                                $equipement["COMMENT"], $equipement["PARENT"]);
             }
             return $equipements;
         } catch (Exception $ex) {
@@ -175,7 +176,7 @@ class EquipementManager
         }
     }
 
-    public function countEquipementEnPanneByType(Type $type)
+    public function countEquipementEnPanneByType(TypeEquipement $type)
     {
         try {
             $sql  = 'SELECT COUNT(*) as occurence '
@@ -202,7 +203,7 @@ class EquipementManager
             $rs    = $stmt->fetchAll();
             $types = array();
             foreach ($rs as $type) {
-                $types[] = new Type($type["type_libelle"], $type["total"], $type["html_display"]);
+                $types[] = new TypeEquipement($type["type_libelle"], $type["total"], $type["html_display"]);
             }
             return $types;
         } catch (Exception $ex) {

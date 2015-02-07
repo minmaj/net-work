@@ -41,7 +41,7 @@ $equipement2 = new Equipement(1, "routeur5", "nomRouteur", "Apple", "chaispas", 
 $equipement2->setId(47);
 //$equipementManager->delete($equipement2);
 
-$typeOrdiFixe = new Type("Ordinateur fixe");
+$typeOrdiFixe = new TypeEquipement("Ordinateur fixe");
 $ordiFixes    = $equipementManager->findAllByType($typeOrdiFixe);
 
 function convertObjectToArray($object)
