@@ -20,22 +20,16 @@
                     {{each(i,item) stuff}}
                         <tr>
                             <td>${ item.id }</td>
-                            {{if item.etatTechnique == "En panne mineure"}}
-                                <td><span style="font-weight: bold; color: orange;">${ item.nom }</span></td>                            
-                            {{else item.etatTechnique == "En panne majeure"}}
-                                <td><span style="font-weight: bold; color: brown;">${ item.nom }</span></td>
-                            {{else item.etatTechnique == "En panne critique"}}
-                                <td><span style="font-weight: bold; color: red;">${ item.nom }</span></td>
-                            {{else}}
-                                <td><span style="font-weight: bold;">${ item.nom }</span></td>
-                            {{/if}}
+                            <td><span style="font-weight: bold;">${ item.nom }</span></td>
                             <td>${ item.etatFonctionnel }</td>
                             {{if item.etatTechnique == "En panne mineure"}}
-                                <td style="color: orange;">${ item.etatTechnique }</td>                            
+                                <td><span class="label label-default">${ item.etatTechnique }</span></td>                          
                             {{else item.etatTechnique == "En panne majeure"}}
-                                <td style="color: brown;">${ item.etatTechnique }</td>
+                                <td><span class="label label-warning">${ item.etatTechnique }</span></td>
                             {{else item.etatTechnique == "En panne critique"}}
-                                <td style="color: red;">${ item.etatTechnique }</td>
+                                <td><span class="label label-danger">${ item.etatTechnique }</span></td>
+                            {{else item.etatTechnique == "Fonctionnel"}}
+                                <td><span class="label label-info">${ item.etatTechnique }</span></td>
                             {{else}}
                                 <td>${ item.etatTechnique }</td>
                             {{/if}}
