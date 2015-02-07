@@ -20,12 +20,15 @@
                         <tr>
                             <td>${ item.id }</td>
                             <td><span style="font-weight: bold;">${ item.nom }</span></td>
-                            <td>${ item.etatFonctionnel }</td>
+                                        
+                            {{if item.etatFonctionnel == "Eteint"}}
+                                <td><span class="label label-default">${ item.etatFonctionnel }</span></td>                          
+                            {{else}}
+                                <td>${ item.etatFonctionnel }</td>
+                            {{/if}}                                           
                             {{if item.etatTechnique == "En panne mineure"}}
-                                <td><span class="label label-default">${ item.etatTechnique }</span></td>                          
+                                <td><span class="label label-warning">${ item.etatTechnique }</span></td>                          
                             {{else item.etatTechnique == "En panne majeure"}}
-                                <td><span class="label label-warning">${ item.etatTechnique }</span></td>
-                            {{else item.etatTechnique == "En panne critique"}}
                                 <td><span class="label label-danger">${ item.etatTechnique }</span></td>
                             {{else item.etatTechnique == "Fonctionnel"}}
                                 <td><span class="label label-info">${ item.etatTechnique }</span></td>
