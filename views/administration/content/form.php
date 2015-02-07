@@ -79,6 +79,7 @@
                     <label class="control-label col-sm-4" for="categorie_parent">Type de l'equipement parent :</label>
                     <div class="col-sm-7"> 
                         <select class="form-control" id=categorie_parent >
+                            <option value="-1">Sélectionner le type d'équipement parent</option>
                             <?php foreach ($viewModel->get("typeEquipements") as $typeEquipement) { ?>
                                 <option value='<?php echo $typeEquipement->getLibelle(); ?>'><?php echo $typeEquipement->getLibelle(); ?></option>
                             <?php } ?>
@@ -90,7 +91,7 @@
                     <label class="control-label col-sm-4" for="parent">Equipement parent :</label>
                     <div class="col-sm-7"> 
                         <select class="form-control" id="parent">
-                            <option value="-1">Selectionner d'abord le type d'equipement</option>
+                            <option value="-1">Sélectionner d'abord le type d'équipement</option>
                             <script id="parent_stuff_form_tmpl" type="text/x-jquery-tmpl">
                                 {{if stuffsByType.length!=0}}
                                     {{each(i,item) stuffsByType}}
