@@ -9,6 +9,7 @@
                     <th>NOM</th>
                     <th>ETAT FONCTIONNEL</th>
                     <th>ETAT TECHNIQUE</th>
+                    <th>COMMENT</th>
                     <th class="buttonColumn"></th>
                 </tr>
             </thead>
@@ -19,9 +20,26 @@
                     {{each(i,item) stuff}}
                         <tr>
                             <td>${ item.id }</td>
-                            <td><span style="font-weight: bold;">${ item.nom }</span></td>
+                            {{if item.etatTechnique == "En panne mineure"}}
+                                <td><span style="font-weight: bold; color: orange;">${ item.nom }</span></td>                            
+                            {{else item.etatTechnique == "En panne majeure"}}
+                                <td><span style="font-weight: bold; color: brown;">${ item.nom }</span></td>
+                            {{else item.etatTechnique == "En panne critique"}}
+                                <td><span style="font-weight: bold; color: red;">${ item.nom }</span></td>
+                            {{else}}
+                                <td><span style="font-weight: bold;">${ item.nom }</span></td>
+                            {{/if}}
                             <td>${ item.etatFonctionnel }</td>
-                            <td>${ item.etatTechnique }</td>
+                            {{if item.etatTechnique == "En panne mineure"}}
+                                <td style="color: orange;">${ item.etatTechnique }</td>                            
+                            {{else item.etatTechnique == "En panne majeure"}}
+                                <td style="color: brown;">${ item.etatTechnique }</td>
+                            {{else item.etatTechnique == "En panne critique"}}
+                                <td style="color: red;">${ item.etatTechnique }</td>
+                            {{else}}
+                                <td>${ item.etatTechnique }</td>
+                            {{/if}}
+                            <td>${ item.comment }</td>
                             <td class="buttonColumn">
                                 <button type="button" class="btn btn-default btn-xs buttonView"
                                         data-toggle="modal"
