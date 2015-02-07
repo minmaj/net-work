@@ -265,9 +265,10 @@ $(document).ready(function() {
                 data: "idStuff=" + idStuff,
                 success: function(data){
                     console.log(data.nom);
+                    console.log(idStuff);
                     $('#headingEditModal').html("<i class=\"fa fa-search-plus\"></i><span class=\"EditModalTitle\"> " + data.nom + "</span>");
                     var stuff = {stuffDetail: data};
-                    //$('#bodyEditModal').html("");
+                    $('#bodyEditModal').html("");
                     $('#row_edit_tmpl').tmpl(stuff).appendTo('#bodyEditModal');
                 }
             });

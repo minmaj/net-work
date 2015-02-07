@@ -95,6 +95,17 @@
 
             </div>
           </div>
+          <div style='margin-top: 20px;' class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-8">
+                <button id="formEditButtonStuff" type="submit" class="btn btn-success">
+                    <i class="fa fa-check"></i> Sauvegarder
+                </button>
+                <button id="closeEditStuffModal" type="button" class="btn btn-primary" >
+                    <i class="fa fa-close"></i> Annuler
+                </button>
+            </div>
+        </div>
+          
         </form>
     </div>
   </script>
