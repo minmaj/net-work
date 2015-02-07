@@ -17,7 +17,7 @@ $(document).ready(function() {
         var typeEquipement = $(this).data("categorie");
         lastStuffVisited = typeEquipement;
         // Affiche la liste des équipements pour un type donné
-        $(".dynamic_content:visible").hide("slow").promise().done(function() {
+        $(".dynamic_content:visible").fadeOut("slow").promise().done(function() {
             $.ajax({
                 url: "administration/showStuff",
                 type: 'POST',
@@ -40,7 +40,7 @@ $(document).ready(function() {
                     }
                 }
             });
-            $("#equipment_table").show("slow");
+            $("#equipment_table").fadeIn("slow");
         });
 
         $("#breadlist").html('<li><a class="home_link" href="#">NET-WORK</a></li><li class="active"><a href="#">'
@@ -97,7 +97,11 @@ $(document).ready(function() {
 
         function fillStuff(newStuff, elem) {
             var key = elem.attr("id");
-            newStuff[key] = elem.val();
+            if (elem.is("datalist")) {
+                newStuff[key] = elem.siblings("input").val();
+            } else {
+                newStuff[key] = elem.val();
+            }
         }
 
         $.ajax({
@@ -239,7 +243,7 @@ $(document).ready(function() {
                 success: function(data) {
                     console.log(data.nom);
                     $('#headingDetailsModal').html("<i class=\"fa fa-search-plus\"></i><span class=\"detailsModalTitle\"> " + data.nom + "</span>");
-                    var stuff = {stuffDetail : data};
+                    var stuff = {stuffDetail: data};
                     $('#bodyDetailsModal').html("");
                     $('#row_details_tmpl').tmpl(stuff).appendTo('#bodyDetailsModal');
                 }
