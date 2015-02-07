@@ -22,15 +22,13 @@
                             <td><span style="font-weight: bold;">${ item.nom }</span></td>
                             <td>${ item.etatFonctionnel }</td>
                             {{if item.etatTechnique == "En panne mineure"}}
-                                <td><span class="label label-default">${ item.etatTechnique }</span></td>                          
+                                <td><span class="label label-warning">${ item.etatTechnique }</span></td>                          
                             {{else item.etatTechnique == "En panne majeure"}}
-                                <td><span class="label label-warning">${ item.etatTechnique }</span></td>
-                            {{else item.etatTechnique == "En panne critique"}}
                                 <td><span class="label label-danger">${ item.etatTechnique }</span></td>
                             {{else item.etatTechnique == "Fonctionnel"}}
-                                <td><span class="label label-info">${ item.etatTechnique }</span></td>
+                                <td><span class="label label-success">${ item.etatTechnique }</span></td>
                             {{else}}
-                                <td>${ item.etatTechnique }</td>
+                                <td><span class="label label-default">${ item.etatTechnique }</span></td>
                             {{/if}}
                             <td class="buttonColumn">
                                 <button type="button" class="btn btn-default btn-xs buttonView"
