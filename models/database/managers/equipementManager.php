@@ -180,7 +180,7 @@ class EquipementManager
         try {
             $sql  = 'SELECT COUNT(*) as occurence '
                     . 'FROM equipement '
-                    . 'WHERE (ETAT_TECHNIQUE = "En panne mineure" OR ETAT_TECHNIQUE = "En panne majeure") AND TYPE = :TYPE';
+                    . 'WHERE (ETAT_TECHNIQUE = "En panne mineure" OR ETAT_TECHNIQUE = "En panne majeure" OR ETAT_TECHNIQUE = "En panne critique") AND TYPE = :TYPE';
             $stmt = $this->db->prepare($sql);
             $stmt->execute(array(":TYPE" => $type->getLibelle()));
             $rs   = $stmt->fetch();
