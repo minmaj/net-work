@@ -6,9 +6,18 @@
                 <h4 class="modal-title" id="suppressionModalLabel">Voulez-vous vraiment supprimer ?</h4>
             </div>
             <div class="modal-body">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Oui</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+                <div id="bodyDeleteModal" class="panel-body">
+                        
+                </div>
             </div>
         </div>
     </div>
+    
+    <script id="row_delete_tmpl" type="text/x-jquery-tmpl">
+        <div class="row"> Êtes-vous surs de vouloir supprimer l'équipement <span style="font-weight:bold;">${ stuff.nom }</span> ? </div>
+        <div class="row">
+            <button id="confirmDeleteButton" type="button" class="btn btn-success" data-dismiss="modal" data-category=${ stuff.id }>Oui</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
+        </div>
+    </script>
 </div>

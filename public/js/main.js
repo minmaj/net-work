@@ -277,7 +277,27 @@ $(document).ready(function() {
     }*/
     
      function bindButtonDelete(){
-        $(".buttonDelete").click(function(e){
+        $(".buttonDelete").click(function(e) {
+            e.preventDefault();
+            var idStuff = $(this).data("categorie");
+
+            $.ajax({
+                url: "administration/detailsData",
+                type: 'POST',
+                dataType: "json",
+                data: "idStuff=" + idStuff,
+                success: function(data) {
+                    var stuff = {stuff: data};
+                    $('#bodyDeleteModal').html("");
+                    $('#row_delete_tmpl').tmpl(stuff).appendTo('#bodyDeleteModal');
+                    bindConfirmDeleteButton();
+                }
+            });
+        });
+    }
+    
+    function bindConfirmDeleteButton() {
+        $("#confirmDeleteButton").click(function(e){
             e.preventDefault();
             var idStuff = $(this).data("categorie");
             
@@ -287,12 +307,12 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data){
-                    console.log("Correctement supprimé")
+                    console.log(data);
                 }
             });
         });
     }
-
+    
     getDonutDataArray();
 
     /*
