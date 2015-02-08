@@ -87,12 +87,13 @@ class EquipementManager
     public function deleteById($id)
     {
         try {
+            var_dump("id : " . $id);
             $query = "DELETE FROM EQUIPEMENT "
                     . "WHERE EQUIPEMENT_ID = :EQUIPEMENT_ID;";
             $stmt  = $this->db->prepare($query);
-            $stmt->execute(array(":EQUIPEMENT_ID" => $id));
+            //$stmt->execute(array(":EQUIPEMENT_ID" => $id));
             
-            return "ok";
+            return $stmt->execute(array(":EQUIPEMENT_ID" => $id));
         } catch (Exception $ex) {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');

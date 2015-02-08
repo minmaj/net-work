@@ -11,7 +11,7 @@
  *
  * @author youvann
  */
-class etatTechnique
+class EtatTechnique
 {
 
     private $libelle;

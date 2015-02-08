@@ -11,7 +11,7 @@
  *
  * @author youvann
  */
-class etatFonctionnel
+class EtatFonctionnel
 {
 
     private $libelle;

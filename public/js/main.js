@@ -30,15 +30,15 @@ $(document).ready(function() {
                     $('#stuffTable tbody > tr').remove();
                     $('#row_stuff_table_tmpl').tmpl(stuff).appendTo('#stuffTable tbody');
                     bindButtonView();
-                    //bindButtonEdit();
+                    bindButtonEdit();
                     bindButtonDelete();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if (data.nbEquipementEnPanne > 0) {
+                    if(data.nbEquipementEnPanne > 0){
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else {
+                    else{
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
@@ -94,16 +94,16 @@ $(document).ready(function() {
         newStuff.type = lastStuffVisited;
 
         $("#form form input, select, datalist").each(function(i, item) {
-            if ($(this).attr("id") !== undefined) {
+            if($(this).attr("id") !== undefined){
                 fillStuff(newStuff, $(this))
             }
         });
 
         function fillStuff(newStuff, elem) {
             var key = elem.attr("id");
-            if (elem.is("datalist")) {
+            if(elem.is("datalist")){
                 newStuff[key] = elem.siblings("input").val();
-            } else {
+            } else{
                 newStuff[key] = elem.val();
             }
         }
@@ -175,7 +175,7 @@ $(document).ready(function() {
         $.each(data, function(typePanne, equipements) {
             $navTabsList = $("<li />");
             // On rend le premier onglet du tableau actif
-            if (firstLoop) {
+            if(firstLoop){
                 $navTabsList.attr("class", "active");
             }
 
@@ -204,9 +204,9 @@ $(document).ready(function() {
             });
 
             $tabHeader = $("<div />").attr("id", typePanne);
-            if (firstLoop) {
+            if(firstLoop){
                 $tabHeader.attr("class", "tab-pane fade active in");
-            } else {
+            } else{
                 $tabHeader.attr("class", "tab-pane fade");
             }
             $tabHeader
@@ -255,30 +255,67 @@ $(document).ready(function() {
         });
 
     }
-    
-    /*function bindButtonEdit(){
-        $(".buttonEdit").click(function(e){
+
+    /*function getAllEquipement(idStuff) {
+     $.ajax({
+     url: "administration/getAllEquipement",
+     type: "POST",
+     dataType: "json",
+     data: "idStuff=" + idStuff,
+     success: function(data) {
+     
+     }
+     });
+     }*/
+
+    function bindButtonEdit() {
+        $(".buttonEdit").click(function(e) {
             e.preventDefault();
             var idStuff = $(this).data("categorie");
-            
+
             $.ajax({
                 url: "administration/detailsData",
                 type: "POST",
                 dataType: "json",
                 data: "idStuff=" + idStuff,
-                success: function(data){
-                    console.log(data.nom);
-                    console.log(idStuff);
-                    $('#headingEditModal').html("<i class=\"fa fa-search-plus\"></i><span class=\"EditModalTitle\"> " + data.nom + "</span>");
+                success: function(data) {
+                    $headingEditModal = $('#headingEditModal');
+                    $headingEditModal.children().remove();
+                    $headingEditModal
+                            .append($("<i />").attr("class", "fa fa-search-plus"))
+                            .append($("<span />").attr("class", "EditModalTitle").text(" " + data.nom));
                     var stuff = {stuffDetail: data};
+
                     $('#bodyEditModal').html("");
                     $('#row_edit_tmpl').tmpl(stuff).appendTo('#bodyEditModal');
+
+                    bindConfirmEditButton(idStuff);
                 }
             });
         });
-    }*/
-    
-     function bindButtonDelete(){
+    }
+
+    function bindConfirmEditButton(idStuff) {
+        $('form#edit-form').on('submit', function(e) {
+            e.preventDefault();
+
+            var disabled = $(this).find(':input:disabled').removeAttr('disabled');
+            var dataSerialize = $(this).serialize();
+            disabled.attr('disabled', 'disabled');
+
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                dataType: "json",
+                data: dataSerialize + "&idStuff=" + idStuff,
+                sucess: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+    }
+
+    function bindButtonDelete() {
         $(".buttonDelete").click(function(e) {
             e.preventDefault();
             var idStuff = $(this).data("categorie");
@@ -297,11 +334,11 @@ $(document).ready(function() {
             });
         });
     }
-    
+
     function bindConfirmDeleteButton(idStuffToDelete) {
-        $(".confirmDeleteButton").click(function(e){
+        $(".confirmDeleteButton").click(function(e) {
             e.preventDefault();
-            
+
             $.ajax({
                 url: "administration/deleteStuff",
                 type: "POST",
@@ -310,27 +347,29 @@ $(document).ready(function() {
             });
         });
     }
-    
+
     /*
      * NOTIFICATIONS WORK
      */
-    
+
     function refreshNotifData() {
         $.ajax({
-                url: "administration/notifData",
-                type: 'POST',
-                dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    var notif = {notifs: data};
-                    $('#notifPanelListGroup').html("");
-                    $('#notif_list_tmpl').tmpl(notif).appendTo('#notifPanelListGroup');
-                }
-            });
+            url: "administration/notifData",
+            type: 'POST',
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                var notif = {notifs: data};
+                $('#notifPanelListGroup').html("");
+                $('#notif_list_tmpl').tmpl(notif).appendTo('#notifPanelListGroup');
+            }
+        });
     }
-    
+
+
+
     refreshNotifData();
-    
+
     $("#notifReadButton").click(function(e) {
         e.preventDefault();
         $.ajax({
@@ -343,7 +382,8 @@ $(document).ready(function() {
             }
         });
     });
-    
+
+
     getDonutDataArray();
 
     /*
@@ -356,7 +396,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 var donutData = [];
-                for (var tmp in data) {
+                for(var tmp in data){
                     donutData[tmp] = {
                         label: data[tmp].libelle,
                         value: data[tmp].value
