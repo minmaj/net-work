@@ -254,6 +254,18 @@ $(document).ready(function() {
 
     }
 
+    /*function getAllEquipement(idStuff) {
+     $.ajax({
+     url: "administration/getAllEquipement",
+     type: "POST",
+     dataType: "json",
+     data: "idStuff=" + idStuff,
+     success: function(data) {
+     
+     }
+     });
+     }*/
+
     function bindButtonEdit() {
         $(".buttonEdit").click(function(e) {
             e.preventDefault();
@@ -265,14 +277,37 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data) {
-                    console.log(data.nom);
-                    console.log(idStuff);
-                    $('#headingEditModal')
+                    $headingEditModal = $('#headingEditModal');
+                    $headingEditModal.children().remove();
+                    $headingEditModal
                             .append($("<i />").attr("class", "fa fa-search-plus"))
-                            .append($("<span />").attr("class", "EditModalTitle").text(data.nom));
+                            .append($("<span />").attr("class", "EditModalTitle").text(" " + data.nom));
                     var stuff = {stuffDetail: data};
+
                     $('#bodyEditModal').html("");
                     $('#row_edit_tmpl').tmpl(stuff).appendTo('#bodyEditModal');
+
+                    bindConfirmEditButton(idStuff);
+                }
+            });
+        });
+    }
+
+    function bindConfirmEditButton(idStuff) {
+        $('form#edit-form').on('submit', function(e) {
+            e.preventDefault();
+            
+            var disabled = $(this).find(':input:disabled').removeAttr('disabled');
+            var dataSerialize = $(this).serialize();
+            disabled.attr('disabled','disabled');
+            
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                dataType: "json",
+                data: dataSerialize + "&idStuff=" + idStuff,
+                sucess: function(data) {
+                    console.log(data);
                 }
             });
         });
@@ -282,6 +317,25 @@ $(document).ready(function() {
         $(".buttonDelete").click(function(e) {
             e.preventDefault();
             var idStuff = $(this).data("categorie");
+            $.ajax({
+                url: "administration/detailsData",
+                type: 'POST',
+                dataType: "json",
+                data: "idStuff=" + idStuff,
+                success: function(data) {
+                    var stuff = {stuff: data};
+                    $('#bodyDeleteModal').html("");
+                    $('#row_delete_tmpl').tmpl(stuff).appendTo('#bodyDeleteModal');
+                    bindConfirmDeleteButton();
+                }
+            });
+        });
+    }
+
+    function bindConfirmDeleteButton() {
+        $("#confirmDeleteButton").click(function(e) {
+            e.preventDefault();
+            var idStuff = $(this).data("categorie");
 
             $.ajax({
                 url: "administration/deleteStuff",
@@ -289,7 +343,7 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data) {
-                    console.log("Correctement supprimé");
+                    console.log(data);
                 }
             });
         });

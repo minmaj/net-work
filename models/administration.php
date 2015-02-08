@@ -16,17 +16,17 @@ class AdministrationModel extends BaseModel
         // Liste de tous les types d'équipements à afficher
         $typeEquipements   = $equipementManager->countEquipementByType();
         $this->viewModel->set("typeEquipements", $typeEquipements);
-        
+
         //Lister les etats techniques
         $etatTechManager = new etatTechniqueManager($this->db);
         $etatsTechniques = $etatTechManager->selectAll();
         $this->viewModel->set("etatsTechniques", $etatsTechniques);
-        
+
         //Lister les etats fonctionnels
-        $etatFoncManager = new etatFonctionnelManager($this->db);
+        $etatFoncManager   = new etatFonctionnelManager($this->db);
         $etatsFonctionnels = $etatFoncManager->selectAll();
         $this->viewModel->set("etatsFonctionnels", $etatsFonctionnels);
-        
+
         return $this->viewModel;
     }
 
@@ -68,8 +68,8 @@ class AdministrationModel extends BaseModel
         $equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
 
         return array(
-            "mineure" => $equipementEnPanneMineure,
-            "majeure" => $equipementEnPanneMajeure,
+            "mineure"  => $equipementEnPanneMineure,
+            "majeure"  => $equipementEnPanneMajeure,
             "critique" => $equipementEnPanneCritique
         );
     }
@@ -81,70 +81,100 @@ class AdministrationModel extends BaseModel
 
         return convertObjectListToArray($equipementByTechnicalStatus);
     }
-    
+
     public function detailsData()
     {
-        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+        $idStuff           = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
         $equipementManager = new EquipementManager($this->db);
-        $stuffFound = $equipementManager->find($idStuff);
-        
+        $stuffFound        = $equipementManager->find($idStuff);
+
         return convertObjectToArray($stuffFound);
     }
 
     /**
      * Ajouter un nouvel equipement dans la BD
      */
-    public function addStuff() {
-        
-        $newStuff = filter_input_array(INPUT_POST, array(
-            "nom" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "type" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "fabriquant" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "ad-physique" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "ad-ip" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "prop" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "localisation" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "numero" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "technique" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "fonctionnel" => FILTER_SANITIZE_SPECIAL_CHARS,
-            "parent" => FILTER_SANITIZE_SPECIAL_CHARS,
+    public function addStuff()
+    {
 
+        $newStuff = filter_input_array(INPUT_POST,
+                                       array(
+            "nom"          => FILTER_SANITIZE_SPECIAL_CHARS,
+            "type"         => FILTER_SANITIZE_SPECIAL_CHARS,
+            "fabriquant"   => FILTER_SANITIZE_SPECIAL_CHARS,
+            "ad-physique"  => FILTER_SANITIZE_SPECIAL_CHARS,
+            "ad-ip"        => FILTER_SANITIZE_SPECIAL_CHARS,
+            "prop"         => FILTER_SANITIZE_SPECIAL_CHARS,
+            "localisation" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "numero"       => FILTER_SANITIZE_SPECIAL_CHARS,
+            "technique"    => FILTER_SANITIZE_SPECIAL_CHARS,
+            "fonctionnel"  => FILTER_SANITIZE_SPECIAL_CHARS,
+            "parent"       => FILTER_SANITIZE_SPECIAL_CHARS,
         ));
-        
+
         if (0 != strcmp($newStuff["nom"], "")) {
             $equipement = new Equipement(
-                    null, 
-                    $newStuff["type"], 
-                    $newStuff["nom"], 
-                    $newStuff["fabriquant"], 
-                    $newStuff["ad-physique"], 
-                    $newStuff["ad-ip"], 
-                    $newStuff["prop"], 
-                    $newStuff["localisation"], 
-                    $newStuff["numero"], 
-                    $newStuff["technique"], 
-                    $newStuff["fonctionnel"], 
-                    "", 
-                    $newStuff["parent"]);
+                    null, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
+                    $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], $newStuff["technique"],
+                    $newStuff["fonctionnel"], "", $newStuff["parent"]);
 
-            $equipementManager = new EquipementManager($this->db); 
+            $equipementManager = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
-        
+
             return array("error" => false);
-            
         } else {
-            
+
             return array("error" => "Votre equipement doit avoir un nom");
         }
-        
     }
-    
+
+    public function editStuff()
+    {
+
+        $newStuff = filter_input_array(INPUT_POST,
+                                       array(
+            "nom"          => FILTER_SANITIZE_SPECIAL_CHARS,
+            "type"         => FILTER_SANITIZE_SPECIAL_CHARS,
+            "fabriquant"   => FILTER_SANITIZE_SPECIAL_CHARS,
+            "ad-physique"  => FILTER_SANITIZE_SPECIAL_CHARS,
+            "ad-ip"        => FILTER_SANITIZE_SPECIAL_CHARS,
+            "prop"         => FILTER_SANITIZE_SPECIAL_CHARS,
+            "localisation" => FILTER_SANITIZE_SPECIAL_CHARS,
+            "numero"       => FILTER_SANITIZE_SPECIAL_CHARS,
+            "technique"    => FILTER_SANITIZE_SPECIAL_CHARS,
+            "fonctionnel"  => FILTER_SANITIZE_SPECIAL_CHARS,
+            "comment"      => FILTER_SANITIZE_SPECIAL_CHARS,
+            "parent"       => FILTER_SANITIZE_SPECIAL_CHARS,
+        ));
+
+        $idStuff           = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+        $equipementManager = new EquipementManager($this->db);
+
+        if (0 != strcmp($newStuff["nom"], "")) {
+            $equipement = new Equipement(
+                    $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
+                    $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], $newStuff["technique"],
+                    $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
+            $equipementManager->update($equipement);
+            return array("error" => false);
+        } else {
+            return array("error" => "Votre equipement doit avoir un nom");
+        }
+    }
+
     public function deleteStuff()
     {
-        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+        $idStuff           = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
         $equipementManager = new EquipementManager($this->db);
-        $stuffDeleted = $equipementManager->deleteById($idStuff);
-        
+        $stuffDeleted      = $equipementManager->deleteById($idStuff);
+
         return $stuffDeleted;
     }
+
+    /* public function getAllEquipement()
+      {
+      $equipementManager = new EquipementManager($this->db);
+      $equipements       = convertObjectListToArray($equipementManager->findAll());
+      return $equipements;
+      } */
 }
