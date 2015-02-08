@@ -60,5 +60,11 @@ class AdministrationController extends BaseController
         // Réponse à la requête AJAX
         echo json_encode($this->model->editStuff());
     }
+    
+        protected function deleteStuff()
+    {
+        // Réponse à la requête AJAX
+        echo json_encode($this->model->deleteStuff());
+    }
 
 }

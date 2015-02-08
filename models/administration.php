@@ -138,4 +138,13 @@ class AdministrationModel extends BaseModel
         }
         
     }
+    
+    public function deleteStuff()
+    {
+        $idStuff    = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+        $equipementManager = new EquipementManager($this->db);
+        $stuffDeleted = $equipementManager->deleteById($idStuff);
+        
+        return $stuffDeleted;
+    }
 }

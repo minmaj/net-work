@@ -83,6 +83,21 @@ class EquipementManager
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
         }
     }
+    
+    public function deleteById($id)
+    {
+        try {
+            $query = "DELETE FROM EQUIPEMENT "
+                    . "WHERE EQUIPEMENT_ID = :EQUIPEMENT_ID;";
+            $stmt  = $this->db->prepare($query);
+            $stmt->execute(array(":EQUIPEMENT_ID" => $id));
+            
+            return "ok";
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
+    }
 
     public function find($id)
     {
