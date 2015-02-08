@@ -8,7 +8,7 @@
             
         </div>
         <!-- /.list-group -->
-        <a href="#" class="btn btn-default btn-block">View All Alerts</a>
+        <button id="notifReadButton" type="button" class="btn btn-default btn-block"><i class="fa fa-check-circle-o"></i> Tout marquer comme lu</button>
     </div>
     
     <script id="notif_list_tmpl" type="text/x-jquery-tmpl">

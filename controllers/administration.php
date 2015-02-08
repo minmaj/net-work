@@ -72,5 +72,11 @@ class AdministrationController extends BaseController
         // Réponse à la requête AJAX
         echo json_encode($this->model->notifData());
     }
+    
+    protected function updateRead()
+    {
+        // Réponse à la requête AJAX
+        echo json_encode($this->model->updateRead());
+    }
 
 }

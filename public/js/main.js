@@ -328,6 +328,20 @@ $(document).ready(function() {
     }
     
     refreshNotifData();
+    
+    $("#notifReadButton").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "administration/updateRead",
+            type: 'POST',
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                refreshNotifData();
+            }
+        });
+    });
+    
     getDonutDataArray();
 
     /*

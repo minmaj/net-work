@@ -156,4 +156,13 @@ class AdministrationModel extends BaseModel
         
         return convertObjectListToArray($notifs);
     }
+    
+    public function updateRead()
+    {
+        //Lister les notifications
+        $notificationManager = new notificationManager($this->db);
+        $updateRead = $notificationManager->updateRead();
+        
+        return $updateRead;
+    }
 }

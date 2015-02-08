@@ -69,7 +69,7 @@ class NotificationManager {
         try {
             $sql = "SELECT n.NOTIF_ID AS ID, n.NOTIF_DATE AS DATE, n.NOTIF_EQUIP_ID AS EQUIPID, n.READ, n.NOTIF_TYPE_ID, t.TYPE_NOTIF_LIBELLE AS LIBELLE, t.NEGATIVE, e.NOM
                     FROM NOTIFICATION n, TYPE_NOTIF t, EQUIPEMENT e
-                    WHERE n.NOTIF_TYPE_ID = t.TYPE_NOTIF_ID AND e.EQUIPEMENT_ID = n.NOTIF_EQUIP_ID";
+                    WHERE n.NOTIF_TYPE_ID = t.TYPE_NOTIF_ID AND e.EQUIPEMENT_ID = n.NOTIF_EQUIP_ID AND n.READ = 0";
             $stmt = $this->db->query($sql);
             $stmt->execute();
             $results = $stmt->fetchAll();
@@ -78,6 +78,19 @@ class NotificationManager {
                 $notifications[] = new Notification($rs["ID"], $rs["DATE"], $rs["EQUIPID"], $rs["NOTIF_TYPE_ID"], $rs["READ"], $rs["LIBELLE"], $rs["NEGATIVE"], $rs["NOM"]);
             }
             return $notifications;
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
+    }
+    
+    public function updateRead() {
+        try {
+            $sql = "UPDATE NOTIFICATION SET NOTIFICATION.READ = 1 WHERE NOTIFICATION.READ = 0";
+            $stmt = $this->db->query($sql);
+            $stmt->execute();
+            
+            return "Toutes les notifications sont maintenant lues";
         } catch (Exception $ex) {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
