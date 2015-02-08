@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+    updateTypesList(); // defined in live-update.js
+
     var lastStuffVisited;
 
     /*
