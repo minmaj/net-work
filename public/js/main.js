@@ -290,25 +290,21 @@ $(document).ready(function() {
                     var stuff = {stuff: data};
                     $('#bodyDeleteModal').html("");
                     $('#row_delete_tmpl').tmpl(stuff).appendTo('#bodyDeleteModal');
-                    bindConfirmDeleteButton();
+                    bindConfirmDeleteButton(idStuff);
                 }
             });
         });
     }
     
-    function bindConfirmDeleteButton() {
-        $("#confirmDeleteButton").click(function(e){
+    function bindConfirmDeleteButton(idStuffToDelete) {
+        $(".confirmDeleteButton").click(function(e){
             e.preventDefault();
-            var idStuff = $(this).data("categorie");
             
             $.ajax({
                 url: "administration/deleteStuff",
                 type: "POST",
                 dataType: "json",
-                data: "idStuff=" + idStuff,
-                success: function(data){
-                    console.log(data);
-                }
+                data: "idStuff=" + idStuffToDelete
             });
         });
     }
