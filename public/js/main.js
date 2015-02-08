@@ -309,6 +309,25 @@ $(document).ready(function() {
         });
     }
     
+    /*
+     * NOTIFICATIONS WORK
+     */
+    
+    function refreshNotifData() {
+        $.ajax({
+                url: "administration/notifData",
+                type: 'POST',
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    var notif = {notifs: data};
+                    $('#notifPanelListGroup').html("");
+                    $('#notif_list_tmpl').tmpl(notif).appendTo('#notifPanelListGroup');
+                }
+            });
+    }
+    
+    refreshNotifData();
     getDonutDataArray();
 
     /*

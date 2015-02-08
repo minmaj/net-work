@@ -4,55 +4,42 @@
     </div>
     <!-- /.panel-heading -->
     <div class="panel-body">
-        <div class="list-group">
-            <a href="#" class="list-group-item">
-                <span class="green-font"><i class="fa fa-comment fa-fw"></i> New Comment</span>
-                <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="green-font"><i class="fa fa-twitter fa-fw"></i> 3 New Followers</span>
-                <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="green-font"><i class="fa fa-envelope fa-fw"></i> Message Sent</span>
-                <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="green-font"><i class="fa fa-tasks fa-fw"></i> New Task</span>
-                <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="green-font"><i class="fa fa-upload fa-fw"></i> Server Rebooted</span>
-                <span class="pull-right text-muted small"><em>11:32 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="red-font"><i class="fa fa-bolt fa-fw"></i> Server Crashed!</span>
-                <span class="pull-right text-muted small"><em>11:13 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="red-font"><i class="fa fa-warning fa-fw"></i> Server Not Responding</span>
-                <span class="pull-right text-muted small"><em>10:57 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="green-font"><i class="fa fa-shopping-cart fa-fw"></i> New Order Placed</span>
-                <span class="pull-right text-muted small"><em>9:49 AM</em>
-                </span>
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="green-font"><i class="fa fa-money fa-fw"></i> Payment Received</span>
-                <span class="pull-right text-muted small"><em>Yesterday</em>
-                </span>
-            </a>
+        <div id="notifPanelListGroup" class="list-group">
+            
         </div>
         <!-- /.list-group -->
         <a href="#" class="btn btn-default btn-block">View All Alerts</a>
     </div>
+    
+    <script id="notif_list_tmpl" type="text/x-jquery-tmpl">
+        {{if notifs.length!=0}}
+            {{each(i,item) notifs}}
+                <a href="#" class="list-group-item">
+                    {{if item.negative == 0}}
+                        <span class="green-font"> 
+                        {{if item.libelle == "CREATE"}}
+                            <i class="fa fa-plus fa-fw"></i> Creation effectuée :                       
+                        {{else item.libelle == "UPDATE"}}
+                            <i class="fa fa-edit fa-fw"></i> Mis a jour effectuée :
+                        {{else item.libelle == "REPAIRED"}}
+                            <i class="fa fa-wrench fa-fw"></i> Réparation effectuée :
+                        {{else item.libelle == "DELETE"}}
+                            <i class="fa fa-remove fa-fw"></i> Suppression effectuée :
+                        {{/if}}
+                    {{else}}
+                        <span class="red-font">
+                        {{if item.libelle == "MINOR"}}
+                            <i class="fa fa-warning fa-fw"></i> Panne mineure survenue :
+                        {{else item.libelle == "MAJOR"}}
+                            <i class="fa fa-warning fa-fw"></i> Panne majeure survenue :
+                        {{else item.libelle == "UNKNOWN"}}
+                            <i class="fa fa-question fa-fw"></i> Statut inconnu détecté :
+                        {{/if}}
+                    {{/if}}
+                    ${ item.nomequip }</span>
+                </a>
+            {{/each}}
+        {{/if}}
+    </script>
     <!-- /.panel-body -->
 </div>

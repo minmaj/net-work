@@ -19,14 +19,20 @@ class Notification
     private $equipementId;
     private $typeId;
     private $read;
+    private $negative;
+    private $libelle;
+    private $nomequip;
 
-    function __construct($id, $date, $equipementId, $typeId, $read)
+    function __construct($id, $date, $equipementId, $typeId, $read, $libelle, $negative, $nomequip)
     {
         $this->id           = $id;
         $this->date         = $date;
         $this->equipementId = $equipementId;
         $this->typeId       = $typeId;
         $this->read         = $read;
+        $this->libelle      = $libelle;
+        $this->negative     = $negative;
+        $this->nomequip     = $nomequip;
     }
 
     function getId()
@@ -83,5 +89,30 @@ class Notification
         $this->read = $read;
         return $this;
     }
+    
+    function getNegative() {
+        return $this->negative;
+    }
+
+    function getLibelle() {
+        return $this->libelle;
+    }
+
+    function setNegative($negative) {
+        $this->negative = $negative;
+    }
+
+    function setLibelle($libelle) {
+        $this->libelle = $libelle;
+    }
+
+    function getNomequip() {
+        return $this->nomequip;
+    }
+
+    function setNomequip($nomequip) {
+        $this->nomequip = $nomequip;
+    }
+
 
 }

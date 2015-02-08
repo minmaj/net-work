@@ -70,5 +70,26 @@ class NotificationManager
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
         }
     }
+    
+    public function findAllWithType()
+    {
+        try {
+            $sql           = "SELECT n.NOTIF_ID AS ID, n.NOTIF_DATE AS DATE, n.NOTIF_EQUIP_ID AS EQUIPID, n.READ, n.NOTIF_TYPE_ID, t.TYPE_NOTIF_LIBELLE AS LIBELLE, t.NEGATIVE, e.NOM "
+                    . "FROM NOTIFICATION n, TYPE_NOTIF t, EQUIPEMENT e "
+                    . "WHERE n.NOTIF_TYPE_ID = t.TYPE_NOTIF_ID";
+            $stmt          = $this->db->query($sql);
+            $stmt->execute();
+            $results       = $stmt->fetchAll();
+            $notifications = array();
+            foreach ($results as $rs) {
+                $notifications[] = new Notification($rs["ID"], $rs["DATE"], $rs["EQUIPID"], $rs["NOTIF_TYPE_ID"],
+                                                    $rs["READ"], $rs["LIBELLE"], $rs["NEGATIVE"], $rs["NOM"]);
+            }
+            return $notifications;
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
+    }
 
 }
