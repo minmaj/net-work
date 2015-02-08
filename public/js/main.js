@@ -296,11 +296,11 @@ $(document).ready(function() {
     function bindConfirmEditButton(idStuff) {
         $('form#edit-form').on('submit', function(e) {
             e.preventDefault();
-            
+
             var disabled = $(this).find(':input:disabled').removeAttr('disabled');
             var dataSerialize = $(this).serialize();
-            disabled.attr('disabled','disabled');
-            
+            disabled.attr('disabled', 'disabled');
+
             $.ajax({
                 url: $(this).attr("action"),
                 type: "POST",
@@ -317,6 +317,7 @@ $(document).ready(function() {
         $(".buttonDelete").click(function(e) {
             e.preventDefault();
             var idStuff = $(this).data("categorie");
+
             $.ajax({
                 url: "administration/detailsData",
                 type: 'POST',
@@ -326,28 +327,60 @@ $(document).ready(function() {
                     var stuff = {stuff: data};
                     $('#bodyDeleteModal').html("");
                     $('#row_delete_tmpl').tmpl(stuff).appendTo('#bodyDeleteModal');
-                    bindConfirmDeleteButton();
+                    bindConfirmDeleteButton(idStuff);
                 }
             });
         });
     }
 
-    function bindConfirmDeleteButton() {
-        $("#confirmDeleteButton").click(function(e) {
+    function bindConfirmDeleteButton(idStuffToDelete) {
+        $(".confirmDeleteButton").click(function(e) {
             e.preventDefault();
-            var idStuff = $(this).data("categorie");
 
             $.ajax({
                 url: "administration/deleteStuff",
                 type: "POST",
                 dataType: "json",
-                data: "idStuff=" + idStuff,
-                success: function(data) {
-                    console.log(data);
-                }
+                data: "idStuff=" + idStuffToDelete
             });
         });
     }
+
+    /*
+     * NOTIFICATIONS WORK
+     */
+
+    function refreshNotifData() {
+        $.ajax({
+            url: "administration/notifData",
+            type: 'POST',
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                var notif = {notifs: data};
+                $('#notifPanelListGroup').html("");
+                $('#notif_list_tmpl').tmpl(notif).appendTo('#notifPanelListGroup');
+            }
+        });
+    }
+
+
+
+    refreshNotifData();
+
+    $("#notifReadButton").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "administration/updateRead",
+            type: 'POST',
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                refreshNotifData();
+            }
+        });
+    });
+
 
     getDonutDataArray();
 

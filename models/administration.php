@@ -170,11 +170,22 @@ class AdministrationModel extends BaseModel
 
         return $stuffDeleted;
     }
-
-    /* public function getAllEquipement()
-      {
-      $equipementManager = new EquipementManager($this->db);
-      $equipements       = convertObjectListToArray($equipementManager->findAll());
-      return $equipements;
-      } */
+    
+    public function notifData()
+    {
+        //Lister les notifications
+        $notificationManager = new notificationManager($this->db);
+        $notifs = $notificationManager->findAllWithType();
+        
+        return convertObjectListToArray($notifs);
+    }
+    
+    public function updateRead()
+    {
+        //Lister les notifications
+        $notificationManager = new notificationManager($this->db);
+        $updateRead = $notificationManager->updateRead();
+        
+        return $updateRead;
+    }
 }
