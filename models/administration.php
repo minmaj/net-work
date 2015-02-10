@@ -61,16 +61,16 @@ class AdministrationModel extends BaseModel
         $equipementManager = new EquipementManager($this->db);
         $panneMineure      = new EtatTechnique("En panne mineure");
         $panneMajeure      = new EtatTechnique("En panne majeure");
-        $panneCritique     = new EtatTechnique("En panne critique");
+        //$panneCritique     = new EtatTechnique("En panne critique");
 
         $equipementEnPanneMineure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
         $equipementEnPanneMajeure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
-        $equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
+        //$equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
 
         return array(
             "mineure"  => $equipementEnPanneMineure,
-            "majeure"  => $equipementEnPanneMajeure,
-            "critique" => $equipementEnPanneCritique
+            "majeure"  => $equipementEnPanneMajeure
+            //"critique" => $equipementEnPanneCritique
         );
     }
 
@@ -117,9 +117,14 @@ class AdministrationModel extends BaseModel
                     null, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                     $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], $newStuff["technique"],
                     $newStuff["fonctionnel"], "", $newStuff["parent"]);
+            
 
             $equipementManager = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
+            
+            $notification = new Notification(time(), 66, 2, 0);
+            $notificationManager = new NotificationManager($this->db);
+            $notificationManager->insert($notification);
 
             return array("error" => false);
         } else {
@@ -166,7 +171,13 @@ class AdministrationModel extends BaseModel
     {
         $idStuff           = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
         $equipementManager = new EquipementManager($this->db);
+        $equipementWillBeDeleted = $equipementManager->find($idStuff);
+        $deletedName = $equipementWillBeDeleted->getNom();
         $stuffDeleted      = $equipementManager->deleteById($idStuff);
+        
+        $notification = new Notification(time(), 66, 4, 0, "DELETE", 1, $deletedName);
+        $notificationManager = new NotificationManager($this->db);
+        $notificationManager->insert($notification);
 
         return $stuffDeleted;
     }
