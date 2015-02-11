@@ -72,6 +72,8 @@ function convertObjectListToArray($objectList)
 $etatTechniqueManager = new EtatTechniqueManager($db);
 //var_dump($etatTechniqueManager->countEquipementByEtatTechnique());
 
-var_dump($equipementManager->findByEtatTechnique(new EtatTechnique("En panne mineure")));
-
+//var_dump($equipementManager->findByEtatTechnique(new EtatTechnique("En panne mineure")));
+//$notification = new Notification(null, time(), 68, 4, 0);
+//$notificationManager = new NotificationManager($db);
+//var_dump($notificationManager->insert($notification));
 

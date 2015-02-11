@@ -51,16 +51,16 @@ class AdministrationModel extends BaseModel
         $equipementManager = new EquipementManager($this->db);
         $panneMineure      = new EtatTechnique("En panne mineure");
         $panneMajeure      = new EtatTechnique("En panne majeure");
-        $panneCritique     = new EtatTechnique("En panne critique");
+        //$panneCritique     = new EtatTechnique("En panne critique");
 
         $equipementEnPanneMineure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
         $equipementEnPanneMajeure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
-        $equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
+        //$equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
 
         return array(
             "mineure"  => $equipementEnPanneMineure,
-            "majeure"  => $equipementEnPanneMajeure,
-            "critique" => $equipementEnPanneCritique
+            "majeure"  => $equipementEnPanneMajeure
+            //"critique" => $equipementEnPanneCritique
         );
     }
 
@@ -108,6 +108,11 @@ class AdministrationModel extends BaseModel
 
             $equipementManager = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
+            $lastId = $equipementManager->theHighestId();
+
+            $notification = new Notification(time(), $lastId, 2, 0, "CREATE", 0, $newStuff["nom"]);
+            $notificationManager = new NotificationManager($this->db);
+            $notificationManager->insert($notification);
 
             return array("error" => false);
         } else {
@@ -154,7 +159,14 @@ class AdministrationModel extends BaseModel
     {
         $idStuff           = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
         $equipementManager = new EquipementManager($this->db);
+        $equipementWillBeDeleted = $equipementManager->find($idStuff);
+        $deletedName = $equipementWillBeDeleted->getNom();
+        $deletedId = $equipementWillBeDeleted->getId();
         $stuffDeleted      = $equipementManager->deleteById($idStuff);
+        
+        $notification = new Notification(time(), $deletedId, 4, 0, "DELETE", 0, $deletedName);
+        $notificationManager = new NotificationManager($this->db);
+        $notificationManager->insert($notification);
 
         return $stuffDeleted;
     }

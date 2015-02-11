@@ -23,7 +23,8 @@ class Notification
     private $libelle;
     private $nomequip;
 
-    function __construct($id, $date, $equipementId, $typeId, $read, $libelle, $negative, $nomequip)
+        
+    function __construct($id, $date, $equipementId, $typeId, $read, $libelle = null, $negative = null, $nomequip = null)
     {
         $this->id           = $id;
         $this->date         = $date;
