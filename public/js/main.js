@@ -34,11 +34,11 @@ $(document).ready(function() {
                     bindButtonDelete();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if(data.nbEquipementEnPanne > 0){
+                    if (data.nbEquipementEnPanne > 0) {
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else{
+                    else {
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
@@ -75,6 +75,10 @@ $(document).ready(function() {
      */
     $("#addStuffButton").click(function(e) {
         e.preventDefault();
+
+        $('#warning_message_add_equipement').hide();
+        $('#success_message_add_equipement').hide();
+
         $("#form_title").text("Ajouter un équipement");
         $(".dynamic_content:visible").hide("slow", function() {
             $("#form").show("slow");
@@ -90,7 +94,9 @@ $(document).ready(function() {
     $("#formAddButtonStuff").click(function(e) {
         e.preventDefault();
 
-        var newStuff = $("#form form").serialize()+ "&type=" + lastStuffVisited;
+        var newStuff = $("#form form").serialize() + "&type=" + lastStuffVisited;
+        $('#warning_message_add_equipement').hide();
+        $('#success_message_add_equipement').hide();
 
         $.ajax({
             url: "administration/addStuff",
@@ -98,7 +104,11 @@ $(document).ready(function() {
             dataType: "json",
             data: newStuff,
             success: function(data) {
-                console.log(data);
+                if (data.error !== false) {
+                    $('#warning_message_add_equipement').text(data.error).show();
+                } else {
+                    $('#success_message_add_equipement').show();
+                }
             }
         });
     });
@@ -159,7 +169,7 @@ $(document).ready(function() {
         $.each(data, function(typePanne, equipements) {
             $navTabsList = $("<li />");
             // On rend le premier onglet du tableau actif
-            if(firstLoop){
+            if (firstLoop) {
                 $navTabsList.attr("class", "active");
             }
 
@@ -188,9 +198,9 @@ $(document).ready(function() {
             });
 
             $tabHeader = $("<div />").attr("id", typePanne);
-            if(firstLoop){
+            if (firstLoop) {
                 $tabHeader.attr("class", "tab-pane fade active in");
-            } else{
+            } else {
                 $tabHeader.attr("class", "tab-pane fade");
             }
             $tabHeader
@@ -380,7 +390,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 var donutData = [];
-                for(var tmp in data){
+                for (var tmp in data) {
                     donutData[tmp] = {
                         label: data[tmp].libelle,
                         value: data[tmp].value
