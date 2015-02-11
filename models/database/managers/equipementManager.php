@@ -227,5 +227,23 @@ class EquipementManager
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
         }
     }
+    
+    public function theHighestId() {
+        try {
+            $sql = "SELECT MAX(`EQUIPEMENT_ID`) AS highest FROM `equipement` ";
+            $stmt = $this->db->query($sql);
+            $stmt->execute();
+            
+            $rs    = $stmt->fetchAll();
+            $types = array();
+            foreach ($rs as $equip) {
+                $high[] = new HighestEquipement($type["highest"]);
+            }
+            return $high;
+        } catch (Exception $ex) {
+            exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
+                    . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
+        }
+    }
 
 }

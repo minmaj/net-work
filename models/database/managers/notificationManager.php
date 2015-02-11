@@ -21,13 +21,16 @@ class NotificationManager {
 
     public function insert(Notification $notification) {
         try {
-            $sql = "INSERT INTO NOTIFICATION (NOTIF_DATE, NOTIF_EQUIP_ID, NOTIF_TYPE_ID, NOTIF_READ) VALUES(:DATE, :EQUIP_ID, :TYPE_ID, :READ);";
+            $sql = "INSERT INTO NOTIFICATION (NOTIF_DATE, NOTIF_EQUIP_ID, NOTIF_TYPE_ID, NOTIF_READ, EQUIP_NOM, TYPE_NOTIF_LIBELLE, NOTIF_NEGATIVE) VALUES(:DATE, :EQUIP_ID, :TYPE_ID, :READ, :EQUIP_NOM, :NOTIF_LIBELLE, :NOTIF_NEGATIVE);";
             $stmt = $this->db->prepare($sql);
             $stmt->execute(array(
                 ":DATE" => $notification->getDate(),
                 ":EQUIP_ID" => $notification->getEquipementId(),
                 ":TYPE_ID" => $notification->getTypeId(),
-                ":READ" => $notification->getRead()
+                ":READ" => $notification->getRead(),
+                ":EQUIP_NOM" => $notification->getNomequip(),
+                ":NOTIF_LIBELLE " => $notification->getLibelle(),
+                ":NOTIF_NEGATIVE" => $notification->getNegative()
             ));
             
             return "lol";
@@ -37,7 +40,7 @@ class NotificationManager {
         }
     }
 
-    public function update(Notification $notification) {
+    /*public function update(Notification $notification) {
         try {
             $sql = "UPDATE NOTIFICATION"
                     . "SET TYPE NOTIF_DATE = :DATE, NOTIF_EQUIP_ID = :EQUIP_ID, NOTIF_TYPE_ID = :TYPE_ID, READ = :READ"
@@ -48,9 +51,9 @@ class NotificationManager {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
         }
-    }
+    }*/
 
-    public function findAll() {
+    /*public function findAll() {
         try {
             $sql = "SELECT * FROM NOTIFICATION ORDER BY NOTIF_ID";
             $stmt = $this->db->query($sql);
@@ -65,13 +68,13 @@ class NotificationManager {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '
                     . $ex->getLine() . ' : </b> ' . $ex->getMessage() . '</div>');
         }
-    }
+    }*/
 
     public function findAllWithType() {
         try {
-            $sql = "SELECT n.NOTIF_ID AS ID, n.NOTIF_DATE AS DATE, n.NOTIF_EQUIP_ID AS EQUIPID, n.NOTIF_READ, n.NOTIF_TYPE_ID, t.TYPE_NOTIF_LIBELLE AS LIBELLE, t.NEGATIVE, e.NOM
-                    FROM NOTIFICATION n, TYPE_NOTIF t, EQUIPEMENT e
-                    WHERE n.NOTIF_TYPE_ID = t.TYPE_NOTIF_ID AND e.EQUIPEMENT_ID = n.NOTIF_EQUIP_ID AND n.NOTIF_READ = 0";
+            $sql = "SELECT n.NOTIF_ID AS ID, n.NOTIF_DATE AS DATE, n.NOTIF_EQUIP_ID AS EQUIPID, n.NOTIF_READ, n.NOTIF_TYPE_ID, n.TYPE_NOTIF_LIBELLE AS LIBELLE, n.NEGATIVE, n.NOM
+                    FROM NOTIFICATION n
+                    WHERE NOTIF_READ = 0";
             $stmt = $this->db->query($sql);
             $stmt->execute();
             $results = $stmt->fetchAll();

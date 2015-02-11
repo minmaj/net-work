@@ -121,8 +121,9 @@ class AdministrationModel extends BaseModel
 
             $equipementManager = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
-            
-            $notification = new Notification(time(), 66, 2, 0);
+            $lastId = $equipementManager->theHighestId();
+
+            $notification = new Notification(time(), $lastId, 2, 0, "CREATE", 0, $newStuff["nom"]);
             $notificationManager = new NotificationManager($this->db);
             $notificationManager->insert($notification);
 
@@ -173,9 +174,10 @@ class AdministrationModel extends BaseModel
         $equipementManager = new EquipementManager($this->db);
         $equipementWillBeDeleted = $equipementManager->find($idStuff);
         $deletedName = $equipementWillBeDeleted->getNom();
+        $deletedId = $equipementWillBeDeleted->getId();
         $stuffDeleted      = $equipementManager->deleteById($idStuff);
         
-        $notification = new Notification(time(), 66, 4, 0, "DELETE", 1, $deletedName);
+        $notification = new Notification(time(), $deletedId, 4, 0, "DELETE", 0, $deletedName);
         $notificationManager = new NotificationManager($this->db);
         $notificationManager->insert($notification);
 
