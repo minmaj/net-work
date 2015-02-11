@@ -72,8 +72,8 @@ class NotificationManager {
 
     public function findAllWithType() {
         try {
-            $sql = "SELECT n.NOTIF_ID AS ID, n.NOTIF_DATE AS DATE, n.NOTIF_EQUIP_ID AS EQUIPID, n.NOTIF_READ, n.NOTIF_TYPE_ID, n.TYPE_NOTIF_LIBELLE AS LIBELLE, n.NEGATIVE, n.NOM
-                    FROM NOTIFICATION n
+            $sql = "SELECT NOTIF_ID AS ID, NOTIF_DATE AS DATE, NOTIF_EQUIP_ID AS EQUIPID, NOTIF_READ, NOTIF_TYPE_ID, TYPE_NOTIF_LIBELLE AS LIBELLE, NOTIF_NEGATIVE, EQUIP_NOM
+                    FROM NOTIFICATION
                     WHERE NOTIF_READ = 0";
             $stmt = $this->db->query($sql);
             $stmt->execute();
