@@ -90,23 +90,7 @@ $(document).ready(function() {
     $("#formAddButtonStuff").click(function(e) {
         e.preventDefault();
 
-        var newStuff = new Object();
-        newStuff.type = lastStuffVisited;
-
-        $("#form form input, select, datalist").each(function(i, item) {
-            if($(this).attr("id") !== undefined){
-                fillStuff(newStuff, $(this))
-            }
-        });
-
-        function fillStuff(newStuff, elem) {
-            var key = elem.attr("id");
-            if(elem.is("datalist")){
-                newStuff[key] = elem.siblings("input").val();
-            } else{
-                newStuff[key] = elem.val();
-            }
-        }
+        var newStuff = $("#form form").serialize()+ "&type=" + lastStuffVisited;
 
         $.ajax({
             url: "administration/addStuff",

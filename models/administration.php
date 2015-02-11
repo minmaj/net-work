@@ -17,16 +17,6 @@ class AdministrationModel extends BaseModel
         $typeEquipements   = $equipementManager->countEquipementByType();
         $this->viewModel->set("typeEquipements", $typeEquipements);
 
-        //Lister les etats techniques
-        $etatTechManager = new etatTechniqueManager($this->db);
-        $etatsTechniques = $etatTechManager->selectAll();
-        $this->viewModel->set("etatsTechniques", $etatsTechniques);
-
-        //Lister les etats fonctionnels
-        $etatFoncManager   = new etatFonctionnelManager($this->db);
-        $etatsFonctionnels = $etatFoncManager->selectAll();
-        $this->viewModel->set("etatsFonctionnels", $etatsFonctionnels);
-
         return $this->viewModel;
     }
 
@@ -107,16 +97,14 @@ class AdministrationModel extends BaseModel
             "prop"         => FILTER_SANITIZE_SPECIAL_CHARS,
             "localisation" => FILTER_SANITIZE_SPECIAL_CHARS,
             "numero"       => FILTER_SANITIZE_SPECIAL_CHARS,
-            "technique"    => FILTER_SANITIZE_SPECIAL_CHARS,
-            "fonctionnel"  => FILTER_SANITIZE_SPECIAL_CHARS,
             "parent"       => FILTER_SANITIZE_SPECIAL_CHARS,
         ));
 
         if (0 != strcmp($newStuff["nom"], "")) {
             $equipement = new Equipement(
                     null, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
-                    $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], $newStuff["technique"],
-                    $newStuff["fonctionnel"], "", $newStuff["parent"]);
+                    $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], null,
+                    null, "", $newStuff["parent"]);
 
             $equipementManager = new EquipementManager($this->db);
             $equipementManager->insert($equipement);

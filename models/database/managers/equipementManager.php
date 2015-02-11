@@ -14,9 +14,9 @@ class EquipementManager
     {
         try {
             $query = "INSERT INTO EQUIPEMENT (TYPE, NOM, FABRIQUANT, ADRESSE_PHYSIQUE, ADRESSE_IP, PROPRIETAIRE,"
-                    . " LOCALISATION, NUMERO_SUPPORT, ETAT_TECHNIQUE, ETAT_FONCTIONNEL, COMMENT, PARENT) "
+                    . " LOCALISATION, NUMERO_SUPPORT, COMMENT, PARENT) "
                     . "VALUES(:TYPE, :NOM, :FABRIQUANT, :ADRESSE_PHYSIQUE, :ADRESSE_IP, :PROPRIETAIRE, :LOCALISATION,"
-                    . " :NUMERO_SUPPORT, :ETAT_TECHNIQUE, :ETAT_FONCTIONNEL, :COMMENT, :PARENT);";
+                    . " :NUMERO_SUPPORT, :COMMENT, :PARENT);";
             $stmt  = $this->db->prepare($query);
             $stmt->execute(array(
                 ":TYPE"             => $equipement->getType(),
@@ -27,8 +27,6 @@ class EquipementManager
                 ":PROPRIETAIRE"     => $equipement->getProprietaire(),
                 ":LOCALISATION"     => $equipement->getLocalisation(),
                 ":NUMERO_SUPPORT"   => $equipement->getNumeroSupport(),
-                ":ETAT_TECHNIQUE"   => $equipement->getEtatTechnique(),
-                ":ETAT_FONCTIONNEL" => $equipement->getEtatFonctionnel(),
                 ":COMMENT"          => $equipement->getComment(),
                 ":PARENT"           => $equipement->getParent()
             ));
