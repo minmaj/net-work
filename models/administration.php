@@ -130,7 +130,6 @@ class AdministrationModel extends BaseModel
 
     public function editStuff()
     {
-
         $newStuff = filter_input_array(INPUT_POST,
                                        array(
             "nom"          => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -148,32 +147,32 @@ class AdministrationModel extends BaseModel
         ));
 
         $idStuff = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+        $passerEquipementEnMarche      = isset($_POST["passerEquipementEnMarche"]) ? $_POST["passerEquipementEnMarche"] : false;
+        $passerEquipementEnMaintenance = isset($_POST["passerEquipementEnMaintenance"]) ? $_POST["passerEquipementEnMaintenance"] : false;
+        $passerEquipementEnMarche      = ($passerEquipementEnMarche === "true") ? true : false;
+        $passerEquipementEnMaintenance = ($passerEquipementEnMaintenance === "true") ? true : false;
 
-        $changeStateToEnMarche      = isset($_POST["equipementON"]) ? $_POST["equipementON"] : false;
-        $changeStateToEnMaintenance = isset($_POST["equipementOFF"]) ? $_POST["equipementOFF"] : false;
-        var_dump("marche : " . $changeStateToEnMarche);
-        var_dump("maintenance : " . $changeStateToEnMaintenance);
-
-        if ($changeStateToEnMaintenance) {
+        if ($passerEquipementEnMaintenance) {
             $newStuff["fonctionnel"] = "En arret de maintenance";
         }
 
-        if ($changeStateToEnMarche) {
+        if ($passerEquipementEnMarche) {
+            //var_dump("passerEquipementEnMarche");
             $newStuff["fonctionnel"] = "En marche";
         }
-
-        var_dump("fcontionnel : " . $newStuff["fonctionnel"]);
+        
         $equipementManager = new EquipementManager($this->db);
-
         $errorMessage = array("nom" => "", "comment" => "");
         if (0 != strcmp($newStuff["nom"], "")) { // Nom n'est pas nul
-            if (!$changeStateToEnMarche && !$changeStateToEnMaintenance) { // Aucun état à changer
+            if (!$passerEquipementEnMarche && !$passerEquipementEnMaintenance) { // Aucun état à changer
                 $equipement = new Equipement(
                         $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                         $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"],
                         $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
                 $equipementManager->update($equipement);
-            } else { // Etats à changer
+            }
+
+            if ($passerEquipementEnMarche || $passerEquipementEnMaintenance) { // Etats à changer
                 if (0 != strcmp($newStuff["comment"], "")) {
                     $equipement = new Equipement(
                             $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
@@ -181,13 +180,17 @@ class AdministrationModel extends BaseModel
                             $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
                     $equipementManager->update($equipement);
                 } else {
-                    $errorMessage["comment"] = "Vous devez inserer un commentaire1.";
+                    $errorMessage["comment"] = "Vous devez inserer un commentaire.";
                 }
             }
         } else {
             $errorMessage["nom"] = "Votre equipement doit avoir un nom.";
-            if ($changeStateToEnMarche || $changeStateToEnMarche) {
-                $errorMessage["comment"] = "Vous devez inserer un commentaire2.";
+            if ($passerEquipementEnMarche || $passerEquipementEnMaintenance) {
+                if (0 != strcmp($newStuff["comment"], "")) {
+                    
+                } else {
+                    $errorMessage["comment"] = "Vous devez inserer un commentaire.";
+                }
             }
         }
         return $errorMessage;

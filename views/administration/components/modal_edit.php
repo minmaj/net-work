@@ -20,6 +20,7 @@
 
   <script id="row_edit_tmpl" type="text/x-jquery-tmpl">
     <div id="bodyEditModal" class="panel-body">
+        <div id="errorMsgPanel"></div>
         <form id="edit-form" class="form-horizontal" role="form" action="administration/editStuff" method="post">
           <div class="form-group">
             <label class="control-label col-sm-4" for="nom">Nom : </label>

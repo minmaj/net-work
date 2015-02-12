@@ -34,11 +34,11 @@ $(document).ready(function() {
                     bindButtonDelete();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if (data.nbEquipementEnPanne > 0) {
+                    if(data.nbEquipementEnPanne > 0){
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else {
+                    else{
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
@@ -105,9 +105,9 @@ $(document).ready(function() {
             data: newStuff,
             success: function(data) {
 
-                if (data.error !== false) {
+                if(data.error !== false){
                     $('#warning_message_add_equipement').text(data.error).show();
-                } else {
+                } else{
                     $('#success_message_add_equipement').show();
                 }
 
@@ -171,7 +171,7 @@ $(document).ready(function() {
         $.each(data, function(typePanne, equipements) {
             $navTabsList = $("<li />");
             // On rend le premier onglet du tableau actif
-            if (firstLoop) {
+            if(firstLoop){
                 $navTabsList.attr("class", "active");
             }
 
@@ -200,9 +200,9 @@ $(document).ready(function() {
             });
 
             $tabHeader = $("<div />").attr("id", typePanne);
-            if (firstLoop) {
+            if(firstLoop){
                 $tabHeader.attr("class", "tab-pane fade active in");
-            } else {
+            } else{
                 $tabHeader.attr("class", "tab-pane fade");
             }
             $tabHeader
@@ -272,44 +272,42 @@ $(document).ready(function() {
 
                     $('#bodyEditModal').html("");
                     $('#row_edit_tmpl').tmpl(stuff).appendTo('#bodyEditModal');
-
                     $("#commentFormGroup").hide();
-                    $valueEtatFonctionnel = $("#valueEtatFonctionnel");
 
-                    if(data.etatFonctionnel === "En arret de maintenance"){
-                        $valueEtatFonctionnel.text("Mettre en marche l'équipement");
-                    } else{
-                        $valueEtatFonctionnel.text("Passer l'équipement en maintenance");
-                    }
+                    etat = (data.etatFonctionnel === "En arret de maintenance") ? "Mettre en marche l'équipement" : "Passer l'équipement en maintenance";
+                    $("#valueEtatFonctionnel").text(etat);
 
+                    passerEquipementEnMarche = false;
+                    passerEquipementEnMaintenance = false;
+                    
                     $("#checkboxMaintenance").change(function() {
                         if(data.etatFonctionnel === "En arret de maintenance"){ // Mettre en marche
-                            equipementON = $(this).is(':checked');
-                            console.log("on " + equipementON);
-                            $("#checkboxMaintenance").data("marche", equipementON);
+                            passerEquipementEnMarche = $(this).is(':checked');
+                            console.log("passerEquipementEnMarche " + passerEquipementEnMarche);
+                            $("#checkboxMaintenance").data("marche", passerEquipementEnMarche);
                         }
 
                         if(data.etatFonctionnel === "En marche"){ // Passer en arrêt de maintenance
-                            equipementOFF = ($(this).is(':checked')) ? true : false;
-                            console.log("off " + equipementOFF);
-                            $("#checkboxMaintenance").data("maintenance", equipementOFF);
+                            passerEquipementEnMaintenance = $(this).is(':checked');
+                            console.log("passerEquipementEnMaintenance " + passerEquipementEnMaintenance);
+                            $("#checkboxMaintenance").data("maintenance", passerEquipementEnMaintenance);
                         }
 
+                        $commentFormGroup = $("#commentFormGroup");
+                        $("#comment").val("");
                         if($(this).is(':checked')){
-                            $("#comment").val("");
-                            $("#commentFormGroup").show();
+                            $commentFormGroup.show();
                         } else{
-                            $("#comment").val("");
-                            $("#commentFormGroup").hide();
+                            $commentFormGroup.hide();
                         }
                     });
-                    bindConfirmEditButton(idStuff);
+                    bindConfirmEditButton(idStuff, passerEquipementEnMarche, passerEquipementEnMaintenance);
                 }
             });
         });
     }
 
-    function bindConfirmEditButton(idStuff, equipementON, equipementOFF) {
+    function bindConfirmEditButton(idStuff, passerEquipementEnMarche, passerEquipementEnMaintenance) {
         $('form#edit-form').on('submit', function(e) {
             e.preventDefault();
 
@@ -317,16 +315,30 @@ $(document).ready(function() {
             var dataSerialize = $(this).serialize();
             disabled.attr('disabled', 'disabled');
 
-            equipementON = $("#checkboxMaintenance").data("marche");
-            equipementOFF = $("#checkboxMaintenance").data("maintenance");
-            console.log(dataSerialize + "&idStuff=" + idStuff + "&equipementON=" + equipementON + "&equipementOFF=" + equipementOFF);
+            passerEquipementEnMarche = $("#checkboxMaintenance").data("marche");
+            passerEquipementEnMaintenance = $("#checkboxMaintenance").data("maintenance");
+
             $.ajax({
                 url: $(this).attr("action"),
                 type: "POST",
                 dataType: "json",
-                data: dataSerialize + "&idStuff=" + idStuff + "&equipementON=" + equipementON + "&equipementOFF=" + equipementOFF,
-                sucess: function(data) {
-                    //console.log(data);
+                data: dataSerialize + "&idStuff=" + idStuff + "&passerEquipementEnMarche=" + passerEquipementEnMarche + "&passerEquipementEnMaintenance=" + passerEquipementEnMaintenance,
+                success: function(data) {
+                    if(data.comment !== "" || data.nom !== ""){ // Afficher les messages d'erreurs
+                        $errorMsgPanel = $("#errorMsgPanel");
+                        $errorMsgPanel.attr("class", "alert alert-danger").attr("role", "alert");
+                        msgError = $("<ul />");
+                        if(data.comment !== ""){ // Champ commentaire non rempli alors qu'il le devrait
+                            msgError.append($("<li />").text(data.comment));
+                        }
+
+                        if(data.nom !== ""){ // Champ nom non rempli
+                            msgError.append($("<li />").text(data.nom));
+                        }
+                        $errorMsgPanel.html(msgError);
+                    } else{
+                        $("#viewEditModal").modal("hide");
+                    }
                 }
             });
         });
@@ -413,7 +425,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 var donutData = [];
-                for (var tmp in data) {
+                for(var tmp in data){
                     donutData[tmp] = {
                         label: data[tmp].libelle,
                         value: data[tmp].value
