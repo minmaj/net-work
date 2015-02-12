@@ -22,17 +22,17 @@
     <div id="bodyEditModal" class="panel-body">
         <form id="edit-form" class="form-horizontal" role="form" action="administration/editStuff" method="post">
           <div class="form-group">
-            <label class="control-label col-sm-4" for="nom">Nom:</label>
+            <label class="control-label col-sm-4" for="nom">Nom : </label>
             <div class="col-sm-7">
               <input type="text" class="form-control" name="nom" id="nom" value="${ stuffDetail.nom }">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="type">Type:</label>
+            <label class="control-label col-sm-4" for="type">Type : </label>
             <div class="col-sm-7">
               <select class="form-control" name="type" id="type">
                 <option value="Imprimante" {{if stuffDetail.type == "Imprimante"}}selected="selected"{{/if}}>Imprimante</option>
-                <option value="Ordinateur fixe" {{if stuffDetail.type == "Ordinateur fixe"}}selected="selected{{/if}}>Ordinateur fixe</option>
+                <option value="Ordinateur fixe" {{if stuffDetail.type == "Ordinateur fixe"}}selected="selected"{{/if}}>Ordinateur fixe</option>
                 <option value="Ordinateur portable" {{if stuffDetail.type == "Ordinateur portable"}}selected="selected"{{/if}}>Ordinateur portable</option>
                 <option value="Routeur" {{if stuffDetail.type == "Routeur"}}selected="selected"{{/if}}>Routeur</option>
                 <option value="Serveur" {{if stuffDetail.type == "Serveur"}}selected="selected"{{/if}}>Serveur</option>
@@ -41,57 +41,71 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="fabriquant">Fabriquant:</label>
+            <label class="control-label col-sm-4" for="fabriquant">Fabriquant : </label>
             <div class="col-sm-7"> 
               <input type=text class="form-control" name="fabriquant" id="fabriquant" value="${ stuffDetail.fabriquant }" >
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="ad-physique">Adresse Physique:</label>
+            <label class="control-label col-sm-4" for="ad-physique">Adresse Physique : </label>
             <div class="col-sm-7">
               <input type="text" class="form-control" id="ad-physique" name="ad-physique" value="${ stuffDetail.adressePhysique }">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="ad-ip">Adresse IP:</label>
+            <label class="control-label col-sm-4" for="ad-ip">Adresse IP : </label>
             <div class="col-sm-7">
               <input type="text" class="form-control" id="ad-ip" name="ad-ip" value="${ stuffDetail.adresseIp }">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="prop">Propriétaire:</label>
+            <label class="control-label col-sm-4" for="prop">Propriétaire : </label>
             <div class="col-sm-7">
               <input type="text" class="form-control" id="prop" name="prop" value="${ stuffDetail.proprietaire }">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="localisation">Localisation:</label>
+            <label class="control-label col-sm-4" for="localisation">Localisation : </label>
             <div class="col-sm-7"> 
               <input type="text" class="form-control" id="localisation" name="localisation" value="${ stuffDetail.localisation }">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="numero">Numéro :</label>
+            <label class="control-label col-sm-4" for="numero">Numéro : </label>
             <div class="col-sm-7">
               <input type="text" class="form-control" id="numero" name="numero" value="${ stuffDetail.numeroSupport }">
             </div>
           </div>
 
           <div class="form-group">
-            <label class="control-label col-sm-4" for="technique">Etat technique :</label>
+            <label class="control-label col-sm-4" for="technique">Etat technique : </label>
             <div class="col-sm-7"> 
               <input type="text" class="form-control" id="technique" name="technique" value="${ stuffDetail.etatTechnique }" disabled>
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-4" for="fonctionnel">Etat fonctionnel :</label>
+            <label class="control-label col-sm-4" for="fonctionnel">Etat fonctionnel : </label>
             <div class="col-sm-7"> 
-              <input type="text" class="form-control" id="fonctionnel" name="fonctionnel" value="${ stuffDetail.etatFonctionnel }" disabled>
+              <input type="text" class="form-control" id="fonctionnel" name="fonctionnel" value="${ stuffDetail.etatFonctionnel }" disabled>            
             </div>
           </div>
-
+          
           <div class="form-group">
-            <label class="control-label col-sm-4" for="parent">Identifiant parent :</label>
+            <label class="checkbox-inline col-sm-7">
+                <input type="checkbox" id="checkboxMaintenance" data-marche=false data-maintenance=false name="checkboxMaintenance" value="">
+                <span id="valueEtatFonctionnel"></span>
+            </label>
+          </div>
+  
+          <div class="form-group" id="commentFormGroup">
+            <label class="control-label col-sm-4" for="parent">Commentaire : </label>
+            <div class="col-sm-7"> 
+              <textarea type="text" class="form-control" id="comment" name="comment"></textarea>
+            </div>
+          </div>          
+  
+          <div class="form-group">
+            <label class="control-label col-sm-4" for="parent">Identifiant parent : </label>
             <div class="col-sm-7"> 
               <input type="text" class="form-control" id="parent" name="parent" value="${ stuffDetail.parent }" >
             </div>

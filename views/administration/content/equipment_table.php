@@ -19,13 +19,8 @@
                     {{each(i,item) stuff}}
                         <tr>
                             <td>${ item.id }</td>
-                            <td><span style="font-weight: bold;">${ item.nom }</span></td>
-                                        
-                            {{if item.etatFonctionnel == "Eteint"}}
-                                <td><span class="label label-default">${ item.etatFonctionnel }</span></td>                          
-                            {{else}}
-                                <td>${ item.etatFonctionnel }</td>
-                            {{/if}}                                           
+                            <td><span style="font-weight: bold;">${ item.nom }</span></td>                                        
+                            <td>${ item.etatFonctionnel }</td>
                             {{if item.etatTechnique == "En panne mineure"}}
                                 <td><span class="label label-warning">${ item.etatTechnique }</span></td>                          
                             {{else item.etatTechnique == "En panne majeure"}}

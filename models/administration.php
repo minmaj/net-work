@@ -63,14 +63,14 @@ class AdministrationModel extends BaseModel
         $panneMajeure      = new EtatTechnique("En panne majeure");
         //$panneCritique     = new EtatTechnique("En panne critique");
 
-        $equipementEnPanneMineure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
-        $equipementEnPanneMajeure  = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
+        $equipementEnPanneMineure = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
+        $equipementEnPanneMajeure = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
         //$equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
 
         return array(
-            "mineure"  => $equipementEnPanneMineure,
-            "majeure"  => $equipementEnPanneMajeure
-            //"critique" => $equipementEnPanneCritique
+            "mineure" => $equipementEnPanneMineure,
+            "majeure" => $equipementEnPanneMajeure
+                //"critique" => $equipementEnPanneCritique
         );
     }
 
@@ -117,12 +117,12 @@ class AdministrationModel extends BaseModel
                     null, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                     $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], $newStuff["technique"],
                     $newStuff["fonctionnel"], "", $newStuff["parent"]);
-            
+
 
             $equipementManager = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
-            
-            $notification = new Notification(time(), 66, 2, 0);
+
+            $notification        = new Notification(time(), 66, 2, 0);
             $notificationManager = new NotificationManager($this->db);
             $notificationManager->insert($notification);
 
@@ -152,51 +152,83 @@ class AdministrationModel extends BaseModel
             "parent"       => FILTER_SANITIZE_SPECIAL_CHARS,
         ));
 
-        $idStuff           = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+        $idStuff = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+
+        $changeStateToEnMarche      = isset($_POST["equipementON"]) ? $_POST["equipementON"] : false;
+        $changeStateToEnMaintenance = isset($_POST["equipementOFF"]) ? $_POST["equipementOFF"] : false;
+        var_dump("marche : " . $changeStateToEnMarche);
+        var_dump("maintenance : " . $changeStateToEnMaintenance);
+
+        if ($changeStateToEnMaintenance) {
+            $newStuff["fonctionnel"] = "En arret de maintenance";
+        }
+
+        if ($changeStateToEnMarche) {
+            $newStuff["fonctionnel"] = "En marche";
+        }
+
+        var_dump("fcontionnel : " . $newStuff["fonctionnel"]);
         $equipementManager = new EquipementManager($this->db);
 
-        if (0 != strcmp($newStuff["nom"], "")) {
-            $equipement = new Equipement(
-                    $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
-                    $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], $newStuff["technique"],
-                    $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
-            $equipementManager->update($equipement);
-            return array("error" => false);
+        $errorMessage = array("nom" => "", "comment" => "");
+        if (0 != strcmp($newStuff["nom"], "")) { // Nom n'est pas nul
+            if (!$changeStateToEnMarche && !$changeStateToEnMaintenance) { // Aucun état à changer
+                $equipement = new Equipement(
+                        $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
+                        $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"],
+                        $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
+                $equipementManager->update($equipement);
+            } else { // Etats à changer
+                if (0 != strcmp($newStuff["comment"], "")) {
+                    $equipement = new Equipement(
+                            $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
+                            $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"],
+                            $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
+                    $equipementManager->update($equipement);
+                } else {
+                    $errorMessage["comment"] = "Vous devez inserer un commentaire1.";
+                }
+            }
         } else {
-            return array("error" => "Votre equipement doit avoir un nom");
+            $errorMessage["nom"] = "Votre equipement doit avoir un nom.";
+            if ($changeStateToEnMarche || $changeStateToEnMarche) {
+                $errorMessage["comment"] = "Vous devez inserer un commentaire2.";
+            }
         }
+        return $errorMessage;
     }
 
     public function deleteStuff()
     {
-        $idStuff           = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
-        $equipementManager = new EquipementManager($this->db);
+        $idStuff                 = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
+        $equipementManager       = new EquipementManager($this->db);
         $equipementWillBeDeleted = $equipementManager->find($idStuff);
-        $deletedName = $equipementWillBeDeleted->getNom();
-        $stuffDeleted      = $equipementManager->deleteById($idStuff);
-        
-        $notification = new Notification(time(), 66, 4, 0, "DELETE", 1, $deletedName);
+        $deletedName             = $equipementWillBeDeleted->getNom();
+        $stuffDeleted            = $equipementManager->deleteById($idStuff);
+
+        $notification        = new Notification(time(), 66, 4, 0, "DELETE", 1, $deletedName);
         $notificationManager = new NotificationManager($this->db);
         $notificationManager->insert($notification);
 
         return $stuffDeleted;
     }
-    
+
     public function notifData()
     {
         //Lister les notifications
         $notificationManager = new notificationManager($this->db);
-        $notifs = $notificationManager->findAllWithType();
-        
+        $notifs              = $notificationManager->findAllWithType();
+
         return convertObjectListToArray($notifs);
     }
-    
+
     public function updateRead()
     {
         //Lister les notifications
         $notificationManager = new notificationManager($this->db);
-        $updateRead = $notificationManager->updateRead();
-        
+        $updateRead          = $notificationManager->updateRead();
+
         return $updateRead;
     }
+
 }

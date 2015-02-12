@@ -114,7 +114,7 @@ $(document).ready(function() {
             dataType: "json",
             data: newStuff,
             success: function(data) {
-                console.log(data);
+                //console.log(data);
             }
         });
     });
@@ -256,18 +256,6 @@ $(document).ready(function() {
 
     }
 
-    /*function getAllEquipement(idStuff) {
-     $.ajax({
-     url: "administration/getAllEquipement",
-     type: "POST",
-     dataType: "json",
-     data: "idStuff=" + idStuff,
-     success: function(data) {
-     
-     }
-     });
-     }*/
-
     function bindButtonEdit() {
         $(".buttonEdit").click(function(e) {
             e.preventDefault();
@@ -289,13 +277,43 @@ $(document).ready(function() {
                     $('#bodyEditModal').html("");
                     $('#row_edit_tmpl').tmpl(stuff).appendTo('#bodyEditModal');
 
+                    $("#commentFormGroup").hide();
+                    $valueEtatFonctionnel = $("#valueEtatFonctionnel");
+
+                    if(data.etatFonctionnel === "En arret de maintenance"){
+                        $valueEtatFonctionnel.text("Mettre en marche l'équipement");
+                    } else{
+                        $valueEtatFonctionnel.text("Passer l'équipement en maintenance");
+                    }
+
+                    $("#checkboxMaintenance").change(function() {
+                        if(data.etatFonctionnel === "En arret de maintenance"){ // Mettre en marche
+                            equipementON = $(this).is(':checked');
+                            console.log("on " + equipementON);
+                            $("#checkboxMaintenance").data("marche", equipementON);
+                        }
+
+                        if(data.etatFonctionnel === "En marche"){ // Passer en arrêt de maintenance
+                            equipementOFF = ($(this).is(':checked')) ? true : false;
+                            console.log("off " + equipementOFF);
+                            $("#checkboxMaintenance").data("maintenance", equipementOFF);
+                        }
+
+                        if($(this).is(':checked')){
+                            $("#comment").val("");
+                            $("#commentFormGroup").show();
+                        } else{
+                            $("#comment").val("");
+                            $("#commentFormGroup").hide();
+                        }
+                    });
                     bindConfirmEditButton(idStuff);
                 }
             });
         });
     }
 
-    function bindConfirmEditButton(idStuff) {
+    function bindConfirmEditButton(idStuff, equipementON, equipementOFF) {
         $('form#edit-form').on('submit', function(e) {
             e.preventDefault();
 
@@ -303,13 +321,16 @@ $(document).ready(function() {
             var dataSerialize = $(this).serialize();
             disabled.attr('disabled', 'disabled');
 
+            equipementON = $("#checkboxMaintenance").data("marche");
+            equipementOFF = $("#checkboxMaintenance").data("maintenance");
+            console.log(dataSerialize + "&idStuff=" + idStuff + "&equipementON=" + equipementON + "&equipementOFF=" + equipementOFF);
             $.ajax({
                 url: $(this).attr("action"),
                 type: "POST",
                 dataType: "json",
-                data: dataSerialize + "&idStuff=" + idStuff,
+                data: dataSerialize + "&idStuff=" + idStuff + "&equipementON=" + equipementON + "&equipementOFF=" + equipementOFF,
                 sucess: function(data) {
-                    console.log(data);
+                    //console.log(data);
                 }
             });
         });
@@ -358,7 +379,7 @@ $(document).ready(function() {
             type: 'POST',
             dataType: "json",
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 var notif = {notifs: data};
                 $('#notifPanelListGroup').html("");
                 $('#notif_list_tmpl').tmpl(notif).appendTo('#notifPanelListGroup');
@@ -377,7 +398,7 @@ $(document).ready(function() {
             type: 'POST',
             dataType: "json",
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 refreshNotifData();
             }
         });

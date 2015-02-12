@@ -3,7 +3,7 @@ function updateTypesList() {
         var eSource = new EventSource("sender/stuffCountBadges");
         eSource.addEventListener("stuffCountBadges", function(event) {
             $(JSON.parse(event.data)).each(function(i,item){
-               console.log($("a[data-categorie='" + this.libelle + "']").find(".badge").text(this.occurence)); 
+               //console.log($("a[data-categorie='" + this.libelle + "']").find(".badge").text(this.occurence)); 
             });
             
         });
