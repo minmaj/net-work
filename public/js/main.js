@@ -113,6 +113,9 @@ $(document).ready(function() {
 
             }
         });
+        
+        $(this).closest('form').find("input[type=text], textarea").val("");
+        
     });
 
     /*
@@ -406,8 +409,9 @@ $(document).ready(function() {
             type: 'POST',
             dataType: "json",
             success: function(data) {
-                //console.log(data);
+                $('#notifPanelListGroup').fadeOut("slow");
                 refreshNotifData();
+                $('#notifPanelListGroup').fadeIn("slow");
             }
         });
     });
