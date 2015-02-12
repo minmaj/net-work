@@ -4,6 +4,7 @@ function updateTypesList() {
         eSource.addEventListener("stuffCountBadges", function(event) {
             $(JSON.parse(event.data)).each(function(i,item){
                //console.log($("a[data-categorie='" + this.libelle + "']").find(".badge").text(this.occurence)); 
+               $("a[data-categorie='" + this.libelle + "']").find(".badge").text(this.occurence); 
             });
             
         });

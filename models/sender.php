@@ -14,5 +14,12 @@ class SenderModel extends BaseModel {
         
         return convertObjectListToArray($typeEquipements);
     }
+    
+    public function refreshNotif() {
+        $notificationManager = new NotificationManager($this->db);
+        $notifList = $notificationManager->findAllWithType();
+    
+        return convertObjectListToArray($notifList);
+    }
 
 }

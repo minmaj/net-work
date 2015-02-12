@@ -96,7 +96,6 @@ class AdministrationModel extends BaseModel
      */
     public function addStuff()
     {
-
         $newStuff = filter_input_array(INPUT_POST,
                                        array(
             "nom"          => FILTER_SANITIZE_SPECIAL_CHARS,
@@ -111,24 +110,20 @@ class AdministrationModel extends BaseModel
             "fonctionnel"  => FILTER_SANITIZE_SPECIAL_CHARS,
             "parent"       => FILTER_SANITIZE_SPECIAL_CHARS,
         ));
-
         if (0 != strcmp($newStuff["nom"], "")) {
             $equipement = new Equipement(
                     null, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                     $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"], $newStuff["technique"],
                     $newStuff["fonctionnel"], "", $newStuff["parent"]);
 
-
-            $equipementManager = new EquipementManager($this->db);
+            $equipementManager   = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
-
-            $notification        = new Notification(time(), 66, 2, 0);
+            $lastId              = $equipementManager->theHighestId();
+            $notification        = new Notification(1, time(), $lastId, 2, 0, "CREATE", 0, $newStuff["nom"]);
             $notificationManager = new NotificationManager($this->db);
             $notificationManager->insert($notification);
-
             return array("error" => false);
         } else {
-
             return array("error" => "Votre equipement doit avoir un nom");
         }
     }
@@ -204,12 +199,12 @@ class AdministrationModel extends BaseModel
         $equipementManager       = new EquipementManager($this->db);
         $equipementWillBeDeleted = $equipementManager->find($idStuff);
         $deletedName             = $equipementWillBeDeleted->getNom();
+        $deletedId               = $equipementWillBeDeleted->getId();
         $stuffDeleted            = $equipementManager->deleteById($idStuff);
 
-        $notification        = new Notification(time(), 66, 4, 0, "DELETE", 1, $deletedName);
+        $notification        = new Notification(1, time(), $deletedId, 4, 0, "DELETE", 0, $deletedName);
         $notificationManager = new NotificationManager($this->db);
         $notificationManager->insert($notification);
-
         return $stuffDeleted;
     }
 
