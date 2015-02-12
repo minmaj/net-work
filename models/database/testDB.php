@@ -77,3 +77,23 @@ $etatTechniqueManager = new EtatTechniqueManager($db);
 //$notificationManager = new NotificationManager($db);
 //var_dump($notificationManager->insert($notification));
 
+$equipementTest1 = $equipementManager->find(58);
+$equipementTest2 = $equipementManager->find(60);
+$equipementTest3 = $equipementManager->find(62);
+
+$equipementTest1->setEtatTechnique("Inconnu");
+$equipementManager->update($equipementTest1);
+
+sleep(10);
+
+$equipementTest2->setEtatTechnique("En panne majeure");
+$equipementTest2->setEtatFonctionnel("En arret de maintenance");
+$equipementManager->update($equipementTest2);
+
+sleep(10);
+
+$equipementTest1->setEtatTechnique("Fonctionnel");
+$equipementManager->update($equipementTest1);
+$equipementTest3->setEtatFonctionnel("Eteint");
+$equipementManager->update($equipementTest3);
+

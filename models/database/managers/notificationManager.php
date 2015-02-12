@@ -21,15 +21,15 @@ class NotificationManager {
 
     public function insert(Notification $notification) {
         try {
-            $sql = "INSERT INTO NOTIFICATION (NOTIF_DATE, NOTIF_EQUIP_ID, NOTIF_TYPE_ID, NOTIF_READ, EQUIP_NOM, TYPE_NOTIF_LIBELLE, NOTIF_NEGATIVE) VALUES(:DATE, :EQUIP_ID, :TYPE_ID, :READ, :EQUIP_NOM, :NOTIF_LIBELLE, :NOTIF_NEGATIVE);";
+            $sql = "INSERT INTO NOTIFICATION (NOTIF_DATE, NOTIF_EQUIP_ID, NOTIF_TYPE_ID, NOTIF_READ, EQUIP_NOM, TYPE_NOTIF_LIBELLE, NOTIF_NEGATIVE) VALUES(:DATE, :EQUIP_ID, :TYPE_ID, :NOTIF_READ, :EQUIP_NOM, :TYPE_NOTIF_LIBELLE, :NOTIF_NEGATIVE);";
             $stmt = $this->db->prepare($sql);
             $stmt->execute(array(
                 ":DATE" => $notification->getDate(),
                 ":EQUIP_ID" => $notification->getEquipementId(),
                 ":TYPE_ID" => $notification->getTypeId(),
-                ":READ" => $notification->getRead(),
+                ":NOTIF_READ" => $notification->getRead(),
                 ":EQUIP_NOM" => $notification->getNomequip(),
-                ":NOTIF_LIBELLE " => $notification->getLibelle(),
+                ":TYPE_NOTIF_LIBELLE" => $notification->getLibelle(),
                 ":NOTIF_NEGATIVE" => $notification->getNegative()
             ));
             
@@ -80,7 +80,7 @@ class NotificationManager {
             $results = $stmt->fetchAll();
             $notifications = array();
             foreach ($results as $rs) {
-                $notifications[] = new Notification($rs["ID"], $rs["DATE"], $rs["EQUIPID"], $rs["NOTIF_TYPE_ID"], $rs["NOTIF_READ"], $rs["LIBELLE"], $rs["NEGATIVE"], $rs["NOM"]);
+                $notifications[] = new Notification($rs["ID"], $rs["DATE"], $rs["EQUIPID"], $rs["NOTIF_TYPE_ID"], $rs["NOTIF_READ"], $rs["LIBELLE"], $rs["NOTIF_NEGATIVE"], $rs["EQUIP_NOM"]);
             }
             return $notifications;
         } catch (Exception $ex) {

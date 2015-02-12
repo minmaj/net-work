@@ -33,5 +33,18 @@ class SenderController extends BaseController {
             sleep(1);
         }
     }
+    
+    protected function notifRefresh() {
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+        while (true) {
+            echo "event: refreshNotif\n";
+            echo "retry:" . rand(5000, 10000) . "\n";
+            echo 'data:' . json_encode($this->model->refreshNotif()) . "\n\n";
+            ob_flush();
+            flush();
+            sleep(1);
+        }
+    }
 
 }
