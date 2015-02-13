@@ -203,10 +203,6 @@ class AdministrationModel extends BaseModel
                 }
             }
         }
-        
-        $notification        = new Notification(1, time(), $idStuff, 3, 0, "UPDATE", 0, $newStuff["nom"]);
-        $notificationManager = new NotificationManager($this->db);
-        $notificationManager->insert($notification);
         return $errorMessage;
     }
 
