@@ -113,9 +113,9 @@ $(document).ready(function() {
 
             }
         });
-        
+
         $(this).closest('form').find("input[type=text], textarea").val("");
-        
+
     });
 
     /*
@@ -282,17 +282,17 @@ $(document).ready(function() {
 
                     passerEquipementEnMarche = false;
                     passerEquipementEnMaintenance = false;
-                    
+
                     $("#checkboxMaintenance").change(function() {
                         if(data.etatFonctionnel === "En arret de maintenance"){ // Mettre en marche
                             passerEquipementEnMarche = $(this).is(':checked');
-                            console.log("passerEquipementEnMarche " + passerEquipementEnMarche);
+                            //console.log("passerEquipementEnMarche " + passerEquipementEnMarche);
                             $("#checkboxMaintenance").data("marche", passerEquipementEnMarche);
                         }
 
                         if(data.etatFonctionnel === "En marche"){ // Passer en arrêt de maintenance
                             passerEquipementEnMaintenance = $(this).is(':checked');
-                            console.log("passerEquipementEnMaintenance " + passerEquipementEnMaintenance);
+                            //console.log("passerEquipementEnMaintenance " + passerEquipementEnMaintenance);
                             $("#checkboxMaintenance").data("maintenance", passerEquipementEnMaintenance);
                         }
 
