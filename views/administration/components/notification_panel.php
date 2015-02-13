@@ -38,7 +38,7 @@
                             <i class="fa fa-question fa-fw"></i> Statut inconnu détecté :
                         {{/if}}
                     {{/if}}
-                    ${ item.nomequip } <?php echo time_elapsed_string(${ item.date })?></span>
+                    ${ item.nomequip }</span>
                 </a>
             {{/each}}
         {{/if}}
