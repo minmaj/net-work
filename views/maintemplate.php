@@ -25,5 +25,6 @@
     <script src="public/js/vendor/jquery.tmpl.min.js"></script>
     <script src="public/js/main.js"></script>
     <script src="public/js/live-update.js"></script>
+    <script src="public/js/synoptique.js"></script>
   </body>
 </html>

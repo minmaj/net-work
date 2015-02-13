@@ -38,7 +38,7 @@
                             <i class="fa fa-question fa-fw"></i> Statut inconnu détecté :
                         {{/if}}
                     {{/if}}
-                    ${ item.nomequip }</span>
+                    ${ item.nomequip } - ${ item.elapsedTime }</span>
                 </a>
             {{/each}}
         {{/if}}

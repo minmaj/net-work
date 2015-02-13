@@ -2,7 +2,7 @@
     <div class="navbar-header">
         <a id="logo" class="navbar-brand home_link" href="#">NET-WORK</a>
         <ul class="nav navbar-nav">
-            <li><a href="#">Accéder au synoptique</a></li>
+            <li><a id="synoptique" href="#">Accéder au synoptique</a></li>
           </ul>
     </div>
     <!-- /.navbar-header -->
@@ -45,6 +45,8 @@
                         <?php require (__DIR__ . '/content/default_content.php') ?>
 
                         <?php require (__DIR__ . '/content/equipment_table.php') ?>
+                        
+                        <?php require (__DIR__ . '/content/synoptique_content.php') ?>
                         
                         <?php require (__DIR__ . '/content/form.php') ?>
                         
