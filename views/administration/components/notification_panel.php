@@ -25,6 +25,8 @@
                             <i class="fa fa-wrench fa-fw"></i> Réparation effectuée :
                         {{else item.libelle == "DELETE"}}
                             <i class="fa fa-remove fa-fw"></i> Suppression effectuée :
+                        {{else item.libelle == "MAINTENANCE"}}
+                            <i class="fa fa-server fa-fw"></i> Maintenance déclenchée :
                         {{/if}}
                     {{else}}
                         <span class="red-font">
