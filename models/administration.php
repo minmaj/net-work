@@ -169,6 +169,11 @@ class AdministrationModel extends BaseModel
                         $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                         $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"],
                         $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
+                        
+                $notification        = new Notification(1, time(), $idStuff, 3, 0, "UPDATE", 0, $newStuff["nom"]);
+                $notificationManager = new NotificationManager($this->db);
+                $notificationManager->insert($notification);
+                
                 $equipementManager->update($equipement);
             }
 
@@ -178,6 +183,11 @@ class AdministrationModel extends BaseModel
                             $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                             $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"],
                             $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
+                        
+                    $notification        = new Notification(1, time(), $idStuff, 6, 0, "REPAIRED", 0, $newStuff["nom"]);
+                    $notificationManager = new NotificationManager($this->db);
+                    $notificationManager->insert($notification);
+                    
                     $equipementManager->update($equipement);
                 } else {
                     $errorMessage["comment"] = "Vous devez inserer un commentaire.";
@@ -193,6 +203,10 @@ class AdministrationModel extends BaseModel
                 }
             }
         }
+        
+        $notification        = new Notification(1, time(), $idStuff, 3, 0, "UPDATE", 0, $newStuff["nom"]);
+        $notificationManager = new NotificationManager($this->db);
+        $notificationManager->insert($notification);
         return $errorMessage;
     }
 
