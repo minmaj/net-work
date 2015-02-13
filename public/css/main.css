@@ -44,3 +44,8 @@ hr {
 #headingDetailsModal {
         text-align: center;
 }
+
+.subNotif {
+    color:#990000;
+    font-weight:italic;
+}

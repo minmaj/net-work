@@ -38,7 +38,8 @@
                             <i class="fa fa-question fa-fw"></i> Statut inconnu détecté :
                         {{/if}}
                     {{/if}}
-                    ${ item.nomequip } - ${ item.elapsedTime }</span>
+                    ${ item.nomequip }</span><br/>
+                    <span class="subNotif">${ item.elapsedTime }</span>
                 </a>
             {{/each}}
         {{/if}}
