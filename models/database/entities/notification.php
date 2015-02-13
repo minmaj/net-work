@@ -22,9 +22,10 @@ class Notification
     private $negative;
     private $libelle;
     private $nomequip;
+    private $elapsedTime;
 
         
-    function __construct($id, $date, $equipementId, $typeId, $read, $libelle = null, $negative = null, $nomequip = null)
+    function __construct($id, $date, $equipementId, $typeId, $read, $elapsedTime = null, $libelle = null, $negative = null, $nomequip = null)
     {
         $this->id           = $id;
         $this->date         = $date;
@@ -34,6 +35,7 @@ class Notification
         $this->libelle      = $libelle;
         $this->negative     = $negative;
         $this->nomequip     = $nomequip;
+        $this->elapsedTime  = $elapsedTime;
     }
 
     function getId()
