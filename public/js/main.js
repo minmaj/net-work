@@ -2,9 +2,19 @@
 
 $(document).ready(function() {
 
+    var lastStuffVisited;
+
     updateTypesList(); // defined in live-update.js
 
-    var lastStuffVisited;
+    refreshStuffTable(function(data) {
+        data = data[lastStuffVisited];
+        var stuff = {stuff: data};
+        $('#stuffTable tbody > tr').remove();
+        $('#row_stuff_table_tmpl').tmpl(stuff).appendTo('#stuffTable tbody');
+        bindButtonView();
+        bindButtonEdit();
+        bindButtonDelete();
+    });
 
     /*
      * Lorsqu'on clique sur un element de la liste des categories d'equipement,
@@ -34,16 +44,17 @@ $(document).ready(function() {
                     bindButtonDelete();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if(data.nbEquipementEnPanne > 0){
+                    if (data.nbEquipementEnPanne > 0) {
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else{
+                    else {
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
                 }
             });
+
             $("#equipment_table").fadeIn("slow");
         });
 
@@ -105,17 +116,17 @@ $(document).ready(function() {
             data: newStuff,
             success: function(data) {
 
-                if(data.error !== false){
+                if (data.error !== false) {
                     $('#warning_message_add_equipement').text(data.error).show();
-                } else{
+                } else {
                     $('#success_message_add_equipement').show();
                 }
 
             }
         });
-        
+
         $(this).closest('form').find("input[type=text], textarea").val("");
-        
+
     });
 
     /*
@@ -174,7 +185,7 @@ $(document).ready(function() {
         $.each(data, function(typePanne, equipements) {
             $navTabsList = $("<li />");
             // On rend le premier onglet du tableau actif
-            if(firstLoop){
+            if (firstLoop) {
                 $navTabsList.attr("class", "active");
             }
 
@@ -203,9 +214,9 @@ $(document).ready(function() {
             });
 
             $tabHeader = $("<div />").attr("id", typePanne);
-            if(firstLoop){
+            if (firstLoop) {
                 $tabHeader.attr("class", "tab-pane fade active in");
-            } else{
+            } else {
                 $tabHeader.attr("class", "tab-pane fade");
             }
             $tabHeader
@@ -282,15 +293,15 @@ $(document).ready(function() {
 
                     passerEquipementEnMarche = false;
                     passerEquipementEnMaintenance = false;
-                    
+
                     $("#checkboxMaintenance").change(function() {
-                        if(data.etatFonctionnel === "En arret de maintenance"){ // Mettre en marche
+                        if (data.etatFonctionnel === "En arret de maintenance") { // Mettre en marche
                             passerEquipementEnMarche = $(this).is(':checked');
                             console.log("passerEquipementEnMarche " + passerEquipementEnMarche);
                             $("#checkboxMaintenance").data("marche", passerEquipementEnMarche);
                         }
 
-                        if(data.etatFonctionnel === "En marche"){ // Passer en arrêt de maintenance
+                        if (data.etatFonctionnel === "En marche") { // Passer en arrêt de maintenance
                             passerEquipementEnMaintenance = $(this).is(':checked');
                             console.log("passerEquipementEnMaintenance " + passerEquipementEnMaintenance);
                             $("#checkboxMaintenance").data("maintenance", passerEquipementEnMaintenance);
@@ -298,9 +309,9 @@ $(document).ready(function() {
 
                         $commentFormGroup = $("#commentFormGroup");
                         $("#comment").val("");
-                        if($(this).is(':checked')){
+                        if ($(this).is(':checked')) {
                             $commentFormGroup.show();
-                        } else{
+                        } else {
                             $commentFormGroup.hide();
                         }
                     });
@@ -327,19 +338,19 @@ $(document).ready(function() {
                 dataType: "json",
                 data: dataSerialize + "&idStuff=" + idStuff + "&passerEquipementEnMarche=" + passerEquipementEnMarche + "&passerEquipementEnMaintenance=" + passerEquipementEnMaintenance,
                 success: function(data) {
-                    if(data.comment !== "" || data.nom !== ""){ // Afficher les messages d'erreurs
+                    if (data.comment !== "" || data.nom !== "") { // Afficher les messages d'erreurs
                         $errorMsgPanel = $("#errorMsgPanel");
                         $errorMsgPanel.attr("class", "alert alert-danger").attr("role", "alert");
                         msgError = $("<ul />");
-                        if(data.comment !== ""){ // Champ commentaire non rempli alors qu'il le devrait
+                        if (data.comment !== "") { // Champ commentaire non rempli alors qu'il le devrait
                             msgError.append($("<li />").text(data.comment));
                         }
 
-                        if(data.nom !== ""){ // Champ nom non rempli
+                        if (data.nom !== "") { // Champ nom non rempli
                             msgError.append($("<li />").text(data.nom));
                         }
                         $errorMsgPanel.html(msgError);
-                    } else{
+                    } else {
                         $("#viewEditModal").modal("hide");
                     }
                 }
@@ -429,7 +440,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(data) {
                 var donutData = [];
-                for(var tmp in data){
+                for (var tmp in data) {
                     donutData[tmp] = {
                         label: data[tmp].libelle,
                         value: data[tmp].value

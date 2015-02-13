@@ -15,7 +15,7 @@
             <tbody>
 
             <script id="row_stuff_table_tmpl" type="text/x-jquery-tmpl">
-                {{if stuff.length!=0}}
+                {{if stuff !== undefined && stuff.length!=0}}
                     {{each(i,item) stuff}}
                         <tr>
                             <td>${ item.id }</td>
