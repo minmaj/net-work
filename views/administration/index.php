@@ -1,6 +1,9 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <a id="logo" class="navbar-brand home_link" href="#">NET-WORK</a>
+        <ul class="nav navbar-nav">
+            <li><a href="#">Accéder au synoptique</a></li>
+          </ul>
     </div>
     <!-- /.navbar-header -->
 
