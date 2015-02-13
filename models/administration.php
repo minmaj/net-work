@@ -119,7 +119,7 @@ class AdministrationModel extends BaseModel
             $equipementManager   = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
             $lastId              = $equipementManager->theHighestId();
-            $notification        = new Notification(1, time(), $lastId, 2, 0, "CREATE", 0, $newStuff["nom"]);
+            $notification        = new Notification(1, time(), $lastId, 2, 0, null "CREATE", 0, $newStuff["nom"]);
             $notificationManager = new NotificationManager($this->db);
             $notificationManager->insert($notification);
             return array("error" => false);
@@ -169,6 +169,11 @@ class AdministrationModel extends BaseModel
                         $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                         $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"],
                         $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
+                        
+                $notification        = new Notification(1, time(), $idStuff, 3, 0, "UPDATE", null 0, $newStuff["nom"]);
+                $notificationManager = new NotificationManager($this->db);
+                $notificationManager->insert($notification);
+                
                 $equipementManager->update($equipement);
             }
 
@@ -178,6 +183,19 @@ class AdministrationModel extends BaseModel
                             $idStuff, $newStuff["type"], $newStuff["nom"], $newStuff["fabriquant"], $newStuff["ad-physique"],
                             $newStuff["ad-ip"], $newStuff["prop"], $newStuff["localisation"], $newStuff["numero"],
                             $newStuff["technique"], $newStuff["fonctionnel"], $newStuff["comment"], $newStuff["parent"]);
+                    
+                    if($passerEquipementEnMarche) {
+                        $notification        = new Notification(1, time(), $idStuff, 6, 0, null, "REPAIRED", 0, $newStuff["nom"]);
+                        $notificationManager = new NotificationManager($this->db);
+                        $notificationManager->insert($notification);
+                    }
+                    
+                    if($passerEquipementEnMaintenance) {
+                        $notification        = new Notification(1, time(), $idStuff, 8, 0, null, "MAINTENANCE", 0, $newStuff["nom"]);
+                        $notificationManager = new NotificationManager($this->db);
+                        $notificationManager->insert($notification);
+                    }
+                    
                     $equipementManager->update($equipement);
                 } else {
                     $errorMessage["comment"] = "Vous devez inserer un commentaire.";
@@ -205,7 +223,7 @@ class AdministrationModel extends BaseModel
         $deletedId               = $equipementWillBeDeleted->getId();
         $stuffDeleted            = $equipementManager->deleteById($idStuff);
 
-        $notification        = new Notification(1, time(), $deletedId, 4, 0, "DELETE", 0, $deletedName);
+        $notification        = new Notification(1, time(), $deletedId, 4, 0, null, "DELETE", 0, $deletedName);
         $notificationManager = new NotificationManager($this->db);
         $notificationManager->insert($notification);
         return $stuffDeleted;

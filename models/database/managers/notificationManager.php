@@ -80,7 +80,7 @@ class NotificationManager {
             $results = $stmt->fetchAll();
             $notifications = array();
             foreach ($results as $rs) {
-                $notifications[] = new Notification($rs["ID"], $rs["DATE"], $rs["EQUIPID"], $rs["NOTIF_TYPE_ID"], $rs["NOTIF_READ"], $rs["LIBELLE"], $rs["NOTIF_NEGATIVE"], $rs["EQUIP_NOM"]);
+                $notifications[] = new Notification($rs["ID"], $rs["DATE"], $rs["EQUIPID"], $rs["NOTIF_TYPE_ID"], $rs["NOTIF_READ"], time_elapsed_string($rs["DATE"]), $rs["LIBELLE"], $rs["NOTIF_NEGATIVE"], $rs["EQUIP_NOM"]);
             }
             return $notifications;
         } catch (Exception $ex) {
