@@ -6,6 +6,8 @@ $(document).ready(function() {
 
     updateTypesList(); // defined in live-update.js
 
+    refreshNotifs();
+
     refreshStuffTable(function(data) {
         data = data[lastStuffVisited];
         var stuff = {stuff: data};
@@ -115,18 +117,20 @@ $(document).ready(function() {
             dataType: "json",
             data: newStuff,
             success: function(data) {
-
                 if (data.error !== false) {
                     $('#warning_message_add_equipement').text(data.error).show();
                 } else {
                     $('#success_message_add_equipement').show();
                 }
-
             }
         });
 
         $(this).closest('form').find("input[type=text], textarea").val("");
 
+    });
+
+    $('#form').submit(function(e) {
+        e.preventDefault();
     });
 
     /*

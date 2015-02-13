@@ -52,11 +52,11 @@ class SenderController extends BaseController {
         header('Cache-Control: no-cache');
         while (true) {
             echo "event: refreshNotif\n";
-            echo "retry:" . rand(5000, 10000) . "\n";
+            echo "retry:" . 5000 . "\n";
             echo 'data:' . json_encode($this->model->refreshNotif()) . "\n\n";
             ob_flush();
             flush();
-            sleep(1);
+            sleep(5);
         }
     }
 

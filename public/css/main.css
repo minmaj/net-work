@@ -46,6 +46,7 @@ hr {
 }
 
 .subNotif {
-    color:#990000;
-    font-weight:italic;
+    color:#6C6C5F;
+    font-style:italic;
+    margin-left: 20px;
 }
