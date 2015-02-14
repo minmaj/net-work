@@ -80,20 +80,30 @@ $etatTechniqueManager = new EtatTechniqueManager($db);
 $equipementTest1 = $equipementManager->find(58);
 $equipementTest2 = $equipementManager->find(60);
 $equipementTest3 = $equipementManager->find(62);
+$notificationManager = new NotificationManager($this->db);
 
 $equipementTest1->setEtatTechnique("Inconnu");
+$notification = new Notification(1, time(), $equipementTest1.getId(), 7, 0, null, "UNKNOWN", 0, $equipementTest1.getNom());
+$notificationManager->insert($notification);
 $equipementManager->update($equipementTest1);
 
 sleep(10);
 
 $equipementTest2->setEtatTechnique("En panne majeure");
-$equipementTest2->setEtatFonctionnel("En arret de maintenance");
+$notification = new Notification(1, time(), $equipementTest2.getId(), 5, 0, null, "MAJOR", 0, $equipementTest2.getNom());
+$notificationManager->insert($notification);
 $equipementManager->update($equipementTest2);
 
 sleep(10);
 
-$equipementTest1->setEtatTechnique("Fonctionnel");
+$equipementTest1->setEtatTechnique("En panne mineure");
+$notification = new Notification(1, time(), $equipementTest1.getId(), 1, 0, null, "MINOR", 0, $equipementTest1.getNom());
+$notificationManager->insert($notification);
 $equipementManager->update($equipementTest1);
-$equipementTest3->setEtatFonctionnel("Eteint");
-$equipementManager->update($equipementTest3);
 
+sleep(10);
+
+$equipementTest1->setEtatTechnique("Fonctionnel");
+$notification = new Notification(1, time(), $equipementTest1.getId(), 6, 0, null, "REPAIRED", 0, $equipementTest1.getNom());
+$notificationManager->insert($notification);
+$equipementManager->update($equipementTest1);

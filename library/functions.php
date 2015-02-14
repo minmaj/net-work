@@ -87,6 +87,10 @@ function time_elapsed_string($ptime)
     if ($etime < 1)
     {
         return '0 seconds';
+    } elseif ($etime < 30) {
+        return 'freshly created';
+    } elseif ($etime > 30 && $etime < 60) {
+        return 'less than 1 minute';
     }
 
     $a = array( 365 * 24 * 60 * 60  =>  'year',
