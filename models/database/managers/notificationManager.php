@@ -74,7 +74,8 @@ class NotificationManager {
         try {
             $sql = "SELECT NOTIF_ID AS ID, NOTIF_DATE AS DATE, NOTIF_EQUIP_ID AS EQUIPID, NOTIF_READ, NOTIF_TYPE_ID, TYPE_NOTIF_LIBELLE AS LIBELLE, NOTIF_NEGATIVE, EQUIP_NOM
                     FROM NOTIFICATION
-                    WHERE NOTIF_READ = 0";
+                    WHERE NOTIF_READ = 0
+                    ORDER BY DATE DESC";
             $stmt = $this->db->query($sql);
             $stmt->execute();
             $results = $stmt->fetchAll();

@@ -11,14 +11,20 @@ class SenderModel extends BaseModel {
     public function getCountStuff() {
         $equipementManager = new EquipementManager($this->db);
         $typeEquipements = $equipementManager->countEquipementByType();
-        
+
         return convertObjectListToArray($typeEquipements);
     }
-    
+
+    public function getStuffTable() {
+        $equipementManager = new EquipementManager($this->db);
+        $stuff = $equipementManager->findAll(true);
+        return $stuff;
+    }
+
     public function refreshNotif() {
         $notificationManager = new NotificationManager($this->db);
         $notifList = $notificationManager->findAllWithType();
-    
+
         return convertObjectListToArray($notifList);
     }
 
