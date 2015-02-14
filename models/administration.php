@@ -49,26 +49,6 @@ class AdministrationModel extends BaseModel {
         }
     }
 
-    /**
-     * Récupère les équipements en panne
-     * @return TypeEquipement
-     */
-    public function showFailureStuff() {
-        $equipementManager = new EquipementManager($this->db);
-        $panneMineure = new EtatTechnique("En panne mineure");
-        $panneMajeure = new EtatTechnique("En panne majeure");
-        //$panneCritique     = new EtatTechnique("En panne critique");
-
-        $equipementEnPanneMineure = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
-        $equipementEnPanneMajeure = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
-        //$equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
-
-        return array(
-            "mineure" => $equipementEnPanneMineure,
-            "majeure" => $equipementEnPanneMajeure
-                //"critique" => $equipementEnPanneCritique
-        );
-    }
 
     public function donutData() {
         $etatTechniqueManager = new etatTechniqueManager($this->db);
@@ -109,7 +89,7 @@ class AdministrationModel extends BaseModel {
             $equipementManager = new EquipementManager($this->db);
             $equipementManager->insert($equipement);
             $lastId = $equipementManager->theHighestId();
-            $notification = new Notification(1, time(), $lastId, 2, 0, null, "CREATE", 0, $newStuff["nom"]);
+            $notification = new Notification(1, time(), $lastId->getLastId(), 2, 0, null, "CREATE", 0, $newStuff["nom"]);
             $notificationManager = new NotificationManager($this->db);
             $notificationManager->insert($notification);
             return array("error" => false);

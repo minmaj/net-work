@@ -1,7 +1,7 @@
 <div id="form" class="dynamic_content" style="display: none;">
     
     <div id="warning_message_add_equipement" class="alert alert-danger" role="alert" style="display: none"></div>
-    <div id="success_message_add_equipement" class="success alert-success" style="display: none">Ajout d'équipement réussi !</div>
+    <div id="success_message_add_equipement" class="alert alert-success" role="success" style="display: none">Ajout d'équipement réussi !</div>
 
     <!-- Formulaire d'ajout -->
     <div class="panel panel-primary">
@@ -79,7 +79,7 @@
                 </div>
                 <div style='margin-top: 20px;' class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-8">
-                        <button id="formAddButtonStuff" type="submit" class="btn btn-default">
+                        <button id="formAddButtonStuff" type="button" class="btn btn-default">
                             <i class="fa fa-plus"></i> Ajouter
                         </button>
                         <button id="backStuffButton" type="button" class="btn btn-primary" >

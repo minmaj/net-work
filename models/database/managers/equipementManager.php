@@ -123,9 +123,8 @@ class EquipementManager {
                 foreach ($rs as $equipement) {
                     $equipements[] = new Equipement($equipement["EQUIPEMENT_ID"], $equipement["TYPE"], $equipement["NOM"], $equipement["FABRIQUANT"], $equipement["ADRESSE_PHYSIQUE"], $equipement["ADRESSE_IP"], $equipement["PROPRIETAIRE"], $equipement["LOCALISATION"], $equipement["NUMERO_SUPPORT"], $equipement["ETAT_TECHNIQUE"], $equipement["ETAT_FONCTIONNEL"], $equipement["COMMENT"], $equipement["PARENT"]);
                 }
-                
             } else {
-                
+
                 foreach ($rs as $equipement) {
                     $equipements[$equipement["TYPE"]][] = convertObjectToArray(new Equipement($equipement["EQUIPEMENT_ID"], $equipement["TYPE"], $equipement["NOM"], $equipement["FABRIQUANT"], $equipement["ADRESSE_PHYSIQUE"], $equipement["ADRESSE_IP"], $equipement["PROPRIETAIRE"], $equipement["LOCALISATION"], $equipement["NUMERO_SUPPORT"], $equipement["ETAT_TECHNIQUE"], $equipement["ETAT_FONCTIONNEL"], $equipement["COMMENT"], $equipement["PARENT"]));
                 }
@@ -213,11 +212,8 @@ class EquipementManager {
             $stmt = $this->db->query($sql);
             $stmt->execute();
 
-            $rs = $stmt->fetchAll();
-            $types = array();
-            foreach ($rs as $equip) {
-                $high[] = new HighestEquipement($equip["highest"]);
-            }
+            $rs = $stmt->fetch();
+            $high = new HighestEquipement($rs["highest"]);
             return $high;
         } catch (Exception $ex) {
             exit('<div class="alert alert-danger" role="alert"><b>Catched exception at line '

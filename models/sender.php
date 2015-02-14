@@ -8,6 +8,22 @@ class SenderModel extends BaseModel {
         return $this->viewModel;
     }
 
+    public function refreshFailureStuff() {
+        $equipementManager = new EquipementManager($this->db);
+        $panneMineure = new EtatTechnique("En panne mineure");
+        $panneMajeure = new EtatTechnique("En panne majeure");
+        //$panneCritique     = new EtatTechnique("En panne critique");
+
+        $equipementEnPanneMineure = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMineure));
+        $equipementEnPanneMajeure = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneMajeure));
+        //$equipementEnPanneCritique = convertObjectListToArray($equipementManager->findEquipementByEtatTechnique($panneCritique));
+
+        return array(
+            "mineure" => $equipementEnPanneMineure,
+            "majeure" => $equipementEnPanneMajeure
+        );
+    }
+
     public function getCountStuff() {
         $equipementManager = new EquipementManager($this->db);
         $typeEquipements = $equipementManager->countEquipementByType();

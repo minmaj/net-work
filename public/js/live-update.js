@@ -1,3 +1,23 @@
+function refreshFailureStuff() {
+    if (typeof (EventSource) !== "undefined") {
+        var eSource = new EventSource("sender/refreshFailureStuff");
+        eSource.addEventListener("refreshFailureStuff", function(event) {
+            var data = JSON.parse(event.data);
+            $("#default_content table[data-failtype]").each(function(i, item) {
+                $(this).find("tbody tr").remove();
+                var failtype = $(this).attr("data-failtype");
+                for (var i in data[failtype]) {
+                    var stuff = '<tr><td>' + data[failtype][i].id + '</td><td>' + data[failtype][i].nom + '</td><td>' + data[failtype][i].type + '</td><td>' + data[failtype][i].etatFonctionnel + '</td></tr>';
+                    $(this).find("tbody").append(stuff);
+                }
+            });
+        });
+    }
+    else {
+        alert("Whoops! Your browser doesn't receive server-sent events.");
+    }
+}
+
 function updateTypesList() {
     if (typeof (EventSource) !== "undefined") {
         var eSource = new EventSource("sender/stuffCountBadges");

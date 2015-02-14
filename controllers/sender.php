@@ -21,6 +21,19 @@ class SenderController extends BaseController {
         
     }
 
+    protected function refreshFailureStuff() {
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+        while (true) {
+            echo "event: refreshFailureStuff\n";
+            echo "retry:" . rand(5000, 10000) . "\n";
+            echo 'data:' . json_encode($this->model->refreshFailureStuff()) . "\n\n";
+            ob_flush();
+            flush();
+            sleep(3);
+        }
+    }
+
     protected function stuffCountBadges() {
         header('Content-Type: text/event-stream');
         header('Cache-Control: no-cache');
