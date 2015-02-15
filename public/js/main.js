@@ -19,7 +19,7 @@ $(document).ready(function() {
         bindButtonEdit();
         bindButtonDelete();
     });
-    
+
     function bindSimulationButton(e) {
         e.preventDefault();
         $("#run_simulation").unbind("click");
@@ -37,7 +37,7 @@ $(document).ready(function() {
             }
         });
     }
-    
+
     $("#run_simulation").click(bindSimulationButton);
 
 
@@ -69,11 +69,11 @@ $(document).ready(function() {
                     bindButtonDelete();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if (data.nbEquipementEnPanne > 0) {
+                    if(data.nbEquipementEnPanne > 0){
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else {
+                    else{
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
@@ -140,9 +140,9 @@ $(document).ready(function() {
             dataType: "json",
             data: newStuff,
             success: function(data) {
-                if (data.error !== false) {
+                if(data.error !== false){
                     $('#warning_message_add_equipement').text(data.error).show();
-                } else {
+                } else{
                     $('#success_message_add_equipement').show();
                 }
             }
@@ -246,23 +246,21 @@ $(document).ready(function() {
                     passerEquipementEnMaintenance = false;
 
                     $("#checkboxMaintenance").change(function() {
-                        if (data.etatFonctionnel === "En arret de maintenance") { // Mettre en marche
+                        if(data.etatFonctionnel === "En arret de maintenance"){ // Mettre en marche
                             passerEquipementEnMarche = $(this).is(':checked');
-                            //console.log("passerEquipementEnMarche " + passerEquipementEnMarche);
+                            console.log("passerEquipementEnMarche " + passerEquipementEnMarche);
                             $("#checkboxMaintenance").data("marche", passerEquipementEnMarche);
-                        }
-
-                        if (data.etatFonctionnel === "En marche") { // Passer en arrêt de maintenance
+                        } else{ // Passer en arrêt de maintenance
                             passerEquipementEnMaintenance = $(this).is(':checked');
-                            //console.log("passerEquipementEnMaintenance " + passerEquipementEnMaintenance);
+                            console.log("passerEquipementEnMaintenance " + passerEquipementEnMaintenance);
                             $("#checkboxMaintenance").data("maintenance", passerEquipementEnMaintenance);
                         }
 
                         $commentFormGroup = $("#commentFormGroup");
                         $("#comment").val("");
-                        if ($(this).is(':checked')) {
+                        if($(this).is(':checked')){
                             $commentFormGroup.show();
-                        } else {
+                        } else{
                             $commentFormGroup.hide();
                         }
                     });
@@ -275,6 +273,7 @@ $(document).ready(function() {
     function bindConfirmEditButton(idStuff, passerEquipementEnMarche, passerEquipementEnMaintenance) {
         $('form#edit-form').on('submit', function(e) {
             e.preventDefault();
+            console.log("ok");
 
             var disabled = $(this).find(':input:disabled').removeAttr('disabled');
             var dataSerialize = $(this).serialize();
@@ -290,21 +289,24 @@ $(document).ready(function() {
                 data: dataSerialize + "&idStuff=" + idStuff + "&passerEquipementEnMarche=" + passerEquipementEnMarche + "&passerEquipementEnMaintenance=" + passerEquipementEnMaintenance,
                 success: function(data) {
                     console.log("data : " + data);
-                    if (data.comment !== "" || data.nom !== "") { // Afficher les messages d'erreurs
+                    if(data.comment !== "" || data.nom !== ""){ // Afficher les messages d'erreurs
                         $errorMsgPanel = $("#errorMsgPanel");
                         $errorMsgPanel.attr("class", "alert alert-danger").attr("role", "alert");
                         msgError = $("<ul />");
-                        if (data.comment !== "") { // Champ commentaire non rempli alors qu'il le devrait
+                        if(data.comment !== ""){ // Champ commentaire non rempli alors qu'il le devrait
                             msgError.append($("<li />").text(data.comment));
                         }
 
-                        if (data.nom !== "") { // Champ nom non rempli
+                        if(data.nom !== ""){ // Champ nom non rempli
                             msgError.append($("<li />").text(data.nom));
                         }
                         $errorMsgPanel.html(msgError);
-                    } else {
+                    } else{
                         $("#viewEditModal").modal("hide");
                     }
+                },
+                error: function(resultat, statut, erreur) {
+                    console.log(resultat.comment + " - " + resultat.nom + " - " + statut + " - " + erreur);
                 }
             });
         });

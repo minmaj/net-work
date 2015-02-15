@@ -3,7 +3,6 @@
   <head>
     <link rel="stylesheet" href="public/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="public/css/vendor/sb-admin-2.css">
-    <link rel="stylesheet" href="public/css/vendor/metisMenu.min.css"> 
     <link rel="stylesheet" href="public/css/vendor/font-awesome-4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="public/css/vendor/morris.css">
     <link rel="stylesheet" href="public/css/main.css">
