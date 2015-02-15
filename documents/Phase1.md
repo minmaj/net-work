@@ -34,7 +34,7 @@ Nous avons utilisé ce thème bootstrap afin de concevoir la partie graphique de
 >Javascript est utilisé à la fois pour dynamiser le source HTML/CSS mais aussi pour communiquer avec le serveur
 >(requêtes AJAX) , ainsi le dynamisme n'est pas uniquement lié à la représentation graphique mais également au contenu
 >chargé ou changé dynamiquement. 
-O. ARGUIMBAU
+**O. ARGUIMBAU**
 
 ##### 1.2.2.1. Bibliothèques et plugins utilisés
 ######[jQuery (version 2.1.3)](http://jquery.com/)
@@ -56,18 +56,18 @@ jQuery template permet de créer facilement une page HTML avec du contenu dynami
 L'utilisation d'un système de gestion de version permet de versionner le code de notre application et de créer des branches de développements. Ainsi, chaque membre de l'équipe peut travailler sur une fonctionnalité sans gêner les autres. A tout moment, nous pouvons consulter l'historique des modifications du code et savoir ce que les personnes ont fait. Le dépôt du projet est hébergé sur Github à l'adresse suivante : https://github.com/minmaj/net-work.
 
 ##2. Estimation des délais
-|                                    | Durée (jour)     |
-| ---------------------------------- | :--------------: |
-| **Phase 1**                        |                  |
-| Sélection des technologies         | 1/2              |
-| **Phase 2**                        |                  |
-| Conception de la base de données   | 1                |
-| Réalisation des mockups            | 1                |
-| **Phase 3**                        |                  |
-| Réalisation de l'application       | 3                |
-| Tests                              | 1/2              |
-| Déploiement                        | 1/2              |
-| **Total**                          | **6.5**          |
+|                                    | Durée prévisionnelle (jour)     | Durée effective (jour) |
+| ---------------------------------- | :--------------: | :---: |
+| **Phase 1**                        |                  | |
+| Sélection des technologies         | 1/2              | 1/2 |
+| **Phase 2**                        |                  | |
+| Conception de la base de données   | 1                | 1 |
+| Réalisation des mockups            | 1                | 1/2 |
+| **Phase 3**                        |                  | |
+| Réalisation de l'application       | 3                | 5 |
+| Tests                              | 1/2              | - |
+| Déploiement                        | 1/2              | 1/2 |
+| **Total**                          | **6.5**          | **7.5** |
 
 
 
