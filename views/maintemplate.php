@@ -18,8 +18,6 @@
     <script src="public/js/vendor/jquery-2.1.3.min.js"></script>
     <script src="public/js/vendor/bootstrap.min.js"></script>
     <script src="public/js/vendor/sb-admin-2.js"></script>
-    <script src="public/js/vendor/metisMenu.min.js"></script>
-    <script src="public/js/vendor/jquery.tablesorter.js"></script>
     <script src="public/js/vendor/morris.min.js"></script>
     <script src="public/js/vendor/raphael-min.js"></script>
     <script src="public/js/vendor/jquery.tmpl.min.js"></script>

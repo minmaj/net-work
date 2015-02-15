@@ -19,27 +19,35 @@ Apache est un serveur gratuit, open source et très populaire. Il est très souv
 ###1.2. Front-end
 ####1.2.1. HTML5 / CSS3
 Le HTML5 est utilisé afin de structurer les pages de notre application.
-Concernant le design, nous avons décidé d'utiliser Bootstrap qui est un framework CSS. Il est simple d'utilisation et facile à prendre à main. Il a pour avantages d'être responsive design et permet de disposer les éléments facilement avec une grille. 
+Concernant le design, nous avons décidé d'utiliser Bootstrap 3 qui est un framework CSS (http://getbootstrap.com/). Il est simple d'utilisation et facile à prendre à main. Il a pour avantages d'être responsive design et permet de disposer les éléments facilement avec une grille. 
 
 ####1.2.2. Javascript
 Le Javascript est un langage de programmation de scripts utilisé afin de rendre les pages web interactives. 
 
 ##### 1.2.2.1. Bibliothèques et plugins utilisés
-**jQuery**
+######jQuery (v. 2.1.3)
 La bibliothèque jQuery permet de simplifier les commandes communes de JavaScript. L’une des forces de ce langage est de construire des applications web dynamiques notamment graâce à l’AJAX (Asynchronous Javascript and XML). Ainsi, ce dynamisme évite le rechargement de page et apporte un meilleur confort d’utilisation.
 http://jquery.com/
-**bootstrap.js**
+
+######bootstrap.js
 http://getbootstrap.com/
 A compléter
-**sb-admin-2.js**
+
+######sb-admin-2.js
 https://github.com/IronSummitMedia/startbootstrap-sb-admin-2
 A compléter
-**metisMenu.js**
-https://github.com/onokumus/metisMenu
-A compléter
+
+######morris.js
+http://morrisjs.github.io/morris.js/donuts.html
+
+######raphael.js
+http://raphaeljs.com/
+
+######jquery-tmpl.js
+https://github.com/BorisMoore/jquery-tmpl
 
 ###1.4. Gestion de versions - Git
-L'utilisation d'un système de gestion de version permet de versionner le code de notre application et de créer des branches de développements. Ainsi, chaque membre de l'équipe peut travailler sur une fonctionnalité sans gêner les autres. A tout moment, nous pouvons consulter l'historique des modifications du code et savoir qui a fait quoi. Le dépôt du projet est hébergé sur Github à l'adresse suivante : https://github.com/minmaj/net-work.
+L'utilisation d'un système de gestion de version permet de versionner le code de notre application et de créer des branches de développements. Ainsi, chaque membre de l'équipe peut travailler sur une fonctionnalité sans gêner les autres. A tout moment, nous pouvons consulter l'historique des modifications du code et savoir ce que les personnes ont fait. Le dépôt du projet est hébergé sur Github à l'adresse suivante : https://github.com/minmaj/net-work.
 
 ##2. Estimation des délais
 |                                    | Durée (jour)     |

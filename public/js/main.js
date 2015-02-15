@@ -174,8 +174,6 @@ $(document).ready(function() {
 
     $(".home_link").click(on_click_home_link);
 
-    $("#stuffTable").tablesorter();
-
     function bindButtonView() {
         $(".buttonView").click(function(e) {
             e.preventDefault();
@@ -270,6 +268,7 @@ $(document).ready(function() {
                 dataType: "json",
                 data: dataSerialize + "&idStuff=" + idStuff + "&passerEquipementEnMarche=" + passerEquipementEnMarche + "&passerEquipementEnMaintenance=" + passerEquipementEnMaintenance,
                 success: function(data) {
+                    console.log("data : " + data);
                     if (data.comment !== "" || data.nom !== "") { // Afficher les messages d'erreurs
                         $errorMsgPanel = $("#errorMsgPanel");
                         $errorMsgPanel.attr("class", "alert alert-danger").attr("role", "alert");
