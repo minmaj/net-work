@@ -49,14 +49,6 @@ class AdministrationModel extends BaseModel {
         }
     }
 
-
-    public function donutData() {
-        $etatTechniqueManager = new etatTechniqueManager($this->db);
-        $equipementByTechnicalStatus = $etatTechniqueManager->countEquipementByEtatTechnique();
-
-        return convertObjectListToArray($equipementByTechnicalStatus);
-    }
-
     public function detailsData() {
         $idStuff = isset($_POST["idStuff"]) ? $_POST["idStuff"] : false;
         $equipementManager = new EquipementManager($this->db);

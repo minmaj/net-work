@@ -61,3 +61,28 @@ function refreshNotifs() {
     }
 }
 
+function refreshDonutsDataArray() {
+    if (typeof (EventSource) !== "undefined") {
+        var eSource = new EventSource("sender/donutData");
+        eSource.addEventListener("donutData", function(event) {
+            $("#morris-donut-chart").html("");
+            var data = JSON.parse(event.data);
+            var donutData = [];
+            for (var tmp in data) {
+                donutData[tmp] = {
+                    label: data[tmp].libelle,
+                    value: data[tmp].value
+                };
+            }
+            Morris.Donut({
+                element: 'morris-donut-chart',
+                data: donutData,
+                colors: ['#6600CC', '#FF3300', '#FFCC00', '#61B329']
+            });
+        });
+    }
+    else {
+        alert("Whoops! Your browser doesn't receive server-sent events.");
+    }
+}
+

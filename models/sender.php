@@ -44,4 +44,11 @@ class SenderModel extends BaseModel {
         return convertObjectListToArray($notifList);
     }
 
+    public function donutData() {
+        $etatTechniqueManager = new etatTechniqueManager($this->db);
+        $equipementByTechnicalStatus = $etatTechniqueManager->countEquipementByEtatTechnique();
+
+        return convertObjectListToArray($equipementByTechnicalStatus);
+    }
+
 }

@@ -73,4 +73,17 @@ class SenderController extends BaseController {
         }
     }
 
+    public function donutData() {
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+        while (true) {
+            echo "event: donutData\n";
+            echo "retry:" . 5000 . "\n";
+            echo 'data:' . json_encode($this->model->donutData()) . "\n\n";
+            ob_flush();
+            flush();
+            sleep(6);
+        }
+    }
+
 }

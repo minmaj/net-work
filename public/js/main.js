@@ -7,8 +7,8 @@ $(document).ready(function() {
     refreshFailureStuff();
     updateTypesList(); // defined in live-update.js
     useSynoptique();
-
     refreshNotifs();
+    refreshDonutsDataArray();
 
     refreshStuffTable(function(data) {
         data = data[lastStuffVisited];
@@ -354,32 +354,5 @@ $(document).ready(function() {
         });
     });
 
-
-    getDonutDataArray();
-
-    /*
-     *  TODO COMMENTAIRE
-     */
-    function getDonutDataArray() {
-        $.ajax({
-            url: "administration/donutData",
-            type: 'POST',
-            dataType: "json",
-            success: function(data) {
-                var donutData = [];
-                for (var tmp in data) {
-                    donutData[tmp] = {
-                        label: data[tmp].libelle,
-                        value: data[tmp].value
-                    };
-                }
-                Morris.Donut({
-                    element: 'morris-donut-chart',
-                    data: donutData,
-                    colors: ['#6600CC', '#FF3300', '#FFCC00', '#61B329']
-                });
-            }
-        });
-    }
 });
 
