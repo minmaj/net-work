@@ -7,8 +7,6 @@
     </div>
     <!-- /.navbar-header -->
 
-    <?php require (__DIR__ . '/components/navbar_top.php') ?>
-
     <?php require (__DIR__ . '/components/equipment_list.php') ?>
 
     <!-- /.navbar-static-side -->
