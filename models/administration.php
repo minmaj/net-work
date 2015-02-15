@@ -199,5 +199,10 @@ class AdministrationModel extends BaseModel {
 
         return $updateRead;
     }
+    
+    public function launchSimulation() {
+        require_once("models/database/testDB.php");
+        return testDB();
+    }
 
 }

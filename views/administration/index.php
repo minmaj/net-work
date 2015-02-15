@@ -3,11 +3,17 @@
         <a id="logo" class="navbar-brand home_link" href="#">NET-WORK</a>
         <ul class="nav navbar-nav">
             <li><a id="synoptique" href="#">Accéder au synoptique</a></li>
-          </ul>
+        </ul>
     </div>
+    <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown">
+            <a id="run_simulation" class="dropdown-toggle" href="#">
+                <span id="default_simulation_msg">Lancer une simulation <i class="fa fa-play fa-fw"></i></span>
+                <span id="running_simulation_msg" style="display: none;">Simulation en cours...</span>
+            </a>
+        </li>
+    </ul>
     <!-- /.navbar-header -->
-
-    <?php require (__DIR__ . '/components/navbar_top.php') ?>
 
     <?php require (__DIR__ . '/components/equipment_list.php') ?>
 
@@ -39,21 +45,21 @@
                 <div class="col-lg-8">
 
                     <div id="main_content">
-                        
+
                         <h1 id="title_content" class="page-header">Dashboard</h1>
 
                         <?php require (__DIR__ . '/content/default_content.php') ?>
 
                         <?php require (__DIR__ . '/content/equipment_table.php') ?>
-                        
+
                         <?php require (__DIR__ . '/content/synoptique_content.php') ?>
-                        
+
                         <?php require (__DIR__ . '/content/form.php') ?>
-                        
+
                         <?php require (__DIR__ . '/components/modal_detail.php') ?>
-                        
+
                         <?php require (__DIR__ . '/components/modal_edit.php') ?>
-                        
+
                         <?php require (__DIR__ . '/components/modal_delete.php') ?>
 
                     </div>
