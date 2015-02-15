@@ -25,13 +25,16 @@ Le HTML5 est utilisé afin de structurer les pages de notre application.
 Concernant le design, nous avons décidé d'utiliser Bootstrap 3 qui est un framework CSS . Il est simple d'utilisation et facile à prendre à main. Il a pour avantages d'être responsive design et permet de disposer les éléments facilement avec une grille. 
 
 ###### [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
-Font Awesome est une bibliothèque contenant plusieurs icônes vectorielles permettant de styliser notre application.
+Font Awesome est une bibliothèque contenant plusieurs icônes vectorielles permettant d'illustrer certains éléments de notre application.
 
 ###### [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/)
-Nous avons utilisé ce thème bootstrap afin de concevoir la partie graphique de l'application.
+Nous avons utilisé ce thème bootstrap afin de concevoir la partie graphique de l'application. Il nous permet à l'aide de mots-clés dans l'attribut class de nos éléments d'obtenir des paramètres de styles qui donnent un aspect élégant à l'application.
 
 ####1.2.2. Javascript
-Le Javascript est un langage de programmation de scripts utilisé afin de rendre les pages web interactives. 
+>Javascript est utilisé à la fois pour dynamiser le source HTML/CSS mais aussi pour communiquer avec le serveur
+>(requêtes AJAX) , ainsi le dynamisme n'est pas uniquement lié à la représentation graphique mais également au contenu
+>chargé ou changé dynamiquement. 
+O. ARGUIMBAU
 
 ##### 1.2.2.1. Bibliothèques et plugins utilisés
 ######[jQuery (version 2.1.3)](http://jquery.com/)
@@ -41,10 +44,10 @@ La bibliothèque jQuery permet de simplifier les commandes communes de JavaScrip
 Afin d'utiliser le thème SB Admin 2, nous avons du importer les fonctionnalités javascript de Bootstrap.
 
 ######[morris.js](http://morrisjs.github.io/morris.js/donuts.html)
-Morris.js nous a permis d'utiliser le donut présent dans l'application.
+Morris.js permet à son utilisateur à l'aide d'une dataSource en json d'obtenir des représentations graphiques avancées (graphiques, outils de statistiques). Il nous a permis dans le cas présent de génerer un diagramme "donut" pour représenter l'état du parc d'équipement.
 
 ######[raphael.js](http://raphaeljs.com/)
-Pour utiliser Morris.js il a fallu rajouter la bibliothèque raphael.js.
+raphael.js est un prérequis à l'utilisation de morris.js. C'est une librairie JavaScript qui simplifie le travail avec des vecteurs graphiques en web.
 
 ######[jquery-tmpl.js](https://github.com/BorisMoore/jquery-tmpl)
 jQuery template permet de créer facilement une page HTML avec du contenu dynamique.
