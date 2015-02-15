@@ -4,7 +4,7 @@
 ####1.1.1. PHP 5.6
 Le langage de script PHP a l'avantage d'être simple et souple. Sa communauté de développeur est importante et sa documentation est très détaillée. Son typage est dit "faible", c'est à dire que l'on ne déclare pas le type des variables. Cependant, la permissivité du langage peut rendre très rapidemment le code de l'application déstructuré et incompréhensible. Il est donc impératif d'être rigoureux dans notre manière de développer. Sa simplicité d'utilisation et l'expérience des membres de l'équipe concernant cette technologie font que nous avons décidé de choisir ce langage.
 
-Nous avons choisi d'utiliser un framework PHP MVC (https://github.com/ndavison/Nathan-MVC). Ce framework est assez simple d'utilisation et permet de structurer notre application. Le but du projet est de principalement utiliser du JavaScript. Nous avons donc préférés prendre une solution existante pour le backend afin de nous consacrer plus particlièrement à l'aspect frond-end du site.
+Nous avons choisi d'utiliser un framework PHP MVC : [Nathan MVC](https://github.com/ndavison/Nathan-MVC). Il est assez simple d'utilisation et permet de structurer notre application. Le but du projet est de principalement utiliser du JavaScript. Nous avons donc préférés prendre une solution existante pour le backend afin de nous consacrer plus particlièrement à l'aspect frond-end du site.
 
 L'architecture MVC permet de :
 - Séparer le traitement des données et leur affichage.
@@ -19,32 +19,35 @@ Apache est un serveur gratuit, open source et très populaire. Il est très souv
 ###1.2. Front-end
 ####1.2.1. HTML5 / CSS3
 Le HTML5 est utilisé afin de structurer les pages de notre application.
-Concernant le design, nous avons décidé d'utiliser Bootstrap 3 qui est un framework CSS (http://getbootstrap.com/). Il est simple d'utilisation et facile à prendre à main. Il a pour avantages d'être responsive design et permet de disposer les éléments facilement avec une grille. 
+
+#####1.2.1.1. Bibliothèques et plugins utilisés
+######[Bootstrap 3 ](http://getbootstrap.com/)
+Concernant le design, nous avons décidé d'utiliser Bootstrap 3 qui est un framework CSS . Il est simple d'utilisation et facile à prendre à main. Il a pour avantages d'être responsive design et permet de disposer les éléments facilement avec une grille. 
+
+###### [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+Font Awesome est une bibliothèque contenant plusieurs icônes vectorielles permettant de styliser notre application.
+
+###### [SB Admin 2](http://startbootstrap.com/template-overviews/sb-admin-2/)
+Nous avons utilisé ce thème bootstrap afin de concevoir la partie graphique de l'application.
 
 ####1.2.2. Javascript
 Le Javascript est un langage de programmation de scripts utilisé afin de rendre les pages web interactives. 
 
 ##### 1.2.2.1. Bibliothèques et plugins utilisés
-######jQuery (v. 2.1.3)
+######[jQuery (version 2.1.3)](http://jquery.com/)
 La bibliothèque jQuery permet de simplifier les commandes communes de JavaScript. L’une des forces de ce langage est de construire des applications web dynamiques notamment graâce à l’AJAX (Asynchronous Javascript and XML). Ainsi, ce dynamisme évite le rechargement de page et apporte un meilleur confort d’utilisation.
-http://jquery.com/
 
-######bootstrap.js
-http://getbootstrap.com/
-A compléter
+######[bootstrap.js](http://getbootstrap.com/)
+Afin d'utiliser le thème SB Admin 2, nous avons du importer les fonctionnalités javascript de Bootstrap.
 
-######sb-admin-2.js
-https://github.com/IronSummitMedia/startbootstrap-sb-admin-2
-A compléter
+######[morris.js](http://morrisjs.github.io/morris.js/donuts.html)
+Morris.js nous a permis d'utiliser le donut présent dans l'application.
 
-######morris.js
-http://morrisjs.github.io/morris.js/donuts.html
+######[raphael.js](http://raphaeljs.com/)
+Pour utiliser Morris.js il a fallu rajouter la bibliothèque raphael.js.
 
-######raphael.js
-http://raphaeljs.com/
-
-######jquery-tmpl.js
-https://github.com/BorisMoore/jquery-tmpl
+######[jquery-tmpl.js](https://github.com/BorisMoore/jquery-tmpl)
+jQuery template permet de créer facilement une page HTML avec du contenu dynamique.
 
 ###1.4. Gestion de versions - Git
 L'utilisation d'un système de gestion de version permet de versionner le code de notre application et de créer des branches de développements. Ainsi, chaque membre de l'équipe peut travailler sur une fonctionnalité sans gêner les autres. A tout moment, nous pouvons consulter l'historique des modifications du code et savoir ce que les personnes ont fait. Le dépôt du projet est hébergé sur Github à l'adresse suivante : https://github.com/minmaj/net-work.
