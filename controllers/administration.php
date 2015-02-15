@@ -66,5 +66,9 @@ class AdministrationController extends BaseController
         // Réponse à la requête AJAX
         echo json_encode($this->model->updateRead());
     }
+    
+    protected function launchSimulation() {
+        echo json_encode($this->model->launchSimulation());
+    }
 
 }

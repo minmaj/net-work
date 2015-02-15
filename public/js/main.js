@@ -19,6 +19,27 @@ $(document).ready(function() {
         bindButtonEdit();
         bindButtonDelete();
     });
+    
+    function bindSimulationButton(e) {
+        e.preventDefault();
+        $("#run_simulation").unbind("click");
+        $("#default_simulation_msg").hide();
+        $("#running_simulation_msg").show();
+        $.ajax({
+            url: "administration/launchSimulation",
+            type: 'GET',
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                $("#run_simulation").click(bindSimulationButton);
+                $("#default_simulation_msg").show();
+                $("#running_simulation_msg").hide();
+            }
+        });
+    }
+    
+    $("#run_simulation").click(bindSimulationButton);
+
 
     /*
      * Lorsqu'on clique sur un element de la liste des categories d'equipement,
