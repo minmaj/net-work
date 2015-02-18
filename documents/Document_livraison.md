@@ -15,6 +15,8 @@ L'application est capable :
 - d'obliger la saisie d'un commentaire lorsque l'on met l'équipement en "arrêt de maintenance" ou "en marche".
 - d'activer un mode simulation pour tester l'application (update dans la base de données)
 
+Détailler ce que fait la simulation
+
 ##2. Procédure d'installation
 ### 2.1. Pré-requis
 PHP 5.*
