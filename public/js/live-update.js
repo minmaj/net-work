@@ -50,7 +50,7 @@ function refreshNotifs() {
     if (typeof (EventSource) !== "undefined") {
         var eSource = new EventSource("sender/notifRefresh");
         eSource.addEventListener("refreshNotif", function(event) {
-            data = JSON.parse(event.data);
+            var data = JSON.parse(event.data);
             var notif = {notifs: data};
             $('#notifPanelListGroup').html("");
             $('#notif_list_tmpl').tmpl(notif).appendTo('#notifPanelListGroup');
