@@ -11,7 +11,7 @@
  *
  * @author youvann
  */
-class etatTechniqueManager {
+class EtatTechniqueManager {
 
     private $db;
 

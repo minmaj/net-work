@@ -1,15 +1,29 @@
 // init
 
 $(document).ready(function() {
+    
+    /*
+     * A noter !
+     * $(...).tmpl(param) où tmpl est une fonction permettant de :
+     * - 1) Chercher un element du DOM renvoye par JQuery sur lequel une 
+     * fonction d'analyse de template, cad "tmpl" (voir vendor/jquery.tmpl.min.js) 
+     * est appelee
+     * - 2) transferer "param" au template pour l'utiliser
+     */
 
     var lastStuffVisited;
 
-    refreshFailureStuff();
+    refreshFailureStuff(); // defined in live-update.js
     updateTypesList(); // defined in live-update.js
-    useSynoptique();
-    refreshNotifs();
-    refreshDonutsDataArray();
+    refreshNotifs(); // defined in live-update.js
+    refreshDonutsDataArray(); // defined in live-update.js
 
+    useSynoptique(); // defined in synoptique.js
+
+    /*
+     * Rafraichit le tableau des équipements de la vue courante (donc en fonction
+     * du lastStuffVisited)
+     */
     refreshStuffTable(function(data) {
         data = data[lastStuffVisited];
         var stuff = {stuff: data};
@@ -20,6 +34,10 @@ $(document).ready(function() {
         bindButtonDelete();
     });
 
+    /*
+     * Bouton pour lancer la simulation de mise en pannes 
+     * et autres modifications sur les équipements
+     */
     function bindSimulationButton(e) {
         e.preventDefault();
         $("#run_simulation").unbind("click");
@@ -69,11 +87,11 @@ $(document).ready(function() {
                     bindButtonDelete();
 
                     /*<div class="alert alert-warning" role="alert">Attention! 8 ordinateurs fixes sont actuellement en pannes!</div>*/
-                    if(data.nbEquipementEnPanne > 0){
+                    if (data.nbEquipementEnPanne > 0) {
                         $("#warning_message_equipement").html("<i class=\"fa fa-warning\"></i> Attention ! " + data.nbEquipementEnPanne + " " + typeEquipement.toLowerCase() + "(s) " + " actuellement en panne(s) !");
                         $("#warning_message_equipement").show("slow");
                     }
-                    else{
+                    else {
                         $("#warning_message_equipement").html("");
                         $("#warning_message_equipement").hide("slow");
                     }
@@ -93,7 +111,7 @@ $(document).ready(function() {
     });
 
     /*
-     *  TODO COMMENTAIRE
+     *  Bouton de retour a la page d'accueil
      */
     $("#backHomeButton").click(function(e) {
         e.preventDefault();
@@ -107,7 +125,7 @@ $(document).ready(function() {
     });
 
     /*
-     *  TODO COMMENTAIRE
+     *  Bouton d'ajout qui affiche le formulaire d'ajout d'un equipement
      */
     $("#addStuffButton").click(function(e) {
         e.preventDefault();
@@ -125,7 +143,11 @@ $(document).ready(function() {
     });
 
     /*
-     * TODO COMMENTAIRE
+     * Bouton d'ajout depuis le formulaire d'ajout d'equipement qui envoie
+     * les données en ajax au serveur. Le serveur doit traiter cette requete
+     * par l'ajout d'un nouvel equipement dans la BD ou renvoyer une erreur si
+     * l'ajout a echoue
+     * 
      */
     $("#formAddButtonStuff").click(function(e) {
         e.preventDefault();
@@ -140,9 +162,9 @@ $(document).ready(function() {
             dataType: "json",
             data: newStuff,
             success: function(data) {
-                if(data.error !== false){
+                if (data.error !== false) {
                     $('#warning_message_add_equipement').text(data.error).show();
-                } else{
+                } else {
                     $('#success_message_add_equipement').show();
                 }
             }
@@ -157,7 +179,8 @@ $(document).ready(function() {
     });
 
     /*
-     *  TODO COMMENTAIRE
+     *  Dans le formulaire d'ajout, si on souhaite assigner l'identifiant d'un equipement
+     *  parent, il faut d'abord preciser sa categorie
      */
     $("#categorie_parent").change(function() {
         var typeEquipement = $(this).val();
@@ -176,7 +199,8 @@ $(document).ready(function() {
     });
 
     /*
-     *  TODO COMMENTAIRE
+     *  Le clique du lien d'accueil situé sur le fil d'ariane (breadcrumb)
+     *  provoquera l'affichage du contenu d'accueil
      */
     function on_click_home_link(e) {
         e.preventDefault();
@@ -189,12 +213,21 @@ $(document).ready(function() {
         $('.home_link').click(on_click_home_link);
     }
 
+    $(".home_link").click(on_click_home_link);
+
+    /*
+     * Mets au majuscule la premiere lettre d'une chaine de caractere
+     * 
+     * @returns {String.prototype@call;slice|String.prototype@call;charAt@call;toUpperCase}
+     */
     String.prototype.capitalize = function() {
         return this.charAt(0).toUpperCase() + this.slice(1);
     }
 
-    $(".home_link").click(on_click_home_link);
-
+    /*
+     * Affiche le detail d'un equipement sous forme d'une fenetre modale 
+     * lors d'un clique sur le bouton "detail" depuis le tableau des equipements
+     */
     function bindButtonView() {
         $(".buttonView").click(function(e) {
             e.preventDefault();
@@ -217,6 +250,11 @@ $(document).ready(function() {
 
     }
 
+    /*
+     * Affiche un formulaire d'edition d'un equipement sous forme d'une 
+     * fenetre modale lors d'un clique sur le bouton "detail" depuis le tableau 
+     * des equipements
+     */
     function bindButtonEdit() {
         $(".buttonEdit").click(function(e) {
             e.preventDefault();
@@ -228,9 +266,9 @@ $(document).ready(function() {
                 dataType: "json",
                 data: "idStuff=" + idStuff,
                 success: function(data) {
-                    $headingEditModal = $('#headingEditModal');
-                    $headingEditModal.children().remove();
-                    $headingEditModal
+                    var headingEditModal = $('#headingEditModal');
+                    headingEditModal.children().remove();
+                    headingEditModal
                             .append($("<i />").attr("class", "fa fa-search-plus"))
                             .append($("<span />").attr("class", "EditModalTitle").text(" " + data.nom));
                     var stuff = {stuffDetail: data};
@@ -242,26 +280,26 @@ $(document).ready(function() {
                     etat = (data.etatFonctionnel === "En arret de maintenance") ? "Mettre en marche l'équipement" : "Passer l'équipement en maintenance";
                     $("#valueEtatFonctionnel").text(etat);
 
-                    passerEquipementEnMarche = false;
-                    passerEquipementEnMaintenance = false;
+                    var passerEquipementEnMarche = false;
+                    var passerEquipementEnMaintenance = false;
 
                     $("#checkboxMaintenance").change(function() {
-                        if(data.etatFonctionnel === "En arret de maintenance"){ // Mettre en marche
+                        if (data.etatFonctionnel === "En arret de maintenance") { // Mettre en marche
                             passerEquipementEnMarche = $(this).is(':checked');
                             console.log("passerEquipementEnMarche " + passerEquipementEnMarche);
                             $("#checkboxMaintenance").data("marche", passerEquipementEnMarche);
-                        } else{ // Passer en arrêt de maintenance
+                        } else { // Passer en arrêt de maintenance
                             passerEquipementEnMaintenance = $(this).is(':checked');
                             console.log("passerEquipementEnMaintenance " + passerEquipementEnMaintenance);
                             $("#checkboxMaintenance").data("maintenance", passerEquipementEnMaintenance);
                         }
 
-                        $commentFormGroup = $("#commentFormGroup");
+                        var commentFormGroup = $("#commentFormGroup");
                         $("#comment").val("");
-                        if($(this).is(':checked')){
-                            $commentFormGroup.show();
-                        } else{
-                            $commentFormGroup.hide();
+                        if ($(this).is(':checked')) {
+                            commentFormGroup.show();
+                        } else {
+                            commentFormGroup.hide();
                         }
                     });
                     bindConfirmEditButton(idStuff, passerEquipementEnMarche, passerEquipementEnMaintenance);
@@ -270,6 +308,15 @@ $(document).ready(function() {
         });
     }
 
+    /*
+     * Permet d'envoyer les donnees d'edition d'equipement en ajax au serveur,
+     * apres avoir clique sur le bouton de confirmation
+     * 
+     * 
+     * @param idStuff
+     * @param passerEquipementEnMarche
+     * @param passerEquipementEnMaintenance
+     */
     function bindConfirmEditButton(idStuff, passerEquipementEnMarche, passerEquipementEnMaintenance) {
         $('form#edit-form').on('submit', function(e) {
             e.preventDefault();
@@ -289,19 +336,19 @@ $(document).ready(function() {
                 data: dataSerialize + "&idStuff=" + idStuff + "&passerEquipementEnMarche=" + passerEquipementEnMarche + "&passerEquipementEnMaintenance=" + passerEquipementEnMaintenance,
                 success: function(data) {
                     console.log("data : " + data);
-                    if(data.comment !== "" || data.nom !== ""){ // Afficher les messages d'erreurs
-                        $errorMsgPanel = $("#errorMsgPanel");
-                        $errorMsgPanel.attr("class", "alert alert-danger").attr("role", "alert");
-                        msgError = $("<ul />");
-                        if(data.comment !== ""){ // Champ commentaire non rempli alors qu'il le devrait
+                    if (data.comment !== "" || data.nom !== "") { // Afficher les messages d'erreurs
+                        var errorMsgPanel = $("#errorMsgPanel");
+                        errorMsgPanel.attr("class", "alert alert-danger").attr("role", "alert");
+                        var msgError = $("<ul />");
+                        if (data.comment !== "") { // Champ commentaire non rempli alors qu'il le devrait
                             msgError.append($("<li />").text(data.comment));
                         }
 
-                        if(data.nom !== ""){ // Champ nom non rempli
+                        if (data.nom !== "") { // Champ nom non rempli
                             msgError.append($("<li />").text(data.nom));
                         }
-                        $errorMsgPanel.html(msgError);
-                    } else{
+                        errorMsgPanel.html(msgError);
+                    } else {
                         $("#viewEditModal").modal("hide");
                     }
                 },
@@ -312,6 +359,11 @@ $(document).ready(function() {
         });
     }
 
+    /*
+     * Affiche une fenetre de confirmation de suppression d'un equipement 
+     * lors du clique sur le bouton de suppression depuis le tableau des equipements
+     * 
+     */
     function bindButtonDelete() {
         $(".buttonDelete").click(function(e) {
             e.preventDefault();
@@ -332,6 +384,9 @@ $(document).ready(function() {
         });
     }
 
+    /*
+     * Envoie l'ordre de suppression de l'equipement en ajax au serveur
+     */
     function bindConfirmDeleteButton(idStuffToDelete) {
         $(".confirmDeleteButton").click(function(e) {
             e.preventDefault();
@@ -346,9 +401,8 @@ $(document).ready(function() {
     }
 
     /*
-     * NOTIFICATIONS WORK
+     * Rafraichit les notifications en demandant les donnees au serveur en ajax
      */
-
     function refreshNotifData() {
         $.ajax({
             url: "administration/notifData",
@@ -363,6 +417,9 @@ $(document).ready(function() {
         });
     }
 
+    /*
+     * Envoie en ajax l'ordre de marquer les notifications comme etant lues
+     */
     $("#notifReadButton").click(function(e) {
         e.preventDefault();
         $.ajax({

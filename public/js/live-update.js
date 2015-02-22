@@ -1,3 +1,7 @@
+/**
+ * Rafraichit les tableaux concernant les pannes majeures et mineures du contenu
+ * par defaut (contenu de la page d'accueil) 
+ */
 function refreshFailureStuff() {
     if (typeof (EventSource) !== "undefined") {
         var eSource = new EventSource("sender/refreshFailureStuff");
@@ -18,6 +22,10 @@ function refreshFailureStuff() {
     }
 }
 
+/*
+ * Mets a jour les nombres d'equipement par categorie, situes dans le menu
+ * de navigation des equipements a gauche
+ */
 function updateTypesList() {
     if (typeof (EventSource) !== "undefined") {
         var eSource = new EventSource("sender/stuffCountBadges");
@@ -34,6 +42,12 @@ function updateTypesList() {
     }
 }
 
+/*
+ * Utilisation du server sent events avec l'utilisation d'une fonction de rappel
+ * 
+ * Voir main.js pour le callback qui rafraichit le tableau des equipements 
+ * sur la categorie actuellement affichee.
+ */
 function refreshStuffTable(callback) {
     if (typeof (EventSource) !== "undefined") {
         var eSource = new EventSource("sender/refreshStuffTable");
@@ -46,6 +60,9 @@ function refreshStuffTable(callback) {
     }
 }
 
+/*
+ * Rafraichit les notifications se trouvant a drotie de la page
+ */
 function refreshNotifs() {
     if (typeof (EventSource) !== "undefined") {
         var eSource = new EventSource("sender/notifRefresh");
@@ -61,6 +78,9 @@ function refreshNotifs() {
     }
 }
 
+/*
+ * Rafraichit le donut de donnees situe en dessous des notifications
+ */
 function refreshDonutsDataArray() {
     if (typeof (EventSource) !== "undefined") {
         var eSource = new EventSource("sender/donutData");

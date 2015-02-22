@@ -18,12 +18,12 @@ class AdministrationModel extends BaseModel
         $this->viewModel->set("typeEquipements", $typeEquipements);
 
         //Lister les etats techniques
-        $etatTechManager = new etatTechniqueManager($this->db);
+        $etatTechManager = new EtatTechniqueManager($this->db);
         $etatsTechniques = $etatTechManager->selectAll();
         $this->viewModel->set("etatsTechniques", $etatsTechniques);
 
         //Lister les etats fonctionnels
-        $etatFoncManager   = new etatFonctionnelManager($this->db);
+        $etatFoncManager   = new EtatFonctionnelManager($this->db);
         $etatsFonctionnels = $etatFoncManager->selectAll();
         $this->viewModel->set("etatsFonctionnels", $etatsFonctionnels);
 

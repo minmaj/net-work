@@ -45,7 +45,7 @@ class SenderModel extends BaseModel {
     }
 
     public function donutData() {
-        $etatTechniqueManager = new etatTechniqueManager($this->db);
+        $etatTechniqueManager = new EtatTechniqueManager($this->db);
         $equipementByTechnicalStatus = $etatTechniqueManager->countEquipementByEtatTechnique();
 
         return convertObjectListToArray($equipementByTechnicalStatus);

@@ -1,6 +1,6 @@
 <?php
 
-class etatFonctionnelManager {
+class EtatFonctionnelManager {
 
     private $db;
 
