@@ -7,7 +7,7 @@ class Database
     protected $connection;
     protected $dns      = 'mysql:host=localhost;dbname=net-work-db';
     protected $username = 'root';
-    protected $password = 'root';
+    protected $password = '';
 
     /**
      * Singleton pattern implementation makes "new" unavailable
