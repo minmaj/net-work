@@ -6,7 +6,7 @@
 ![Mockup1](bdView.png "Vue générale de la base de données")
 
 ###1.2. Remarques
-Expliquer que les équipements ne peuvent avoir qu'un parent pour simplifier la conception de la base de données.
+Afin de simplifier la conception de la base de données, les équipements ne peuvent avoir qu'un parent. Par ailleurs, nous avons décidé de ne pas utiliser de clefs étrangères.
 
 ##2. Conception de l'interface d'adminstration
 ###2.1.Vue de la page d'accueil 
